@@ -1,0 +1,3 @@
+/*
+ 	This folder contains all libraries referenced by Visual Studio.
+*/
