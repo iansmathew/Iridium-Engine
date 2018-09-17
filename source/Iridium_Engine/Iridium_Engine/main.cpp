@@ -5,16 +5,25 @@
 #endif // !UNICODE
 
 #include <Windows.h>
+#include <winnt.h>
 #include <string>
+extern "C" {
+#include <Powrprof.h>
 
-LPCWSTR debugText = L"ASDASD";
+}
+#pragma comment(lib, "Powrprof.lib")
+
+
 HWND g_hWnd;
+TCHAR debugText[];
 
 //---------------------------
 // FUNCTION DECLARATIONS
 //---------------------------
 bool IsInstanceRunning(LPCWSTR className, LPCWSTR windowTitle);
-void CheckStorageCapacity();
+void CheckDiskCapacity();
+void CheckMemoryCapacity();
+void CheckCPUStats();
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 HWND CreateWindowInstance(const HINSTANCE &hInstance, const wchar_t  CLASS_NAME[14]);
 
@@ -46,7 +55,10 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstace, PWSTR pCmdLine,
 	ShowWindow(g_hWnd, nCmdShow);
 	
 	// check for storage capacity
-	CheckStorageCapacity();
+	CheckDiskCapacity();
+	CheckMemoryCapacity();
+	CheckCPUStats();
+
 
 	//-----------------------
 	// MESSAGE LOOP
@@ -99,7 +111,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 		PAINTSTRUCT ps;
 		HDC hdc = BeginPaint(hwnd, &ps);
-		FillRect(hdc, &ps.rcPaint, (HBRUSH) (COLOR_WINDOW + 1));
+		FillRect(hdc, &ps.rcPaint, (HBRUSH) (COLOR_WINDOW + 2));
 		EndPaint(hwnd, &ps);
 		return 0;
 	}
@@ -141,12 +153,83 @@ bool IsInstanceRunning(LPCWSTR className, LPCWSTR windowTitle)
 }
 
 /*
-	Check's if device has required physical and virtal memory space.
+	Checks if device has required disk space needed.
 	Displays confirmation to user through message box
 */
-void CheckStorageCapacity()
+void CheckDiskCapacity()
 {
-	PULARGE_INTEGER freeBytesAvailable = nullptr;
-	GetDiskFreeSpaceEx(NULL, NULL, NULL, freeBytesAvailable);
+	wchar_t text[200];
+	ULARGE_INTEGER ulFreeSpace;
+	ULARGE_INTEGER ulTotalSpace;
+	ULARGE_INTEGER ulTotalFreeSpace;
 
+	GetDiskFreeSpaceEx(L"C:", &ulFreeSpace, &ulTotalSpace, &ulTotalFreeSpace);
+
+	if (300 > (ulTotalFreeSpace.QuadPart / 1024 * 1024))
+		swprintf(text, 200, L"Insufficient disk space \nDisk space required: 300 \nDisk space available: %llu MB.", ulTotalFreeSpace.QuadPart / (1024 * 1024));
+	else
+		swprintf(text, 200, L"Sufficient disk space \nDisk space required: 300 \nDisk space available: %llu MB.", ulTotalFreeSpace.QuadPart / (1024 * 1024));
+
+	int msgboxID = MessageBox(
+		g_hWnd,
+		text,
+		L"Disk Space Available",
+		NULL
+	);
 }
+
+/*
+	Displays the size of physical and virtual memory available to use.
+	Displays information to user via message box.
+*/
+void CheckMemoryCapacity()
+{
+	wchar_t text[200];
+	MEMORYSTATUSEX memoryStruct = {};
+	memoryStruct.dwLength = sizeof(memoryStruct);
+
+	GlobalMemoryStatusEx(&memoryStruct);
+
+	int bufferSize = swprintf(text, 200, L"Physical Memory Available: %I64d MB \nVirtual Memory Available: %I64d MB", memoryStruct.ullAvailPhys / (1024 * 1024), memoryStruct.ullAvailVirtual / (1024 * 1024));
+	int msgboxID = MessageBox(
+		g_hWnd,
+		text,
+		L"Memory Available",
+		NULL
+	);
+}
+
+typedef struct _PROCESSOR_POWER_INFORMATION {
+	ULONG Number;
+	ULONG MaxMhz;
+	ULONG CurrentMhz;
+	ULONG MhzLimit;
+	ULONG MaxIdleState;
+	ULONG CurrentIdleState;
+} PROCESSOR_POWER_INFORMATION, *PPROCESSOR_POWER_INFORMATION;
+
+
+/*
+	Displays the CPU speed and architecture of the device.
+	Displays information to user via message box.
+*/
+void CheckCPUStats()
+{
+	SYSTEM_INFO sysInfo;
+	GetSystemInfo(&sysInfo);
+
+	// allocate buffer to get info for each processor
+	const int size = sysInfo.dwNumberOfProcessors * sizeof(PROCESSOR_POWER_INFORMATION);
+	LPBYTE pBuffer = new BYTE[size];
+	CallNtPowerInformation(ProcessorInformation, NULL, 0, pBuffer, size);
+	PPROCESSOR_POWER_INFORMATION ppi = (PPROCESSOR_POWER_INFORMATION)pBuffer;
+
+	wchar_t text[200];
+	swprintf(text, 200, L"Proccesor Speed: %d MHz \nCPU Architecture Value: %u", ppi->MaxMhz, sysInfo.wProcessorArchitecture);
+	int msgboxID = MessageBox(
+		g_hWnd,
+		text,
+		L"CPU Specs",
+		NULL
+	);
+}	
