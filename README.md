@@ -7,5 +7,5 @@ Iridium (_Codename: Spaghetti Code_) is an engine developed by Untitled Games St
  * Cory Ronald
  * Luis Antonio Velez Yumbla
 
-## Libraries Used
-
+## Starting the Engine
+ * Find the latest .exe file under the Game folder. There might be multiple .exe based on platforms and release types.
