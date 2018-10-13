@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>DESKTOP-V4JCA8D</Machine>
+    <WindowsUser>ridin</WindowsUser>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetOsVersion>10.0</TargetOsVersion>
+    <TargetOsDescription>Windows 10.0</TargetOsDescription>
+    <SolutionConfiguration>Debug|x64</SolutionConfiguration>
+    <PackageArchitecture>x64</PackageArchitecture>
+    <PackageIdentityName>5bffee91-9321-4d3d-8d39-cdfc79e69ea7</PackageIdentityName>
+    <PackageIdentityPublisher>CN=ridin</PackageIdentityPublisher>
+    <IntermediateOutputPath>D:\ridin\Documents\Github Repos\Iridium_Engine\IridiumEngine\Temp\</IntermediateOutputPath>
+    <RemoteDeploymentType>CopyToDevice</RemoteDeploymentType>
+    <PackageRegistrationPath>
+    </PackageRegistrationPath>
+    <RemoveNonLayoutFiles>false</RemoveNonLayoutFiles>
+    <DeployOptionalPackages>false</DeployOptionalPackages>
+    <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
+    <LayoutDir>D:\ridin\Documents\Github Repos\Iridium_Engine\IridiumEngine\Game\AppX</LayoutDir>
+    <RegisteredManifestChecksum>6D942E808635AFD69FCF5F021E73CA4FFA77CD721080A1DAD2B9112728A32260</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>5bffee91-9321-4d3d-8d39-cdfc79e69ea7_1.0.0.0_x64__8ppgfsb4dbvx2</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>5bffee91-9321-4d3d-8d39-cdfc79e69ea7_8ppgfsb4dbvx2!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>5bffee91-9321-4d3d-8d39-cdfc79e69ea7</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=ridin</RegisteredPackagePublisher>
+    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+    <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="D:\ridin\Documents\Github Repos\Iridium_Engine\IridiumEngine\Game\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-10-13T01:08:30.199</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="D:\ridin\Documents\Github Repos\Iridium_Engine\IridiumEngine\.\Game\IridiumEngine.exe">
+      <PackagePath>IridiumEngine.exe</PackagePath>
+      <Modified>2018-10-13T01:08:30.005</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\ridin\Documents\Github Repos\Iridium_Engine\IridiumEngine\Game\IridiumEngine.winmd">
+      <PackagePath>IridiumEngine.winmd</PackagePath>
+      <Modified>2018-10-13T01:08:29.742</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\ridin\Documents\Github Repos\Iridium_Engine\IridiumEngine\Assets\LockScreenLogo.scale-200.png">
+      <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
+      <Modified>2018-10-06T03:50:01.052</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\ridin\Documents\Github Repos\Iridium_Engine\IridiumEngine\Assets\SplashScreen.scale-200.png">
+      <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-10-06T03:50:01.052</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\ridin\Documents\Github Repos\Iridium_Engine\IridiumEngine\Assets\Square150x150Logo.scale-200.png">
+      <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-10-06T03:50:01.052</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\ridin\Documents\Github Repos\Iridium_Engine\IridiumEngine\Assets\Square44x44Logo.scale-200.png">
+      <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-10-06T03:50:01.052</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\ridin\Documents\Github Repos\Iridium_Engine\IridiumEngine\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-10-06T03:50:01.052</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\ridin\Documents\Github Repos\Iridium_Engine\IridiumEngine\Assets\StoreLogo.png">
+      <PackagePath>Assets\StoreLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-10-06T03:50:01.052</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\ridin\Documents\Github Repos\Iridium_Engine\IridiumEngine\Assets\Wide310x150Logo.scale-200.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-10-06T03:50:01.052</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\ridin\Documents\Github Repos\Iridium_Engine\IridiumEngine\Game\SamplePixelShader.cso">
+      <PackagePath>SamplePixelShader.cso</PackagePath>
+      <Modified>2018-10-13T01:08:24.297</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\ridin\Documents\Github Repos\Iridium_Engine\IridiumEngine\Game\SampleVertexShader.cso">
+      <PackagePath>SampleVertexShader.cso</PackagePath>
+      <Modified>2018-10-13T01:08:24.398</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.16299.0\\redist\Debug\X64\ucrtbased.dll">
+      <PackagePath>ucrtbased.dll</PackagePath>
+      <Modified>2017-09-29T05:58:52.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\ridin\Documents\Github Repos\Iridium_Engine\IridiumEngine\Game\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-10-13T01:08:30.158</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\">
+      <Name>Microsoft.VCLibs.140.00.Debug</Name>
+      <Version>14.0.26128.0</Version>
+      <Architecture>ARM</Architecture>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.140.00.Debug, MinVersion = 14.0.26128.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\.\AppX\Debug\ARM\Microsoft.VCLibs.ARM.Debug.14.00.appx</AppxLocation>
+      <MoreInfo>
+      </MoreInfo>
+    </ResolvedSDKReference>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\">
+      <Name>Microsoft.VCLibs.140.00.Debug</Name>
+      <Version>14.0.26128.0</Version>
+      <Architecture>x64</Architecture>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.140.00.Debug, MinVersion = 14.0.26128.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\.\AppX\Debug\x64\Microsoft.VCLibs.x64.Debug.14.00.appx</AppxLocation>
+      <MoreInfo>
+      </MoreInfo>
+    </ResolvedSDKReference>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\">
+      <Name>Microsoft.VCLibs.140.00.Debug</Name>
+      <Version>14.0.26128.0</Version>
+      <Architecture>x86</Architecture>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.140.00.Debug, MinVersion = 14.0.26128.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.VCLibs\14.0\.\AppX\Debug\x86\Microsoft.VCLibs.x86.Debug.14.00.appx</AppxLocation>
+      <MoreInfo>
+      </MoreInfo>
+    </ResolvedSDKReference>
+  </ItemGroup>
+</Project>
