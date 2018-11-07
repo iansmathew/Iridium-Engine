@@ -72,23 +72,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)Game\$(PlatformName)\$(Configuration)</OutDir>
-    <IntDir>$(SolutionDir)Temp\$(PlatformName)\$(Configuration)</IntDir>
+    <OutDir>$(SolutionDir)Game\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Temp\$(PlatformName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)Game\$(PlatformName)\$(Configuration)</OutDir>
-    <IntDir>$(SolutionDir)Temp\$(PlatformName)\$(Configuration)</IntDir>
+    <OutDir>$(SolutionDir)Game\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Temp\$(PlatformName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)Game\$(PlatformName)\$(Configuration)</OutDir>
-    <IntDir>$(SolutionDir)Temp\$(PlatformName)\$(Configuration)</IntDir>
+    <OutDir>$(SolutionDir)Game\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Temp\$(PlatformName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)Game\$(PlatformName)\$(Configuration)</OutDir>
-    <IntDir>$(SolutionDir)Temp\$(PlatformName)\$(Configuration)</IntDir>
+    <OutDir>$(SolutionDir)Game\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Temp\$(PlatformName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -155,19 +155,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Graphics\GraphicsClass.h" />
+    <ClInclude Include="Engine\Input\InputClass.h" />
+    <ClInclude Include="Engine\SystemClass.h" />
     <ClInclude Include="IridiumEngine.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="IridiumEngine.cpp" />
+    <ClCompile Include="GraphicsClass.cpp" />
+    <ClCompile Include="InputClass.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="SystemClass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="IridiumEngine.rc" />
