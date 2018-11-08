@@ -79,7 +79,7 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool isVsyncEnabled
 			if (displayModeList[i].Height == (UINT)screenHeight)
 			{
 				numerator = displayModeList[i].RefreshRate.Numerator;
-				numerator = displayModeList[i].RefreshRate.Denominator;
+				denominator = displayModeList[i].RefreshRate.Denominator;
 			}
 		}
 	}
@@ -327,5 +327,120 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool isVsyncEnabled
 	return true;
 }
 
+void D3DClass::Shutdown()
+{
+	//Before shutting down set to windowed mode because a full screen swapchain tends to throw errors
+	if (swapChain)
+		swapChain->SetFullscreenState(false, nullptr);
 
+	if (rasterState)
+	{
+		rasterState->Release();
+		rasterState = nullptr;
+	}
+
+	if (depthStencilView)
+	{
+		depthStencilView->Release();
+		depthStencilView = nullptr;
+	}
+
+	if (depthStencilState)
+	{
+		depthStencilState->Release();
+		depthStencilState = nullptr;
+	}
+
+	if (depthStencilBuffer)
+	{
+		depthStencilBuffer->Release();
+		depthStencilBuffer = nullptr;
+	}
+
+	if (renderTargetView)
+	{
+		renderTargetView->Release();
+		renderTargetView = nullptr;
+	}
+
+	if (deviceContext)
+	{
+		deviceContext->Release();
+		deviceContext = nullptr;
+	}
+
+	if (D3DDevice)
+	{
+		D3DDevice->Release();
+		D3DDevice = nullptr;
+	}
+
+	if (swapChain)
+	{
+		swapChain->Release();
+		swapChain = nullptr;
+	}
+}
+
+void D3DClass::BeginScene(float red, float green, float blue, float alpha)
+{
+	//Setup clear color
+	float color[] = { red, green, blue, alpha };
+
+	//Clear back buffer
+	deviceContext->ClearRenderTargetView(renderTargetView, color);
+
+	//Clear the depth buffer
+	deviceContext->ClearDepthStencilView(depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+}
+
+void D3DClass::EndScene()
+{
+	//Present back buffer to screen once rendering is complete
+	if (bIsVsyncEnabled)
+	{
+		//Lock to screen refresh rate
+		swapChain->Present(1, 0);
+	}
+	else
+	{
+		//Present as fast as possible
+		swapChain->Present(0, 0);
+	}
+}
+
+ID3D11Device* D3DClass::GetDevice()
+{
+	return D3DDevice;
+}
+
+ID3D11DeviceContext* D3DClass::GetDeviceContext()
+{
+	return deviceContext;
+}
+
+void D3DClass::GetProjectionMatrix(XMMATRIX& _projectionMatrix)
+{
+	//Fill the input matrix
+	_projectionMatrix = projectionMatrix;
+}
+
+void D3DClass::GetWorldMatrix(XMMATRIX& _worldMatrix)
+{
+	//Fill the input matrix
+	_worldMatrix = worldMatrix;
+}
+
+void D3DClass::GetOrthoMatrix(XMMATRIX& _orthoMatrix)
+{
+	//Fill the input matrix
+	_orthoMatrix = orthoMatrix;
+}
+
+void D3DClass::GetVideoCardInfo(char* cardName, int& memory)
+{
+	//Fill the inputs with the required details
+	strcpy_s(cardName, 128, videoCardDescription);
+	memory = videoCardMemory;
+}
 
