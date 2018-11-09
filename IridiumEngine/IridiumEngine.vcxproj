@@ -155,8 +155,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Graphics\D2DClass.h" />
     <ClInclude Include="Engine\Graphics\D3DClass.h" />
     <ClInclude Include="Engine\Graphics\GraphicsClass.h" />
+    <ClInclude Include="Engine\Graphics\UI\Text\DWClass.h" />
     <ClInclude Include="Engine\Input\InputClass.h" />
     <ClInclude Include="Engine\SystemClass.h" />
     <ClInclude Include="IridiumEngine.h" />
@@ -165,7 +167,9 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="D2DClass.cpp" />
     <ClCompile Include="D3DClass.cpp" />
+    <ClCompile Include="DWClass.cpp" />
     <ClCompile Include="GraphicsClass.cpp" />
     <ClCompile Include="InputClass.cpp" />
     <ClCompile Include="main.cpp" />

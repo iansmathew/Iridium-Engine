@@ -22,6 +22,12 @@
     <Filter Include="Source Files\Engine\Graphics">
       <UniqueIdentifier>{19f8017e-d6ef-48ab-b690-261029a9a72c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\Graphics\UI">
+      <UniqueIdentifier>{155a70a9-955f-49e4-bcf9-b58810164a6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Graphics\UI\Text">
+      <UniqueIdentifier>{9a694a7b-8ff1-4b75-bc5e-c8d669695389}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -48,6 +54,12 @@
     <ClInclude Include="Engine\Graphics\D3DClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Graphics\D2DClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\UI\Text\DWClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -67,6 +79,12 @@
     </ClCompile>
     <ClCompile Include="D3DClass.cpp">
       <Filter>Source Files\Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="D2DClass.cpp">
+      <Filter>Source Files\Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="DWClass.cpp">
+      <Filter>Source Files\Engine\Graphics\UI\Text</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

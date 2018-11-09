@@ -7,6 +7,7 @@
 #include <DirectXMath.h>
 using namespace DirectX;
 
+//TODO: Replace all raw pointers with ComPtr
 class D3DClass
 {
 public:
