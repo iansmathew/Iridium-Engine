@@ -35,20 +35,6 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hWnd)
 	}
 
 	/*******************
-		DirectWrite
-	********************/
-
-	//Create DirectWrite object
-	DirectWrite = new DWClass();
-	if (!DirectWrite)
-		return false;
-
-	//Initialize DirectWrite object
-	result = DirectWrite->Initialize();
-	if (!result)
-		MessageBox(hWnd, L"Could not initialize DirectWrite", L"Error", MB_OK);
-
-	/*******************
 		Direct2D
 	********************/
 
@@ -58,33 +44,47 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hWnd)
 		return false;
 
 	//Initialize Direct2D object
-	result = Direct2D->Initialize();
+	result = Direct2D->Initialize(Direct3D->GetDevice(), Direct3D->GetDeviceContext(), Direct3D->GetSwapChain());
 	if (!result)
 	{
 		MessageBox(hWnd, L"Could not initialize Direct2D", L"Error", MB_OK);
 	}
+
+	/*******************
+		DirectWrite
+	********************/
+
+	//Create DirectWrite object
+	DirectWrite = new DWClass();
+	if (!DirectWrite)
+		return false;
+
+	//Initialize DirectWrite object
+	result = DirectWrite->Initialize(Direct2D->GetDeviceContext());
+	if (!result)
+		MessageBox(hWnd, L"Could not initialize DirectWrite", L"Error", MB_OK);
 
 	return true;
 }
 
 void GraphicsClass::Shutdown()
 {
-	//Release Direct2D object
-	if (Direct2D)
-	{
-		Direct2D->Shutdown();
-		delete Direct2D;
-		Direct2D = nullptr;
-	}
+	////Release Direct2D object
+	//if (Direct2D)
+	//{
+	//	Direct2D->Shutdown();
+	//	delete Direct2D;
+	//	Direct2D = nullptr;
+	//}
 
-	//Release DirectWrite object
-	if (DirectWrite)
-	{
-		DirectWrite->Shutdown();
-		delete DirectWrite;
-		DirectWrite = nullptr;
+	////Release DirectWrite object
+	//if (DirectWrite)
+	//{
+	//	DirectWrite->Shutdown();
+	//	delete DirectWrite;
+	//	DirectWrite = nullptr;
 
-	}
+	//}
 
 	//Release Direct3D object
 	if (Direct3D)
@@ -117,16 +117,23 @@ Microsoft::WRL::ComPtr<ID3D11DeviceContext> GraphicsClass::GetD3DDeviceContext()
 	return Direct3D->GetDeviceContext();
 }
 
+Microsoft::WRL::ComPtr<IDXGISwapChain> GraphicsClass::GetSwapChain()
+{
+	return Direct3D->GetSwapChain();
+}
+
 bool GraphicsClass::Render()
 {
 	//Clear the buffer
 	Direct3D->BeginScene(0.5f, 0.5f, 0.5f, 1.0f); //Gray color
 
 	//Present rendered scene to screen
-	Direct3D->EndScene();
 
 	//TODO: Add Direct2D render function here
+	Direct2D->BeginScene(DirectWrite->GetTextLayout(), DirectWrite->GetYellowBrush());
+	Direct2D->EndScene();
 
+	Direct3D->EndScene();
 	//TODO: Add DirectWrite render function here
 
 	return true;

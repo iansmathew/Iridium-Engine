@@ -175,14 +175,30 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool isVsyncEnabled
 	//Dont set the advanced flags
 	swapChainDesc.Flags = 0;
 
-	//Set feature level to DirectX 11
-	featureLevel = D3D_FEATURE_LEVEL_11_0;
+	
 
 	//Create swap chain, Direct3D device and Direct3D device context
 	//This might fail if the user does not have their Direct11 compatible video card set as a primary card.
 	//If this is the case, cycle through all available cards and ask user which card to use to create the D3DDevice and context.
 
-	result = D3D11CreateDeviceAndSwapChain(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, 0, &featureLevel, 1, D3D11_SDK_VERSION, &swapChainDesc, &swapChain, &D3DDevice, nullptr, &deviceContext);
+	D3D_FEATURE_LEVEL featureLevels[] =
+	{
+		D3D_FEATURE_LEVEL_11_1,
+		D3D_FEATURE_LEVEL_11_0,
+		D3D_FEATURE_LEVEL_10_1,
+		D3D_FEATURE_LEVEL_10_0,
+		D3D_FEATURE_LEVEL_9_3,
+		D3D_FEATURE_LEVEL_9_2,
+		D3D_FEATURE_LEVEL_9_1
+	};
+
+	//Set feature level to DirectX 11
+	featureLevel;// = D3D_FEATURE_LEVEL_11_0;
+
+	//Support Direct2D
+	UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
+
+	result = D3D11CreateDeviceAndSwapChain(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, creationFlags, featureLevels, ARRAYSIZE(featureLevels), D3D11_SDK_VERSION, &swapChainDesc, &swapChain, &D3DDevice, &featureLevel, &deviceContext);
 	if (FAILED(result))
 		return false;
 
@@ -442,5 +458,10 @@ void D3DClass::GetVideoCardInfo(char* cardName, int& memory)
 	//Fill the inputs with the required details
 	strcpy_s(cardName, 128, videoCardDescription);
 	memory = videoCardMemory;
+}
+
+IDXGISwapChain* D3DClass::GetSwapChain()
+{
+	return swapChain;
 }
 

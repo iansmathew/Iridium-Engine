@@ -29,6 +29,7 @@ public:
 
 	void GetVideoCardInfo(char* cardName, int& memory);
 
+	IDXGISwapChain* GetSwapChain();
 private:
 	bool bIsVsyncEnabled;
 	int videoCardMemory;
