@@ -25,5 +25,8 @@ public:
 private:
 	bool keyStates[256];
 	DWClass* DWriteRef;
+public:
+	void MouseDown(bool isLeftButton, LPARAM lParam);
+	void MouseUp(bool isRightButton, LPARAM lParam);
 };
 

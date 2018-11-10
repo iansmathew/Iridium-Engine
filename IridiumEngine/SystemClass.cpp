@@ -125,6 +125,30 @@ LRESULT CALLBACK SystemClass::MessageHandler(HWND hWnd, UINT uMsg, WPARAM wParam
 			return 0;
 		}
 
+		case WM_LBUTTONDOWN:
+		{
+			Input->MouseDown(true, lParam);
+			return 0;
+		}
+
+		case WM_LBUTTONUP:
+		{
+			Input->MouseUp(true, lParam);
+			return 0;
+		}
+
+		case WM_RBUTTONDOWN:
+		{
+			Input->MouseDown(false, lParam);
+			return 0;
+		}
+
+		case WM_RBUTTONUP:
+		{
+			Input->MouseUp(false, lParam);
+			return 0;
+		}
+
 		//Send other messages to default message handler
 		default:
 			return DefWindowProc(hWnd, uMsg, wParam, lParam);

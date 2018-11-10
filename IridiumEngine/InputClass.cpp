@@ -68,3 +68,20 @@ void InputClass::SetDirectWriteRef(DWClass* _DWriteRef)
 {
 	DWriteRef = _DWriteRef;
 }
+
+void InputClass::MouseDown(bool isLeftButton, LPARAM lParam)
+{
+	std::string outputText = "Mouse down: ";
+	std::string buttonName = isLeftButton ? "Left Button" : "Right Button";
+	outputText.append(buttonName);
+	DWriteRef->UpdateTextLayout(outputText);
+}
+
+void InputClass::MouseUp(bool isLeftButton, LPARAM lParam)
+{
+
+	std::string outputText = "Mouse up: ";
+	std::string buttonName = isLeftButton ? "Left Button" : "Right Button";
+	outputText.append(buttonName);
+	DWriteRef->UpdateTextLayout(outputText);
+}
