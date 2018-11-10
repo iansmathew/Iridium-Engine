@@ -43,6 +43,8 @@ bool SystemClass::Initialize()
 		false;
 	}
 
+	Input->SetDirectWriteRef(Graphics->GetDirectWriteObject());
+
 	return true;
 }
 
@@ -112,14 +114,14 @@ LRESULT CALLBACK SystemClass::MessageHandler(HWND hWnd, UINT uMsg, WPARAM wParam
 		//Check if key has been pressed and pass input to InputClass
 		case WM_KEYDOWN:
 		{
-			Input->KeyDown((UINT)wParam);
+			Input->KeyDown((UINT)wParam, lParam);
 			return 0;
 		}
 
 		//Check if key has been released
 		case WM_KEYUP:
 		{
-			Input->KeyUp((UINT)wParam);
+			Input->KeyUp((UINT)wParam, lParam);
 			return 0;
 		}
 

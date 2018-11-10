@@ -20,7 +20,7 @@ public:
 	bool Initialize(Microsoft::WRL::ComPtr<ID3D11Device> _D3DDevice, Microsoft::WRL::ComPtr<ID3D11DeviceContext> _D3DDeviceContext, Microsoft::WRL::ComPtr<IDXGISwapChain > _swapChain);
 
 	Microsoft::WRL::ComPtr<ID2D1DeviceContext> GetDeviceContext();
-	void BeginScene(IDWriteTextLayout* param1, ID2D1SolidColorBrush* param2);
+	void BeginScene(IDWriteTextLayout* _textLayout, ID2D1SolidColorBrush* _brush);
 	void EndScene();
 private:
 	Microsoft::WRL::ComPtr<ID2D1Factory2> factory;

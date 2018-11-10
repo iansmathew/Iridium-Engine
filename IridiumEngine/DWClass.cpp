@@ -3,8 +3,6 @@
 
 using namespace Microsoft::WRL;
 
-#include <sstream>
-
 DWClass::DWClass()
 {
 	yellowBrush = nullptr;
@@ -30,7 +28,7 @@ bool DWClass::Initialize(ComPtr<ID2D1DeviceContext> _D2DDeviceContext)
 		return false;
 
 	//Setup text formats
-	result = factory->CreateTextFormat(L"Lucida Console", nullptr, DWRITE_FONT_WEIGHT_LIGHT, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, 32.0f, L"en-GB", &textFormatFPS);
+	result = factory->CreateTextFormat(L"Lucida Console", nullptr, DWRITE_FONT_WEIGHT_LIGHT, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, 18.0f, L"en-GB", &textFormatFPS);
 	if (FAILED(result))
 		return false;
 
@@ -43,16 +41,13 @@ bool DWClass::Initialize(ComPtr<ID2D1DeviceContext> _D2DDeviceContext)
 		return false;
 
 	//Create text layout
-	std::wostringstream outFPS;
-	outFPS.precision(4);
-	outFPS << "Hii" << std::endl;
+	std::wostringstream logText;
+	logText.precision(100);
+	logText << "Key presses logged: \n";
 
-	result = factory->CreateTextLayout(outFPS.str().c_str(), (UINT32)outFPS.str().size(), textFormatFPS.Get(), 500.0f, 500.0f, &textLayoutFPS);
+	result = factory->CreateTextLayout(logText.str().c_str(), (UINT32)logText.str().size(), textFormatFPS.Get(), 500.0f, 500.0f, &textLayoutFPS);
 	if (FAILED(result))
 		return false;
-
-
-	
 
 	return true;
 }
@@ -65,4 +60,22 @@ IDWriteTextLayout* DWClass::GetTextLayout()
 ID2D1SolidColorBrush* DWClass::GetYellowBrush()
 {
 	return yellowBrush;
+}
+
+bool DWClass::Update()
+{
+	return true;
+}
+
+void DWClass::UpdateTextLayout(std::string inputText)
+{
+	std::wstring widestr = std::wstring(inputText.begin(), inputText.end());
+
+	//Create text layout
+	logText.precision(100);
+	logText << widestr << "\n";
+
+	HRESULT result = factory->CreateTextLayout(logText.str().c_str(), (UINT32)logText.str().size(), textFormatFPS.Get(), 500.0f, 500.0f, &textLayoutFPS);
+	/*if (FAILED(result))
+		return false;*/
 }

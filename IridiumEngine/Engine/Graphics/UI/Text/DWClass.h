@@ -8,6 +8,7 @@
 #include <d2d1_2.h>
 #include <dwrite.h>
 #include <wrl/client.h>
+#include <sstream>
 
 class DWClass
 {
@@ -20,11 +21,20 @@ public:
 	IDWriteTextLayout* GetTextLayout();
 	ID2D1SolidColorBrush* GetYellowBrush();
 
+	bool Update();
+	void UpdateTextLayout(std::string inputText);
+
+
+public:
+
 private:
+	std::wostringstream logText;
+
+
 	Microsoft::WRL::ComPtr<IDWriteFactory> factory;
 	ID2D1SolidColorBrush* yellowBrush;
 	Microsoft::WRL::ComPtr<IDWriteTextFormat> textFormatFPS;
 	Microsoft::WRL::ComPtr<IDWriteTextLayout> textLayoutFPS;
-
-	
 };
+
+

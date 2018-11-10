@@ -122,19 +122,25 @@ Microsoft::WRL::ComPtr<IDXGISwapChain> GraphicsClass::GetSwapChain()
 	return Direct3D->GetSwapChain();
 }
 
+DWClass* GraphicsClass::GetDirectWriteObject()
+{
+	return DirectWrite;
+}
+
 bool GraphicsClass::Render()
 {
+	//Update log text before rendering
+	DirectWrite->Update();
+
 	//Clear the buffer
 	Direct3D->BeginScene(0.5f, 0.5f, 0.5f, 1.0f); //Gray color
+	Direct2D->BeginScene(DirectWrite->GetTextLayout(), DirectWrite->GetYellowBrush());
+
+
 
 	//Present rendered scene to screen
-
-	//TODO: Add Direct2D render function here
-	Direct2D->BeginScene(DirectWrite->GetTextLayout(), DirectWrite->GetYellowBrush());
 	Direct2D->EndScene();
-
 	Direct3D->EndScene();
-	//TODO: Add DirectWrite render function here
 
 	return true;
 }

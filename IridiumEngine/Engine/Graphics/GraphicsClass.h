@@ -27,6 +27,7 @@ public:
 	Microsoft::WRL::ComPtr<ID3D11Device> GetD3DDevice();
 	Microsoft::WRL::ComPtr<ID3D11DeviceContext> GetD3DDeviceContext();
 	Microsoft::WRL::ComPtr<IDXGISwapChain> GetSwapChain();
+	DWClass* GetDirectWriteObject();
 
 private:
 	bool Render();

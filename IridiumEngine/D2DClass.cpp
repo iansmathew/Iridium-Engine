@@ -78,10 +78,10 @@ Microsoft::WRL::ComPtr<ID2D1DeviceContext> D2DClass::GetDeviceContext()
 	return deviceContext;
 }
 
-void D2DClass::BeginScene(IDWriteTextLayout* _textLayout, ID2D1SolidColorBrush* _yellowBrush)
+void D2DClass::BeginScene(IDWriteTextLayout* _textLayout, ID2D1SolidColorBrush* _brush)
 {
 	deviceContext->BeginDraw();
-	deviceContext->DrawTextLayout(D2D1::Point2F(2.0f, 5.0f), _textLayout, _yellowBrush);
+	deviceContext->DrawTextLayout(D2D1::Point2F(2.0f, 5.0f), _textLayout, _brush); //drawing contents from DirectWrite
 }
 
 void D2DClass::EndScene()
