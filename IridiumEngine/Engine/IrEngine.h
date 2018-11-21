@@ -1,22 +1,29 @@
 #pragma once
+
+#include "Engine/Graphics/GraphicsManager.h"
+#include "Engine/Input/InputManager.h"
+
 #include <windows.h>
 
-#include "Engine/Graphics/GraphicsClass.h"
-#include "Engine/Input/InputClass.h"
-
-class SystemClass
+class IrEngine
 {
 public:
-	SystemClass();
-	~SystemClass();
+	~IrEngine();
+
+	//Returns a static instance of the engine
+	static IrEngine* Get();
 
 	bool Initialize();
+
 	void Shutdown();
+
 	void Run();
 
 	LRESULT CALLBACK MessageHandler(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 private:
+	IrEngine();
+
 	bool Frame();
 	void InitializeWindows(int& screenWidth, int& screenHeight);
 	void ShutdownWindows();
@@ -26,9 +33,10 @@ private:
 	HINSTANCE HInstance;
 	HWND HWnd;
 
-	InputClass* Input;
-	GraphicsClass* Graphics;
+	InputManager* Input;
+	GraphicsManager* Graphics;
 };
 
 static LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-static SystemClass* ApplicationHandle = nullptr;
+//static IrEngine* ApplicationHandle = nullptr;
+

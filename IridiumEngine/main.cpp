@@ -1,28 +1,29 @@
 #include "stdafx.h"
-#include "Engine/SystemClass.h"
+#include "Engine/IrEngine.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline, int iCmdshow)
 {
-	SystemClass* System;
+	IrEngine* Engine;
 
 	//Create system object
-	System = new SystemClass();
-	if (!System)
+	Engine = IrEngine::Get();
+
+	if (!Engine)
 	{
 		return 0;
 	}
 
 	//Initialize and run system
-	bool result = System->Initialize();
+	bool result = Engine->Initialize();
 	if (result)
 	{
-		System->Run();
+		Engine->Run();
 	}
 
 	//Shutdown and release system object
-	System->Shutdown();
-	delete System;
-	System = nullptr;
+	Engine->Shutdown();
+	delete Engine;
+	Engine = nullptr;
 
 	return 0;
 }

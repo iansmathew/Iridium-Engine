@@ -155,23 +155,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Graphics\D2DClass.h" />
-    <ClInclude Include="Engine\Graphics\D3DClass.h" />
-    <ClInclude Include="Engine\Graphics\GraphicsClass.h" />
-    <ClInclude Include="Engine\Graphics\UI\Text\DWClass.h" />
-    <ClInclude Include="Engine\Input\InputClass.h" />
-    <ClInclude Include="Engine\SystemClass.h" />
-    <ClInclude Include="IridiumEngine.h" />
+    <ClInclude Include="Engine\Graphics\D2DSystem.h" />
+    <ClInclude Include="Engine\Graphics\D3DSystem.h" />
+    <ClInclude Include="Engine\Graphics\GraphicsManager.h" />
+    <ClInclude Include="Engine\Graphics\UI\Text\DWriteSystem.h" />
+    <ClInclude Include="Engine\Input\InputManager.h" />
+    <ClInclude Include="Engine\IrEngine.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="D2DClass.cpp" />
-    <ClCompile Include="D3DClass.cpp" />
-    <ClCompile Include="DWClass.cpp" />
-    <ClCompile Include="GraphicsClass.cpp" />
-    <ClCompile Include="InputClass.cpp" />
+    <ClCompile Include="D2DSystem.cpp" />
+    <ClCompile Include="D3DSystem.cpp" />
+    <ClCompile Include="DWriteSystem.cpp" />
+    <ClCompile Include="GraphicsManager.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -179,7 +178,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="SystemClass.cpp" />
+    <ClCompile Include="IrEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="IridiumEngine.rc" />

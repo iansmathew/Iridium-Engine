@@ -1,26 +1,34 @@
-#include "stdafx.h"
-#include "Engine/SystemClass.h"
 
-SystemClass::SystemClass()
+#include "stdafx.h"
+#include "Engine/IrEngine.h"
+
+IrEngine::IrEngine()
 {
 	Input = nullptr;
+	Graphics = nullptr;
 }
 
 
-SystemClass::~SystemClass()
+IrEngine::~IrEngine()
 {
 }
 
-bool SystemClass::Initialize()
+IrEngine* IrEngine::Get()
+{
+	static IrEngine* instance = new IrEngine(); //C++11 only runs local static initializers once, hence this is thread-safe 
+	return instance;
+}
+
+bool IrEngine::Initialize()
 {
 	int screenWidth = 0;
 	int screenHeight = 0;
 
-	//Initialize windows api
+	//Initialize windows API
 	InitializeWindows(screenWidth, screenHeight);
 	
 	//Create input object
-	Input = new InputClass();
+	Input = new InputManager();
 	if (!Input)
 	{
 		return false;
@@ -30,7 +38,7 @@ bool SystemClass::Initialize()
 	Input->Initialize();
 
 	//Create graphics object
-	Graphics = new GraphicsClass();
+	Graphics = new GraphicsManager();
 	if (!Graphics)
 	{
 		return false;
@@ -43,12 +51,10 @@ bool SystemClass::Initialize()
 		false;
 	}
 
-	Input->SetDirectWriteRef(Graphics->GetDirectWriteObject());
-
 	return true;
 }
 
-void SystemClass::Shutdown()
+void IrEngine::Shutdown()
 {
 	//Release graphics object
 	if (Graphics)
@@ -71,7 +77,7 @@ void SystemClass::Shutdown()
 	ShutdownWindows();
 }
 
-void SystemClass::Run()
+void IrEngine::Run()
 {
 	MSG msg;
 	bool done = false;
@@ -90,7 +96,7 @@ void SystemClass::Run()
 			DispatchMessage(&msg);
 		}
 
-		//If finwos signals to quit, then exit
+		//If find signals to quit, then exit
 		if (msg.message == WM_QUIT)
 		{
 			done = true;
@@ -107,47 +113,47 @@ void SystemClass::Run()
 	}
 }
 
-LRESULT CALLBACK SystemClass::MessageHandler(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK IrEngine::MessageHandler(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	switch (uMsg)
 	{
 		//Check if key has been pressed and pass input to InputClass
 		case WM_KEYDOWN:
 		{
-			Input->KeyDown((UINT)wParam, lParam);
+			Input->KeyDown((UINT)wParam);
 			return 0;
 		}
 
 		//Check if key has been released
 		case WM_KEYUP:
 		{
-			Input->KeyUp((UINT)wParam, lParam);
+			Input->KeyUp((UINT)wParam);
 			return 0;
 		}
 
-		case WM_LBUTTONDOWN:
-		{
-			Input->MouseDown(true, lParam);
-			return 0;
-		}
+		//case WM_LBUTTONDOWN:
+		//{
+		//	Input->MouseDown(true, lParam);
+		//	return 0;
+		//}
 
-		case WM_LBUTTONUP:
-		{
-			Input->MouseUp(true, lParam);
-			return 0;
-		}
+		//case WM_LBUTTONUP:
+		//{
+		//	Input->MouseUp(true, lParam);
+		//	return 0;
+		//}
 
-		case WM_RBUTTONDOWN:
-		{
-			Input->MouseDown(false, lParam);
-			return 0;
-		}
+		//case WM_RBUTTONDOWN:
+		//{
+		//	Input->MouseDown(false, lParam);
+		//	return 0;
+		//}
 
-		case WM_RBUTTONUP:
-		{
-			Input->MouseUp(false, lParam);
-			return 0;
-		}
+		//case WM_RBUTTONUP:
+		//{
+		//	Input->MouseUp(false, lParam);
+		//	return 0;
+		//}
 
 		//Send other messages to default message handler
 		default:
@@ -155,7 +161,7 @@ LRESULT CALLBACK SystemClass::MessageHandler(HWND hWnd, UINT uMsg, WPARAM wParam
 	}
 }
 
-bool SystemClass::Frame()
+bool IrEngine::Frame()
 {
 	bool result = Graphics->Frame();
 	if (!result)
@@ -166,7 +172,7 @@ bool SystemClass::Frame()
 	return true;
 }
 
-void SystemClass::InitializeWindows(int& screenWidth, int& screenHeight)
+void IrEngine::InitializeWindows(int& screenWidth, int& screenHeight)
 {
 	WNDCLASSEX wc;
 	DEVMODE dmScreenSettings;
@@ -174,7 +180,7 @@ void SystemClass::InitializeWindows(int& screenWidth, int& screenHeight)
 
 
 	//Get external pointer to this
-	ApplicationHandle = this;
+	//ApplicationHandle = this;
 
 	//Get instance of application
 	HInstance = GetModuleHandle(nullptr);
@@ -218,7 +224,7 @@ void SystemClass::InitializeWindows(int& screenWidth, int& screenHeight)
 	SetFocus(HWnd);
 }
 
-void SystemClass::ShutdownWindows()
+void IrEngine::ShutdownWindows()
 {
 	// Remove the window.
 	DestroyWindow(HWnd);
@@ -229,7 +235,7 @@ void SystemClass::ShutdownWindows()
 	HInstance = NULL;
 
 	// Release the pointer to this class.
-	ApplicationHandle = NULL;
+	//ApplicationHandle = NULL;
 
 	return;
 }
@@ -255,7 +261,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 	// All other messages pass to the message handler in the system class.
 	default:
 	{
-		return ApplicationHandle->MessageHandler(hwnd, umessage, wparam, lparam);
+		return IrEngine::Get()->MessageHandler(hwnd, umessage, wparam, lparam);
 	}
 	}
 }
