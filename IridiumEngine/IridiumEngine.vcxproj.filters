@@ -28,6 +28,24 @@
     <Filter Include="Source Files\Engine\Graphics\UI\Text">
       <UniqueIdentifier>{9a694a7b-8ff1-4b75-bc5e-c8d669695389}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\Event">
+      <UniqueIdentifier>{e37d7bdb-774c-4575-bbdb-b0d41a3d4600}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine">
+      <UniqueIdentifier>{c7516e2a-8e5a-4ff4-8034-a0bd0cf43b0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Event">
+      <UniqueIdentifier>{64470adf-7a0f-460f-90de-13bc2edbc2df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Graphics">
+      <UniqueIdentifier>{0baa9a6d-6d7d-4264-9b5e-cc0c45681399}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Input">
+      <UniqueIdentifier>{25660820-9114-4453-a84a-c84bcc1ff4cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\External Tools">
+      <UniqueIdentifier>{cfee6eae-ff3e-42b2-b229-7ed4504d87ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -36,26 +54,38 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\IrEngine.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\D2DSystem.h">
+      <Filter>Header Files\Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\D3DSystem.h">
+      <Filter>Header Files\Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\UI\Text\DWriteSystem.h">
+      <Filter>Header Files\Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\GraphicsManager.h">
+      <Filter>Header Files\Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Event\IEventManager.h">
+      <Filter>Header Files\Engine\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Input\InputManager.h">
+      <Filter>Header Files\Engine\Input</Filter>
+    </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\IrEngine.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="ExternalTools\FastDelegate.h">
+      <Filter>Header Files\External Tools</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Graphics\GraphicsManager.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Engine\Event\Events.h">
+      <Filter>Header Files\Engine\Event</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Input\InputManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Graphics\UI\Text\DWriteSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Graphics\D3DSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Graphics\D2DSystem.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Engine\Event\EventManager.h">
+      <Filter>Header Files\Engine\Event</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -82,6 +112,15 @@
     </ClCompile>
     <ClCompile Include="D2DSystem.cpp">
       <Filter>Source Files\Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="IEventManager.cpp">
+      <Filter>Source Files\Engine\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Events.cpp">
+      <Filter>Source Files\Engine\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>Source Files\Engine\Event</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

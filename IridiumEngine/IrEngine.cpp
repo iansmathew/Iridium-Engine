@@ -1,6 +1,8 @@
 
 #include "stdafx.h"
 #include "Engine/IrEngine.h"
+#include "Engine/Event/Events.h"
+#include "Engine/Event/EventManager.h"
 
 IrEngine::IrEngine()
 {
@@ -50,6 +52,10 @@ bool IrEngine::Initialize()
 	{
 		false;
 	}
+
+	//TODO: Remove unwanted event queuing
+	/*std::shared_ptr<EvtData_On_Key_Event> pEvent(new EvtData_On_Key_Event(10));
+	EventManager::Get()->QueueEvent(pEvent);*/
 
 	return true;
 }
@@ -103,7 +109,10 @@ void IrEngine::Run()
 		}
 		else
 		{
-			//Otherwise process frame
+			//Update event manager
+			EventManager::Get()->Update();
+
+			//Process frame
 			result = Frame();
 			if (!result)
 			{
