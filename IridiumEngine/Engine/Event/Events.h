@@ -29,3 +29,15 @@ public:
 		return key;
 	}
 };
+
+class EvtData_On_Mouse_Event : public BaseEventData
+{
+public:
+	static const EventType eventType;
+
+	virtual const EventType& GetEventType(void) const override
+	{
+		return eventType;
+	}
+
+};

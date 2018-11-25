@@ -53,9 +53,7 @@ bool IrEngine::Initialize()
 		false;
 	}
 
-	//TODO: Remove unwanted event queuing
-	/*std::shared_ptr<EvtData_On_Key_Event> pEvent(new EvtData_On_Key_Event(10));
-	EventManager::Get()->QueueEvent(pEvent);*/
+	
 
 	return true;
 }
@@ -140,29 +138,34 @@ LRESULT CALLBACK IrEngine::MessageHandler(HWND hWnd, UINT uMsg, WPARAM wParam, L
 			return 0;
 		}
 
-		//case WM_LBUTTONDOWN:
-		//{
-		//	Input->MouseDown(true, lParam);
-		//	return 0;
-		//}
+		case WM_LBUTTONDOWN:
+		{
+			//Input->MouseDown(true, lParam);
+			//TODO: Remove unwanted event queuing
+			std::shared_ptr<EvtData_On_Mouse_Event> pEvent(new EvtData_On_Mouse_Event());
+			EventManager::Get()->QueueEvent(pEvent);
 
-		//case WM_LBUTTONUP:
-		//{
-		//	Input->MouseUp(true, lParam);
-		//	return 0;
-		//}
 
-		//case WM_RBUTTONDOWN:
-		//{
-		//	Input->MouseDown(false, lParam);
-		//	return 0;
-		//}
+			return 0;
+		}
 
-		//case WM_RBUTTONUP:
-		//{
-		//	Input->MouseUp(false, lParam);
-		//	return 0;
-		//}
+		case WM_LBUTTONUP:
+		{
+			//Input->MouseUp(true, lParam);
+			return 0;
+		}
+
+		case WM_RBUTTONDOWN:
+		{
+			//Input->MouseDown(false, lParam);
+			return 0;
+		}
+
+		case WM_RBUTTONUP:
+		{
+			//Input->MouseUp(false, lParam);
+			return 0;
+		}
 
 		//Send other messages to default message handler
 		default:

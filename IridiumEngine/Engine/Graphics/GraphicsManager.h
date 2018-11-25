@@ -24,5 +24,5 @@ public:
 
 private:
 	D3DSysPtr D3DSys;
-	
+	float bgRGBA[4];
 };
