@@ -50,7 +50,13 @@ bool IrEngine::Initialize()
 	bool result = Graphics->Initialize(screenWidth, screenHeight, HWnd);
 	if (!result)
 	{
-		false;
+		return false;
+	}
+
+	LuaScripts = new LuaScriptManager();
+	if (!LuaScripts->Initialize())
+	{
+		return false;
 	}
 
 	

@@ -21,8 +21,8 @@ bool LuaScriptManager::Initialize()
 	LuaRef s = getGlobal(L, "testString");
 	LuaRef n = getGlobal(L, "number");
 	std::string luaString = s.cast<std::string>();
-	int answer = n.cast<int>();
-	std::cout << luaString << std::endl;
-	std::cout << "And here's our number:" << answer << std::endl;
+	std::string answer = n.cast<std::string>();
+	OutputDebugStringA(luaString.c_str());
+	OutputDebugStringA(answer.c_str());
 	return false;
 }
