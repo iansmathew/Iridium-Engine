@@ -46,6 +46,12 @@
     <Filter Include="Header Files\External Tools">
       <UniqueIdentifier>{cfee6eae-ff3e-42b2-b229-7ed4504d87ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Lua">
+      <UniqueIdentifier>{6e766724-b17d-4d79-a30b-5b017a873727}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Lua">
+      <UniqueIdentifier>{b48b4c7e-f88f-4569-bdac-670296c5c511}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -87,6 +93,9 @@
     <ClInclude Include="Engine\Event\EventManager.h">
       <Filter>Header Files\Engine\Event</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Lua\LuaScriptManager.h">
+      <Filter>Header Files\Engine\Lua</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -121,6 +130,9 @@
     </ClCompile>
     <ClCompile Include="EventManager.cpp">
       <Filter>Source Files\Engine\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="LuaScriptManager.cpp">
+      <Filter>Source Files\Engine\Lua</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

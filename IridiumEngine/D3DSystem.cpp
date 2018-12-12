@@ -89,9 +89,10 @@ bool D3DSystem::Initialize(int screenWidth, int screenHeight, bool isVysncEnable
 	videoCardMemory = (int)(adapterDesc.DedicatedVideoMemory / 1024 / 1024);
 
 	//Convert name of video card to char array and store it
-	int error = wcstombs_s(&stringLength, videoCardDescription, 128, adapterDesc.Description, 128);
-	if (error != 0)
-		return false;
+	//TODO: Fix does not work with x86
+	//int error = wcstombs_s(&stringLength, videoCardDescription, 128, adapterDesc.Description, 128);
+	//if (error != 0)
+	//	return false;
 
 	//Now that we've gotten the required info about refresh rate and video card info,
 	//we will release the structures and interfaces

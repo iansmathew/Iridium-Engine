@@ -2,6 +2,7 @@
 
 #include "Engine/Graphics/GraphicsManager.h"
 #include "Engine/Input/InputManager.h"
+#include "Engine/Lua/LuaScriptManager.h"
 
 #include <windows.h>
 
@@ -35,6 +36,7 @@ private:
 
 	InputManager* Input;
 	GraphicsManager* Graphics;
+	LuaScriptManager* LuaScripts;
 };
 
 static LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
