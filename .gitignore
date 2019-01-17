@@ -3,3 +3,6 @@
 
 #Visual Studio Root files
 .vs/
+lib/SFML/examples/
+lib/SFML/doc/
+lib/SFML/bin/
