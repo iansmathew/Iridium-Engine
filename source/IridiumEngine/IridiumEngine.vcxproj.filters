@@ -28,9 +28,6 @@
     <Filter Include="Header Files\Helper">
       <UniqueIdentifier>{b336e5cf-ed7c-4a9e-8aaa-b8f16f67f712}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Helper">
-      <UniqueIdentifier>{de68df7d-474e-417d-9df8-aa66242ba66d}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -41,9 +38,6 @@
     </ClCompile>
     <ClCompile Include="Engine\Window\Window.cpp">
       <Filter>Source Files\Engine\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="Helper\BaseSingleton.cpp">
-      <Filter>Source Files\Helper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

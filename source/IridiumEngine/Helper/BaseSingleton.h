@@ -17,3 +17,10 @@ class BaseSingleton
 public:
 	static T* Instance();
 };
+
+template <class T>
+T* BaseSingleton<T>::Instance()
+{
+	static T* inst = new T();
+	return inst;
+}

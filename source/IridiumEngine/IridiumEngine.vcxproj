@@ -148,7 +148,6 @@
   <ItemGroup>
     <ClCompile Include="Engine\Engine.cpp" />
     <ClCompile Include="Engine\Window\Window.cpp" />
-    <ClCompile Include="Helper\BaseSingleton.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -7,11 +7,6 @@
 
 	@return A pointer to the static instance of the Iridium Engine.
 */
-IridiumEngine* IridiumEngine::Instance()
-{
-	static IridiumEngine* inst = new IridiumEngine();
-	return inst;
-}
 
 /**
 	Default destructor for Engine.
@@ -26,9 +21,7 @@ IridiumEngine::~IridiumEngine()
  */
 IridiumEngine::IridiumEngine()
 {
-	instanceValues++;
-
-	std::cout << "Instances: " << instanceValues << std::endl;
+	std::cout << "Constructor initialized" << std::endl;
 }
 
 /**
@@ -38,6 +31,5 @@ IridiumEngine::IridiumEngine()
  */
 bool IridiumEngine::Initialize()
 {
-
 	return true;
 }

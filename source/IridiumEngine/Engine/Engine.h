@@ -8,18 +8,19 @@
 
 #pragma once
 
-class IridiumEngine
+#include "../Helper/BaseSingleton.h"
+
+class IridiumEngine : public BaseSingleton<IridiumEngine>
 {
 private:
-	int instanceValues = 0;
 
 public:
-	static IridiumEngine* Instance();
 
 public:
 	~IridiumEngine();
 
 private:
+	friend BaseSingleton<IridiumEngine>;
 	IridiumEngine();
 	IridiumEngine(const IridiumEngine &_copy) = delete; //no copy constructor
 
