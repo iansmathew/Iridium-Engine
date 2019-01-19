@@ -19,11 +19,15 @@ public:
 public:
 	~IridiumEngine();
 
+	void Run();
+
 private:
 	friend BaseSingleton<IridiumEngine>;
 	IridiumEngine();
 	IridiumEngine(const IridiumEngine &_copy) = delete; //no copy constructor
 
 	bool Initialize();
+
+	bool CheckSystemRequirements();
 
 };

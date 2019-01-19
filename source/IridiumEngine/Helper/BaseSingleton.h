@@ -2,7 +2,7 @@
 	BaseSingleton.h
 
 	Purpose: The BaseSingleton class is a generic template class that allows derived classes to
-	implement singleton behaviors.
+	implement singleton behaviors. This loosely follows the CRTP: https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern
 
 	@author Ian Sebastian Mathew
 	@version 1.0 2019-01-09

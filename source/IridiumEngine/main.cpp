@@ -5,6 +5,6 @@
 int main()
 {
 	IridiumEngine::Instance();
-	
+
 	return 0;
 }

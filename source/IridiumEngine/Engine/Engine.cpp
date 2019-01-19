@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include "Window/Window.h"
 #include <iostream>
 
 /** 
@@ -17,11 +18,22 @@ IridiumEngine::~IridiumEngine()
 }
 
 /**
+	Main update loop that takes care of handling events.
+ */
+void IridiumEngine::Run()
+{
+	//TODO: Implement run
+}
+
+/**
 	Default base constructor for Engine. 
  */
 IridiumEngine::IridiumEngine()
 {
-	std::cout << "Constructor initialized" << std::endl;
+	//Check system requirements
+
+	//Initialize engine components
+
 }
 
 /**
@@ -32,4 +44,14 @@ IridiumEngine::IridiumEngine()
 bool IridiumEngine::Initialize()
 {
 	return true;
+}
+
+/**
+	Checks if the user's system has the required hardware/software capabilities to run the program.
+
+	@return Returns true if system check passes. 
+ */
+bool IridiumEngine::CheckSystemRequirements()
+{
+
 }
