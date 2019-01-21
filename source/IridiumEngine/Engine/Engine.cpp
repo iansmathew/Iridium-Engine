@@ -2,13 +2,6 @@
 #include "Window/Window.h"
 #include <iostream>
 
-/** 
-	A static method that returns an instance of the engine. A new static instance is created 
-	on run time if not previously initialized.
-
-	@return A pointer to the static instance of the Iridium Engine.
-*/
-
 /**
 	Default destructor for Engine.
 */
@@ -22,7 +15,17 @@ IridiumEngine::~IridiumEngine()
  */
 void IridiumEngine::Run()
 {
-	//TODO: Implement run
+	while (Window::Instance()->GetWindow()->isOpen())
+	{
+		sf::Event event;
+		while (Window::Instance()->GetWindow()->pollEvent(event)) //poll all events for open window
+		{
+			if (event.type == sf::Event::Closed)
+			{
+				Window::Instance()->NotifyCloseRequest();
+			}
+		}
+	}
 }
 
 /**
@@ -53,5 +56,5 @@ bool IridiumEngine::Initialize()
  */
 bool IridiumEngine::CheckSystemRequirements()
 {
-
+	return true;
 }

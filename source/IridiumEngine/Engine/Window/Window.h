@@ -12,11 +12,18 @@
 class Window : public BaseSingleton<Window>
 {
 private:
-	sf::Window window;
+	sf::Window* window;
 
 private:
 	friend BaseSingleton;
 	Window();
 
 	void InitializeWindow(int screenWidth = 800, int screenHeight = 600, bool isFullScreen = false);
+
+	void Shutdown();
+
+public:
+	sf::Window* GetWindow() const;
+
+	void NotifyCloseRequest();
 };
