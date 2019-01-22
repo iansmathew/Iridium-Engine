@@ -19,6 +19,8 @@ public:
 public:
 	~IridiumEngine();
 
+	bool Initialize();
+
 	void Run();
 
 private:
@@ -26,8 +28,8 @@ private:
 	IridiumEngine();
 	IridiumEngine(const IridiumEngine &_copy) = delete; //no copy constructor
 
-	bool Initialize();
-
 	bool CheckSystemRequirements();
+	bool HasFreeDiskSpace();
+	
 
 };

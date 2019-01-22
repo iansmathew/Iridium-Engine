@@ -4,7 +4,8 @@
 
 int main()
 {
-	IridiumEngine::Instance()->Run();
+	if (IridiumEngine::Instance()->Initialize())
+		IridiumEngine::Instance()->Run();
 
 	return 0;
 }
