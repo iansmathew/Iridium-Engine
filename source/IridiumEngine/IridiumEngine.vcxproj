@@ -154,6 +154,7 @@
     <ClInclude Include="Engine\Engine.h" />
     <ClInclude Include="Engine\Window\Window.h" />
     <ClInclude Include="Helper\BaseSingleton.h" />
+    <ClInclude Include="Helper\SysCheck.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

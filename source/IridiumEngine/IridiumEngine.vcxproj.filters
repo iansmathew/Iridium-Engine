@@ -50,5 +50,8 @@
     <ClInclude Include="Helper\BaseSingleton.h">
       <Filter>Header Files\Helper</Filter>
     </ClInclude>
+    <ClInclude Include="Helper\SysCheck.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

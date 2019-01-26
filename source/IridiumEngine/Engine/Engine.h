@@ -29,8 +29,4 @@ private:
 	IridiumEngine(const IridiumEngine &_copy) = delete; //no copy constructor
 
 	bool CheckSystemRequirements();
-	bool HasFreeDiskSpace();
-	bool HasFreeMemory();
-	void DisplayCPUStats();
-
 };
