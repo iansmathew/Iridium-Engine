@@ -30,6 +30,7 @@ private:
 
 	bool CheckSystemRequirements();
 	bool HasFreeDiskSpace();
-	
+	bool HasFreeMemory();
+	void DisplayCPUStats();
 
 };
