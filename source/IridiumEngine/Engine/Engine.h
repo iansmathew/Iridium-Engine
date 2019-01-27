@@ -10,9 +10,15 @@
 
 #include "../Helper/BaseSingleton.h"
 
+/*FORWARD DECLARATIONS*/
+class WindowManager;
+class InputManager;
+
 class IridiumEngine : public BaseSingleton<IridiumEngine>
 {
 private:
+	WindowManager* windowManager;
+	InputManager* inputManager;
 
 public:
 

@@ -9,14 +9,14 @@
 #include "../../Helper/BaseSingleton.h"
 #include <SFML/Window.hpp>
 
-class Window : public BaseSingleton<Window>
+class WindowManager : public BaseSingleton<WindowManager>
 {
 private:
 	sf::Window* window;
 
 private:
 	friend BaseSingleton;
-	Window();
+	WindowManager();
 
 	void InitializeWindow(int screenWidth = 800, int screenHeight = 600, bool isFullScreen = false);
 

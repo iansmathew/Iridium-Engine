@@ -24,3 +24,4 @@ T* BaseSingleton<T>::Instance()
 	static T* inst = new T();
 	return inst;
 }
+

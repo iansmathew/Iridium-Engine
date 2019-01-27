@@ -28,6 +28,12 @@
     <Filter Include="Header Files\Helper">
       <UniqueIdentifier>{b336e5cf-ed7c-4a9e-8aaa-b8f16f67f712}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\Input">
+      <UniqueIdentifier>{206acc09-2463-47a1-b746-64fad5eaef54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Input">
+      <UniqueIdentifier>{fa95ca21-6d5c-484f-9639-f447b8855acf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -36,22 +42,28 @@
     <ClCompile Include="Engine\Engine.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Window\Window.cpp">
+    <ClCompile Include="Engine\Window\WindowManager.cpp">
       <Filter>Source Files\Engine\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Input\InputManager.cpp">
+      <Filter>Source Files\Engine\Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Engine.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Window\Window.h">
-      <Filter>Header Files\Engine\Window</Filter>
-    </ClInclude>
     <ClInclude Include="Helper\BaseSingleton.h">
       <Filter>Header Files\Helper</Filter>
     </ClInclude>
     <ClInclude Include="Helper\SysCheck.h">
       <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Window\WindowManager.h">
+      <Filter>Header Files\Engine\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Input\InputManager.h">
+      <Filter>Header Files\Engine\Input</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,9 +1,9 @@
-#include "Window.h"
+#include "WindowManager.h"
 
 /**
 	Constructor. Takes care of creating the SFML window
  */
-Window::Window()
+WindowManager::WindowManager()
 {
 	InitializeWindow();
 }
@@ -14,7 +14,7 @@ Window::Window()
 	@param screenHeight (optional = 600) The size of the screen height in pixels
 	@param isFullScreen (optional = false) Sets the screen to either fullscreen or windowed mode. 
  */
-void Window::InitializeWindow(int _screenWidth, int _screenHeight, bool _isFullScreen)
+void WindowManager::InitializeWindow(int _screenWidth, int _screenHeight, bool _isFullScreen)
 {
 	//TODO: Implement screen
 	window = new sf::Window(sf::VideoMode(_screenWidth, _screenHeight), "Iridium Engine");
@@ -23,7 +23,7 @@ void Window::InitializeWindow(int _screenWidth, int _screenHeight, bool _isFullS
 /**
 	Shutdowns and destroys all open windows and clears pointers
  */
-void Window::Shutdown()
+void WindowManager::Shutdown()
 {
 
 }
@@ -33,7 +33,7 @@ void Window::Shutdown()
 
 	@return A pointer to the current window of type sf::Window.
  */
-sf::Window* Window::GetWindow() const
+sf::Window* WindowManager::GetWindow() const
 {
 	return window;
 }
@@ -42,7 +42,7 @@ sf::Window* Window::GetWindow() const
 	External call to Window when an sf::Closed event is called by the user.
 	The call originates from Engine.
 */
-void Window::NotifyCloseRequest()
+void WindowManager::NotifyCloseRequest()
 {
 	/*
 		Take care of window shutdown.

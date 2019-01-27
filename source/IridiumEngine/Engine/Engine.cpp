@@ -1,5 +1,6 @@
 #include "Engine.h"
-#include "Window/Window.h"
+#include "Window/WindowManager.h"
+#include "Input/InputManager.h"
 #include "../Helper/SysCheck.h"
 #include <iostream>
 
@@ -16,14 +17,27 @@ IridiumEngine::~IridiumEngine()
  */
 void IridiumEngine::Run()
 {
-	while (Window::Instance()->GetWindow()->isOpen())
+	while (WindowManager::Instance()->GetWindow()->isOpen())
 	{
 		sf::Event event;
-		while (Window::Instance()->GetWindow()->pollEvent(event)) //poll all events for open window
+		while (WindowManager::Instance()->GetWindow()->pollEvent(event)) //poll all events for open window
 		{
-			if (event.type == sf::Event::Closed)
+			switch (event.type)
 			{
-				Window::Instance()->NotifyCloseRequest();
+			case sf::Event::Closed:
+				windowManager->NotifyCloseRequest();
+				break;
+
+			case sf::Event::KeyPressed:
+				inputManager->OnKeyPressed(event);
+				break;
+
+			case sf::Event::KeyReleased:
+				inputManager->OnKeyReleased(event);
+				break;
+
+			default:
+				break;
 			}
 		}
 	}
@@ -35,6 +49,8 @@ void IridiumEngine::Run()
 IridiumEngine::IridiumEngine()
 {
 	//Initialize engine components
+	windowManager = WindowManager::Instance();
+	inputManager = InputManager::Instance();
 
 }
 
