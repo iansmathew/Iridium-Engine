@@ -25,7 +25,7 @@ void WindowManager::InitializeWindow(int _screenWidth, int _screenHeight, bool _
  */
 void WindowManager::Shutdown()
 {
-
+	window->close();
 }
 
 /**
@@ -36,17 +36,5 @@ void WindowManager::Shutdown()
 sf::Window* WindowManager::GetWindow() const
 {
 	return window;
-}
-
-/**
-	External call to Window when an sf::Closed event is called by the user.
-	The call originates from Engine.
-*/
-void WindowManager::NotifyCloseRequest()
-{
-	/*
-		Take care of window shutdown.
-	*/
-	window->close();
 }
 

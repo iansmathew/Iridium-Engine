@@ -25,7 +25,8 @@ void IridiumEngine::Run()
 			switch (event.type)
 			{
 			case sf::Event::Closed:
-				windowManager->NotifyCloseRequest();
+				Shutdown();
+				//windowManager->NotifyCloseRequest();
 				break;
 
 			case sf::Event::KeyPressed:
@@ -41,6 +42,16 @@ void IridiumEngine::Run()
 			}
 		}
 	}
+}
+
+/**
+	Takes care of releasing and destroying various engine components.
+ */
+void IridiumEngine::Shutdown()
+{
+	//Destroying components in reverse order of initialization
+	inputManager->Shutdown();
+	windowManager->Shutdown();
 }
 
 /**

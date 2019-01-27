@@ -29,6 +29,8 @@ public:
 
 	void Run();
 
+	void Shutdown();
+
 private:
 	friend BaseSingleton<IridiumEngine>;
 	IridiumEngine();
