@@ -3,7 +3,8 @@
 /**
 	Constructor
  */
-RenderComponent::RenderComponent(bool _isRendered /*= true*/)
+RenderComponent::RenderComponent(Gameobject* _owner, bool _isRendered /*= true*/)
+	: BaseComponent(_owner)
 {
 	isRendered = _isRendered;
 	texture = sf::Texture();

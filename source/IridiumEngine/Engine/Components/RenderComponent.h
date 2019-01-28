@@ -10,7 +10,7 @@ private:
 	sf::Texture texture;
 
 public:
-	RenderComponent(bool _isRendered = true);
+	RenderComponent(Gameobject* _owner, bool _isRendered = true);
 
 	virtual void Start() override;
 	sf::Sprite& GetSprite();

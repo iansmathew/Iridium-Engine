@@ -9,12 +9,17 @@
  */
 Gameobject::Gameobject(bool _isRendered /*= true*/)
 {
-	
-	renderComponent = new RenderComponent(_isRendered);
+	transformComponent = new TransformComponent(this);
+	renderComponent = new RenderComponent(this, _isRendered);
 
 	//post GO created event
 	std::shared_ptr<EvtDat_On_GO_Created> pEvent(new EvtDat_On_GO_Created(this));
 	EventManager::Instance()->QueueEvent(pEvent);
+}
+
+Gameobject::~Gameobject()
+{
+	//TODO:[iansmathew] Take care of destroying created components and setting parents and children's parents to none.
 }
 
 /**
@@ -22,7 +27,7 @@ Gameobject::Gameobject(bool _isRendered /*= true*/)
  */
 TransformComponent* Gameobject::GetTransform() const
 {
-	return transform;
+	return transformComponent;
 }
 
 /**
@@ -39,6 +44,7 @@ RenderComponent* Gameobject::GetRenderComponent() const
  */
 void Gameobject::Start()
 {
+	transformComponent->Start();
 	renderComponent->Start();
 }
 

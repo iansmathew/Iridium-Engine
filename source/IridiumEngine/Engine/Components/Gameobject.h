@@ -10,7 +10,7 @@ class Gameobject
 public:
 
 private:
-	TransformComponent* transform;
+	TransformComponent* transformComponent;
 	RenderComponent* renderComponent;
 
 	Gameobject* parent;
@@ -20,6 +20,7 @@ private:
 
 public:
 	Gameobject(bool _isRendered = true);
+	~Gameobject();
 
 	TransformComponent* GetTransform() const;
 	RenderComponent* GetRenderComponent() const;

@@ -3,8 +3,9 @@
 
 class TransformComponent : public BaseComponent
 {
-	
 public:
+	TransformComponent(Gameobject* _owner);
+
 	virtual void Start() override;
 
 };
