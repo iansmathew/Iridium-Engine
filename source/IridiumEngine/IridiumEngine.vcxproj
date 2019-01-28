@@ -147,14 +147,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Engine.cpp" />
+    <ClCompile Include="Engine\Events\EventManager.cpp" />
+    <ClCompile Include="Engine\Events\Events.cpp" />
+    <ClCompile Include="Engine\Events\IEventManager.cpp" />
     <ClCompile Include="Engine\Input\InputManager.cpp" />
     <ClCompile Include="Engine\Window\WindowManager.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Engine.h" />
+    <ClInclude Include="Engine\Events\EventManager.h" />
+    <ClInclude Include="Engine\Events\Events.h" />
+    <ClInclude Include="Engine\Events\IEventManager.h" />
     <ClInclude Include="Engine\Input\InputManager.h" />
     <ClInclude Include="Engine\Window\WindowManager.h" />
+    <ClInclude Include="ExternalTools\FastDelegate.h" />
     <ClInclude Include="Helper\BaseSingleton.h" />
     <ClInclude Include="Helper\SysCheck.h" />
   </ItemGroup>

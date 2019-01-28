@@ -13,12 +13,14 @@
 /*FORWARD DECLARATIONS*/
 class WindowManager;
 class InputManager;
+class EventManager;
 
 class IridiumEngine : public BaseSingleton<IridiumEngine>
 {
 private:
 	WindowManager* windowManager;
 	InputManager* inputManager;
+	EventManager* eventManager;
 
 public:
 
@@ -28,6 +30,8 @@ public:
 	bool Initialize();
 
 	void Run();
+
+	void HandleWindowEvents();
 
 	void Shutdown();
 

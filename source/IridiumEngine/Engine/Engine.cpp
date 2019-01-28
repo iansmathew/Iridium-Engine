@@ -1,6 +1,7 @@
 #include "Engine.h"
 #include "Window/WindowManager.h"
 #include "Input/InputManager.h"
+#include "Events/EventManager.h"
 #include "../Helper/SysCheck.h"
 #include <iostream>
 
@@ -19,27 +20,36 @@ void IridiumEngine::Run()
 {
 	while (WindowManager::Instance()->GetWindow()->isOpen())
 	{
-		sf::Event event;
-		while (WindowManager::Instance()->GetWindow()->pollEvent(event)) //poll all events for open window
+		HandleWindowEvents();
+		//Handle event manager update queue
+		eventManager->Update(); 
+	}
+}
+
+/**
+	Dispatch and handle various SFML events
+*/
+void IridiumEngine::HandleWindowEvents()
+{
+	sf::Event event;
+	while (WindowManager::Instance()->GetWindow()->pollEvent(event)) //poll all events for open window
+	{
+		switch (event.type)
 		{
-			switch (event.type)
-			{
-			case sf::Event::Closed:
-				Shutdown();
-				//windowManager->NotifyCloseRequest();
-				break;
+		case sf::Event::Closed:
+			Shutdown();
+			break;
 
-			case sf::Event::KeyPressed:
-				inputManager->OnKeyPressed(event);
-				break;
+		case sf::Event::KeyPressed:
+			inputManager->OnKeyPressed(event);
+			break;
 
-			case sf::Event::KeyReleased:
-				inputManager->OnKeyReleased(event);
-				break;
+		case sf::Event::KeyReleased:
+			inputManager->OnKeyReleased(event);
+			break;
 
-			default:
-				break;
-			}
+		default:
+			break;
 		}
 	}
 }
@@ -62,7 +72,7 @@ IridiumEngine::IridiumEngine()
 	//Initialize engine components
 	windowManager = WindowManager::Instance();
 	inputManager = InputManager::Instance();
-
+	eventManager = EventManager::Instance();
 }
 
 /**

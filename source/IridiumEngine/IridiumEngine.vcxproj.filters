@@ -34,6 +34,15 @@
     <Filter Include="Header Files\Engine\Input">
       <UniqueIdentifier>{fa95ca21-6d5c-484f-9639-f447b8855acf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Events">
+      <UniqueIdentifier>{e89230d1-7a64-46e9-aacc-b020e202fa4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Events">
+      <UniqueIdentifier>{eaaeb63a-e29c-46e6-bb01-c82b9b6312aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\ExternalTools">
+      <UniqueIdentifier>{8e49fdd3-db32-4e65-a910-94ac6c6709ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -47,6 +56,15 @@
     </ClCompile>
     <ClCompile Include="Engine\Input\InputManager.cpp">
       <Filter>Source Files\Engine\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Events\EventManager.cpp">
+      <Filter>Source Files\Engine\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Events\Events.cpp">
+      <Filter>Source Files\Engine\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Events\IEventManager.cpp">
+      <Filter>Source Files\Engine\Events</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +82,18 @@
     </ClInclude>
     <ClInclude Include="Engine\Input\InputManager.h">
       <Filter>Header Files\Engine\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Events\EventManager.h">
+      <Filter>Header Files\Engine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Events\Events.h">
+      <Filter>Header Files\Engine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Events\IEventManager.h">
+      <Filter>Header Files\Engine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="ExternalTools\FastDelegate.h">
+      <Filter>Header Files\Engine\ExternalTools</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
