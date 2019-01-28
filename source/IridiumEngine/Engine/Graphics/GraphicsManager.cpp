@@ -48,10 +48,10 @@ void GraphicsManager::Start()
  */
 void GraphicsManager::Update()
 {
-	window->clear(sf::Color::Red);
-	for (auto go : gameobjectList)
-	{
-		window->draw(go->GetRenderComponent()->GetSprite());
-	}
+	window->clear();
+	
+	//Call draw on first gameobject which is root scene node created by engine
+	gameobjectList[0]->Draw(*window); 
+
 	window->display();
 }

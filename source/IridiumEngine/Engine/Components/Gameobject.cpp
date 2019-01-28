@@ -38,3 +38,27 @@ void Gameobject::Start()
 {
 	renderComponent->Start();
 }
+
+/**
+	Adds a child to the node
+	and set the parent node to this.
+ */
+void Gameobject::AddChild(Gameobject* _child)
+{
+	_child->parent = this;
+	children.push_back(_child);
+}
+
+/**
+	Calls draw from the window passed into it.
+	Also recursively calls draw for its children
+ */
+void Gameobject::Draw(sf::RenderWindow& _windowRef)
+{
+	_windowRef.draw(renderComponent->GetSprite());
+
+	for (auto child : children)
+	{
+		child->Draw(_windowRef);
+	}
+}
