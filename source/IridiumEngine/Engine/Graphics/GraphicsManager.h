@@ -21,5 +21,6 @@ private:
 
 public:
 	void Initialize();
+	void Start();
 	void Update();
 };

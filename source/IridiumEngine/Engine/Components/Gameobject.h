@@ -5,11 +5,6 @@
 class Gameobject
 {
 public:
-	Gameobject();
-
-	Transform* GetTransform() const { return transform; }
-	RenderComponent* GetRenderComponent() const { return renderComponent; }
-protected:
 
 private:
 	Transform* transform;
@@ -18,5 +13,11 @@ private:
 private:
 
 public:
+	Gameobject();
+
+	Transform* GetTransform() const;
+	RenderComponent* GetRenderComponent() const;
+
+	void Start();
 
 };

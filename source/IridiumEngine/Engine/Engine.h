@@ -9,6 +9,7 @@
 #pragma once
 
 #include "../Helper/BaseSingleton.h"
+#include "EngineStates/EngineState.h"
 
 /*FORWARD DECLARATIONS*/
 class WindowManager;
@@ -24,6 +25,8 @@ private:
 	InputManager* inputManager;
 	EventManager* eventManager;
 
+	ENGINE_STATE engineState;
+
 public:
 
 public:
@@ -36,6 +39,10 @@ public:
 	void HandleWindowEvents();
 
 	void Shutdown();
+
+	void Create();
+
+	void Start();
 
 private:
 	friend BaseSingleton<IridiumEngine>;

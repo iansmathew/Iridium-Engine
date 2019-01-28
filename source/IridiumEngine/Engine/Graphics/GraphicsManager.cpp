@@ -32,7 +32,18 @@ void GraphicsManager::Initialize()
 	EventManager::Instance()->AddListener(delegateFunc, EvtDat_On_GO_Created::eventType);
 }
 
- /**
+/**
+	Calls start on all currently held gameobjects
+ */
+void GraphicsManager::Start()
+{
+	for (auto go : gameobjectList)
+	{
+		go->Start();
+	}
+}
+
+/**
 	Updates and display the SFML window contents
  */
 void GraphicsManager::Update()
@@ -40,7 +51,7 @@ void GraphicsManager::Update()
 	window->clear(sf::Color::Red);
 	for (auto go : gameobjectList)
 	{
-		//TODO:[iansmathew] Iterate though GO list and render rendercomponents
+		window->draw(go->GetRenderComponent()->GetSprite());
 	}
 	window->display();
 }

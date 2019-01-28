@@ -7,6 +7,33 @@
  */
 Gameobject::Gameobject()
 {
+	renderComponent = new RenderComponent();
+
 	std::shared_ptr<EvtDat_On_GO_Created> pEvent(new EvtDat_On_GO_Created(this));
 	EventManager::Instance()->QueueEvent(pEvent);
+}
+
+/**
+	Returns the transform component
+ */
+Transform* Gameobject::GetTransform() const
+{
+	return transform;
+}
+
+/**
+	Return the render component
+ */
+RenderComponent* Gameobject::GetRenderComponent() const
+{
+	return renderComponent;
+}
+
+/**
+	Called on engine graphics initialization.
+	Used to set up components
+ */
+void Gameobject::Start()
+{
+	renderComponent->Start();
 }

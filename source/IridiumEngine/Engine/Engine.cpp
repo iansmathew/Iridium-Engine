@@ -3,6 +3,7 @@
 #include "Input/InputManager.h"
 #include "Events/EventManager.h"
 #include "Graphics/GraphicsManager.h"
+#include "Components/Gameobject.h"
 #include "../Helper/SysCheck.h"
 #include <iostream>
 
@@ -24,7 +25,17 @@ void IridiumEngine::Run()
 		HandleWindowEvents();
 		//Handle event manager update queue
 		eventManager->Update(); 
-		graphicsManager->Update();
+
+		//Choose which update loop to run
+		if (engineState == ENGINE_STATE::Start)
+		{
+			Start();
+			engineState = ENGINE_STATE::Update;
+		}
+		else if (engineState == ENGINE_STATE::Update)
+		{
+			graphicsManager->Update();
+		}
 	}
 }
 
@@ -67,6 +78,27 @@ void IridiumEngine::Shutdown()
 }
 
 /**
+	Called before update runs. 
+	Create gameobjects here
+ */
+void IridiumEngine::Create()
+{
+	Gameobject* test = new Gameobject();
+
+	//Letting the engine know to go onto start
+	engineState = ENGINE_STATE::Start;
+}
+
+/**
+	Called right before update.
+	It calls start on all objects that require it.
+ */
+void IridiumEngine::Start()
+{
+	graphicsManager->Start();
+}
+
+/**
 	Default base constructor for Engine. 
  */
 IridiumEngine::IridiumEngine()
@@ -90,8 +122,12 @@ bool IridiumEngine::Initialize()
 	if (!CheckSystemRequirements())
 		return false;
 
+	engineState = ENGINE_STATE::Initialization;
+
 	windowManager->Initialize();
 	graphicsManager->Initialize();
+
+	Create();
 
 	return true;
 }
