@@ -2,13 +2,14 @@
 #include "../Events/EventManager.h"
 #include "../Events/Events.h"
 #include "RenderComponent.h"
-#include "Transform.h"
+#include "TransformComponent.h"
 
 /**
 	Constructor that sends out the GO_Created event
  */
 Gameobject::Gameobject(bool _isRendered /*= true*/)
 {
+	
 	renderComponent = new RenderComponent(_isRendered);
 
 	//post GO created event
@@ -19,7 +20,7 @@ Gameobject::Gameobject(bool _isRendered /*= true*/)
 /**
 	Returns the transform component
  */
-Transform* Gameobject::GetTransform() const
+TransformComponent* Gameobject::GetTransform() const
 {
 	return transform;
 }

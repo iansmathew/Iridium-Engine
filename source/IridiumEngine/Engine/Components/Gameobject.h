@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-class Transform;
+class TransformComponent;
 class RenderComponent;
 
 class Gameobject
@@ -10,7 +10,7 @@ class Gameobject
 public:
 
 private:
-	Transform* transform;
+	TransformComponent* transform;
 	RenderComponent* renderComponent;
 
 	Gameobject* parent;
@@ -21,7 +21,7 @@ private:
 public:
 	Gameobject(bool _isRendered = true);
 
-	Transform* GetTransform() const;
+	TransformComponent* GetTransform() const;
 	RenderComponent* GetRenderComponent() const;
 
 	void Start();
