@@ -5,19 +5,18 @@
  */
 WindowManager::WindowManager()
 {
-	InitializeWindow();
 }
 
 /**
-	Creates an instance of the window. 
+	Creates an instance of the render window. 
 	@param screenWidth (optional = 800) The size of the screen width in pixels
 	@param screenHeight (optional = 600) The size of the screen height in pixels
 	@param isFullScreen (optional = false) Sets the screen to either fullscreen or windowed mode. 
  */
-void WindowManager::InitializeWindow(int _screenWidth, int _screenHeight, bool _isFullScreen)
+void WindowManager::Initialize(int _screenWidth, int _screenHeight, bool _isFullScreen)
 {
 	//TODO: Implement screen
-	window = new sf::Window(sf::VideoMode(_screenWidth, _screenHeight), "Iridium Engine");
+	window = new sf::RenderWindow(sf::VideoMode(_screenWidth, _screenHeight), "Iridium Engine");
 }
 
 /**
@@ -33,7 +32,7 @@ void WindowManager::Shutdown()
 
 	@return A pointer to the current window of type sf::Window.
  */
-sf::Window* WindowManager::GetWindow() const
+sf::RenderWindow* WindowManager::GetWindow() const
 {
 	return window;
 }

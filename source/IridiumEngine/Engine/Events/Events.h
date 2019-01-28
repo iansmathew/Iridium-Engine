@@ -1,38 +1,25 @@
 #pragma once
 #include "IEventManager.h"
 
-class EvtData_On_Key_Event : public BaseEventData
+//FORWARD DECLARATION
+class Gameobject;
+
+class EvtDat_On_GO_Created : public BaseEventData
 {
 private:
-	int key;
+	Gameobject* gameobject;
 
 public:
-	static const EventType eventType;
+	/**
+		Constructor that takes in a gameobject ref to create the event arg
 
-	EvtData_On_Key_Event()
+		@param _gameobject: Gameobject reference
+	*/
+	EvtDat_On_GO_Created(Gameobject* _gameobjectRef)
 	{
-		key = -1;
+		gameobject = _gameobjectRef;
 	}
 
-	explicit EvtData_On_Key_Event(int _key)
-	{
-		key = _key;
-	}
-
-	virtual const EventType& GetEventType() const override
-	{
-		return eventType;
-	}
-
-	unsigned int GetKeyValue()
-	{
-		return key;
-	}
-};
-
-class EvtData_On_Mouse_Event : public BaseEventData
-{
-public:
 	static const EventType eventType;
 
 	virtual const EventType& GetEventType(void) const override
@@ -40,4 +27,8 @@ public:
 		return eventType;
 	}
 
+	Gameobject* GetOwnedGameobject()
+	{
+		return gameobject;
+	}
 };

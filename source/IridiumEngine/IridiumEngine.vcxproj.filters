@@ -43,6 +43,18 @@
     <Filter Include="Header Files\Engine\ExternalTools">
       <UniqueIdentifier>{8e49fdd3-db32-4e65-a910-94ac6c6709ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Graphics">
+      <UniqueIdentifier>{bde0d7ae-8f20-4902-b4bf-eca2ff3b8b21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Graphics">
+      <UniqueIdentifier>{df77ea63-d9c7-4e40-aafa-0946e462be55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Components">
+      <UniqueIdentifier>{52c21c04-27c8-42d2-a449-8661bc5ae2b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Components">
+      <UniqueIdentifier>{138391c6-1aef-4231-a3f7-a64bc1d1a37a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -65,6 +77,18 @@
     </ClCompile>
     <ClCompile Include="Engine\Events\IEventManager.cpp">
       <Filter>Source Files\Engine\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\GraphicsManager.cpp">
+      <Filter>Source Files\Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Components\Gameobject.cpp">
+      <Filter>Source Files\Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Components\RenderComponent.cpp">
+      <Filter>Source Files\Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Components\Transform.cpp">
+      <Filter>Source Files\Engine\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +118,18 @@
     </ClInclude>
     <ClInclude Include="ExternalTools\FastDelegate.h">
       <Filter>Header Files\Engine\ExternalTools</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\GraphicsManager.h">
+      <Filter>Header Files\Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Components\Gameobject.h">
+      <Filter>Header Files\Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Components\Transform.h">
+      <Filter>Header Files\Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Components\RenderComponent.h">
+      <Filter>Header Files\Engine\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

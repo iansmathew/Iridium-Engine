@@ -8,21 +8,20 @@
 #pragma once
 #include "../../Helper/BaseSingleton.h"
 #include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 
 class WindowManager : public BaseSingleton<WindowManager>
 {
 private:
-	sf::Window* window;
+	sf::RenderWindow* window;
 
 private:
 	friend BaseSingleton;
 	WindowManager();
 
-	void InitializeWindow(int screenWidth = 800, int screenHeight = 600, bool isFullScreen = false);
-
-
 public:
-	sf::Window* GetWindow() const;
+	sf::RenderWindow* GetWindow() const;
 
+	void Initialize(int screenWidth = 800, int screenHeight = 600, bool isFullScreen = false);
 	void Shutdown();
 };

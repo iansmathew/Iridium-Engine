@@ -2,6 +2,7 @@
 #include "Window/WindowManager.h"
 #include "Input/InputManager.h"
 #include "Events/EventManager.h"
+#include "Graphics/GraphicsManager.h"
 #include "../Helper/SysCheck.h"
 #include <iostream>
 
@@ -23,6 +24,7 @@ void IridiumEngine::Run()
 		HandleWindowEvents();
 		//Handle event manager update queue
 		eventManager->Update(); 
+		graphicsManager->Update();
 	}
 }
 
@@ -71,6 +73,7 @@ IridiumEngine::IridiumEngine()
 {
 	//Initialize engine components
 	windowManager = WindowManager::Instance();
+	graphicsManager = GraphicsManager::Instance();
 	inputManager = InputManager::Instance();
 	eventManager = EventManager::Instance();
 }
@@ -86,6 +89,9 @@ bool IridiumEngine::Initialize()
 {
 	if (!CheckSystemRequirements())
 		return false;
+
+	windowManager->Initialize();
+	graphicsManager->Initialize();
 
 	return true;
 }

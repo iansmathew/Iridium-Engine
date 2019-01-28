@@ -14,11 +14,13 @@
 class WindowManager;
 class InputManager;
 class EventManager;
+class GraphicsManager;
 
 class IridiumEngine : public BaseSingleton<IridiumEngine>
 {
 private:
 	WindowManager* windowManager;
+	GraphicsManager* graphicsManager;
 	InputManager* inputManager;
 	EventManager* eventManager;
 
