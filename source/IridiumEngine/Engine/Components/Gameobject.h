@@ -13,7 +13,7 @@ private:
 private:
 
 public:
-	Gameobject();
+	Gameobject(bool _isRendered = true);
 
 	Transform* GetTransform() const;
 	RenderComponent* GetRenderComponent() const;

@@ -5,10 +5,11 @@
 /**
 	Constructor that sends out the GO_Created event
  */
-Gameobject::Gameobject()
+Gameobject::Gameobject(bool _isRendered /*= true*/)
 {
-	renderComponent = new RenderComponent();
+	renderComponent = new RenderComponent(_isRendered);
 
+	//post GO created event
 	std::shared_ptr<EvtDat_On_GO_Created> pEvent(new EvtDat_On_GO_Created(this));
 	EventManager::Instance()->QueueEvent(pEvent);
 }

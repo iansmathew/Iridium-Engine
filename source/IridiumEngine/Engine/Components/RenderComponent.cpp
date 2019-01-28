@@ -3,8 +3,9 @@
 /**
 	Constructor
  */
-RenderComponent::RenderComponent()
+RenderComponent::RenderComponent(bool _isRendered /*= true*/)
 {
+	isRendered = _isRendered;
 	texture = sf::Texture();
 	sprite = sf::Sprite();
 }
@@ -27,6 +28,10 @@ void RenderComponent::Start()
 	sprite.setTexture(texture);
 	sprite.setTextureRect(sf::IntRect(0, 0, 32, 32)); //making sure our default sprites scale to 32x32
 	sprite.setOrigin(0.5f, 0.5f);
+
+	//If sprite is not to be rendered, make transparent
+	if (!isRendered)
+		sprite.setColor(sf::Color(0, 0, 0, 0));
 }
 
 sf::Sprite& RenderComponent::GetSprite()

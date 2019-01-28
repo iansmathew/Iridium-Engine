@@ -83,7 +83,7 @@ void IridiumEngine::Shutdown()
  */
 void IridiumEngine::Create()
 {
-	Gameobject* test = new Gameobject();
+	Gameobject* rootNode = new Gameobject(false);
 
 	//Letting the engine know to go onto start
 	engineState = ENGINE_STATE::Start;
