@@ -3,9 +3,9 @@
 #include "../../Helper/BaseSingleton.h"
 #include "../Events/EventManager.h"
 #include "../Events/Events.h"
-#include "../Components/Gameobject.h"
 #include <vector>
 
+class Gameobject;
 
 class GraphicsManager : public BaseSingleton<GraphicsManager>
 {

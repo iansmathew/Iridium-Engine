@@ -1,10 +1,24 @@
 #pragma once
 
+/*************************/
+/* FORWARD DECLARATIONS  */
+/*************************/
+class Gameobject;
+
 class BaseComponent
 {
-public:
-	virtual void Start();
 protected:
+	bool isUpdated;
 
 private:
+	Gameobject* owner;
+
+public:
+	BaseComponent(Gameobject* _owner);
+
+	virtual void Start();
+
+	virtual void Update();
+
+	Gameobject* GetGameobject() const;
 };

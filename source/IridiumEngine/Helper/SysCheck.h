@@ -92,7 +92,7 @@ public:
 
 		GetDiskFreeSpaceEx("C:", &ulFreeSpace, &ulTotalSpace, &ulTotalFreeSpace);
 
-		int totalFreeSpaceInMb = (ulTotalFreeSpace.QuadPart / (1024 * 1024));
+		int totalFreeSpaceInMb = (int)(ulTotalFreeSpace.QuadPart / (1024 * 1024));
 
 		if (requiredSpace < totalFreeSpaceInMb)
 		{

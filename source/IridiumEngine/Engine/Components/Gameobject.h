@@ -1,10 +1,9 @@
 #pragma once
-#include "RenderComponent.h"
-#include "Transform.h"
-
 #include <SFML/Graphics.hpp>
 #include <vector>
 
+class Transform;
+class RenderComponent;
 
 class Gameobject
 {

@@ -1,6 +1,8 @@
 #include "Gameobject.h"
 #include "../Events/EventManager.h"
 #include "../Events/Events.h"
+#include "RenderComponent.h"
+#include "Transform.h"
 
 /**
 	Constructor that sends out the GO_Created event

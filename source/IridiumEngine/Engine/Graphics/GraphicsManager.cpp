@@ -1,6 +1,8 @@
 #include "GraphicsManager.h"
 #include "../Window/WindowManager.h"
 #include "../../Engine/Engine.h"
+#include "../Components/Gameobject.h"
+
 
 /**
 	Constructor
