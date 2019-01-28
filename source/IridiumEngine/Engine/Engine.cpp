@@ -87,7 +87,7 @@ void IridiumEngine::Shutdown()
  */
 void IridiumEngine::Create()
 {
-	Gameobject* rootNode = new Gameobject(false);
+	Gameobject* rootNode = new Gameobject();
 }
 
 /**

@@ -2,6 +2,10 @@
 #include "../Window/WindowManager.h"
 #include "../../Engine/Engine.h"
 
+//TODO: Remove
+#include <iostream>
+
+
 /**
 	Constructor
  */
@@ -32,7 +36,16 @@ void GraphicsManager::Initialize()
 	EventListenerDelegate delegateFunc = fastdelegate::MakeDelegate(this, &GraphicsManager::OnNewGameobjectCreated);
 	EventManager::Instance()->AddListener(delegateFunc, EvtDat_On_GO_Created::eventType);
 
-	//TODO:[diegocamacho] Create splash screen here.
+	//TODO:[Update Splash
+	splashTexture = sf::Texture();
+	if (!splashTexture.loadFromFile("../../assets/engine/images/splashTexture.jpg"))
+	{
+		//TODO: [Diego Camacho] Implement proper throw condition.
+		throw std::runtime_error("Failed to find texture");
+	}
+	splashSprite.setTexture(splashTexture);
+
+
 }
 
 /**
@@ -66,9 +79,24 @@ void GraphicsManager::DisplaySplashScreen()
 {
 	window->clear();
 
+	if (!playingSplash)
+	{
+		startClock.restart();
+		playingSplash = true;
+	}
+
+	window->draw(splashSprite);
+
+	sf::Time time = startClock.getElapsedTime();
+	elapsedTime = time.asSeconds();
+	
 	//TODO:[diegocamacho] Implement splash screen here
 
 	window->display();
+
+	if (elapsedTime > totalSeconds) {
+		IridiumEngine::Instance()->SetEngineState(ENGINE_STATE::Start);
+	}
 	//exit condition
-	//IridiumEngine::Instance()->SetEngineState(ENGINE_STATE::Start);
+	//
 }
