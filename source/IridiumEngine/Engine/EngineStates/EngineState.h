@@ -1,6 +1,6 @@
 enum class ENGINE_STATE
 {
-	NULL,
+	Undefined,
 	Initialization,
 	Start,
 	Update

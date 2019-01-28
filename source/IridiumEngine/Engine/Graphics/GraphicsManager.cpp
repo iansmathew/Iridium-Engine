@@ -1,5 +1,6 @@
 #include "GraphicsManager.h"
 #include "../Window/WindowManager.h"
+#include "../../Engine/Engine.h"
 
 /**
 	Constructor
@@ -30,6 +31,8 @@ void GraphicsManager::Initialize()
 	//Subscribe to gameobject created event
 	EventListenerDelegate delegateFunc = fastdelegate::MakeDelegate(this, &GraphicsManager::OnNewGameobjectCreated);
 	EventManager::Instance()->AddListener(delegateFunc, EvtDat_On_GO_Created::eventType);
+
+	//TODO:[diegocamacho] Create splash screen here.
 }
 
 /**
@@ -54,4 +57,18 @@ void GraphicsManager::Update()
 	gameobjectList[0]->Draw(*window); 
 
 	window->display();
+}
+
+/**
+	Displays the splash screen for a set duration.
+*/
+void GraphicsManager::DisplaySplashScreen()
+{
+	window->clear();
+
+	//TODO:[diegocamacho] Implement splash screen here
+
+	window->display();
+	//exit condition
+	//IridiumEngine::Instance()->SetEngineState(ENGINE_STATE::Start);
 }

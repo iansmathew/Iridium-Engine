@@ -1,7 +1,8 @@
 #pragma once
 #include <sfml/Graphics.hpp>
+#include "BaseComponent.h"
 
-class RenderComponent
+class RenderComponent : public BaseComponent
 {
 private:
 	bool isRendered;
@@ -11,6 +12,6 @@ private:
 public:
 	RenderComponent(bool _isRendered = true);
 
-	void Start();
+	virtual void Start() override;
 	sf::Sprite& GetSprite();
 };

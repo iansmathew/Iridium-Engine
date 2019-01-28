@@ -23,4 +23,5 @@ public:
 	void Initialize();
 	void Start();
 	void Update();
+	void DisplaySplashScreen();
 };

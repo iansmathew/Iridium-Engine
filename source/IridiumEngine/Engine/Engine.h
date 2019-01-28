@@ -28,8 +28,6 @@ private:
 	ENGINE_STATE engineState;
 
 public:
-
-public:
 	~IridiumEngine();
 
 	bool Initialize();
@@ -43,6 +41,11 @@ public:
 	void Create();
 
 	void Start();
+
+	inline ENGINE_STATE GetEngineState() const { return engineState; }
+
+	inline void SetEngineState(ENGINE_STATE _val) { engineState = _val; }
+
 
 private:
 	friend BaseSingleton<IridiumEngine>;

@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Components\BaseComponent.cpp" />
     <ClCompile Include="Engine\Components\Gameobject.cpp" />
     <ClCompile Include="Engine\Components\RenderComponent.cpp" />
     <ClCompile Include="Engine\Components\Transform.cpp" />
@@ -159,10 +160,12 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Components\BaseComponent.h" />
     <ClInclude Include="Engine\Components\Gameobject.h" />
     <ClInclude Include="Engine\Components\RenderComponent.h" />
     <ClInclude Include="Engine\Components\Transform.h" />
     <ClInclude Include="Engine\Engine.h" />
+    <ClInclude Include="Engine\EngineStates\EngineState.h" />
     <ClInclude Include="Engine\Events\EventManager.h" />
     <ClInclude Include="Engine\Events\Events.h" />
     <ClInclude Include="Engine\Events\IEventManager.h" />

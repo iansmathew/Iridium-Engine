@@ -27,12 +27,16 @@ void IridiumEngine::Run()
 		eventManager->Update(); 
 
 		//Choose which update loop to run
-		if (engineState == ENGINE_STATE::Start)
+		if (GetEngineState() == ENGINE_STATE::Initialization)
+		{
+			graphicsManager->DisplaySplashScreen();
+		}
+		else if (GetEngineState() == ENGINE_STATE::Start)
 		{
 			Start();
-			engineState = ENGINE_STATE::Update;
+			SetEngineState(ENGINE_STATE::Update);
 		}
-		else if (engineState == ENGINE_STATE::Update)
+		else if (GetEngineState() == ENGINE_STATE::Update)
 		{
 			graphicsManager->Update();
 		}
@@ -84,9 +88,6 @@ void IridiumEngine::Shutdown()
 void IridiumEngine::Create()
 {
 	Gameobject* rootNode = new Gameobject(false);
-
-	//Letting the engine know to go onto start
-	engineState = ENGINE_STATE::Start;
 }
 
 /**
@@ -122,7 +123,7 @@ bool IridiumEngine::Initialize()
 	if (!CheckSystemRequirements())
 		return false;
 
-	engineState = ENGINE_STATE::Initialization;
+	SetEngineState(ENGINE_STATE::Initialization);
 
 	windowManager->Initialize();
 	graphicsManager->Initialize();

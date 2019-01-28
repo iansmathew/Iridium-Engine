@@ -1,6 +1,10 @@
 #pragma once
+#include "BaseComponent.h"
 
-class Transform
+class Transform : public BaseComponent
 {
+	
+public:
+	virtual void Start() override;
 
 };

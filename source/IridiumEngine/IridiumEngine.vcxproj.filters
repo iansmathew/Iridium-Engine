@@ -55,6 +55,9 @@
     <Filter Include="Header Files\Engine\Components">
       <UniqueIdentifier>{138391c6-1aef-4231-a3f7-a64bc1d1a37a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\EngineStates">
+      <UniqueIdentifier>{e8c02257-1773-4c6f-8dec-bfdbf9d0108f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -88,6 +91,9 @@
       <Filter>Source Files\Engine\Components</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Components\Transform.cpp">
+      <Filter>Source Files\Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Components\BaseComponent.cpp">
       <Filter>Source Files\Engine\Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -130,6 +136,12 @@
     </ClInclude>
     <ClInclude Include="Engine\Components\RenderComponent.h">
       <Filter>Header Files\Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Components\BaseComponent.h">
+      <Filter>Header Files\Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\EngineStates\EngineState.h">
+      <Filter>Header Files\Engine\EngineStates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
