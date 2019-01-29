@@ -10,7 +10,6 @@
  */
 GraphicsManager::GraphicsManager()
 {
-	gameobjectList = std::vector<Gameobject*>();
 }
 
 /**
@@ -21,7 +20,6 @@ GraphicsManager::GraphicsManager()
 void GraphicsManager::OnNewGameobjectCreated(IEventDataPtr _event)
 {
 	std::shared_ptr<EvtDat_On_GO_Created> pCastEventData = std::static_pointer_cast<EvtDat_On_GO_Created>(_event);
-	gameobjectList.push_back(pCastEventData->GetOwnedGameobject());
 }
 
 /** 

@@ -8,6 +8,8 @@
 #include "../Helper/SysCheck.h"
 #include <iostream>
 
+Gameobject* testNode; //TODO: [iansmathew] Remove test node from global scope
+
 /**
 	Default destructor for Engine.
 */
@@ -41,6 +43,7 @@ void IridiumEngine::Run()
 		{
 			graphicsManager->Update();
 			sceneManager->Update();
+			testNode->GetParent()->RemoveChild(testNode);
 		}
 	}
 }
@@ -89,7 +92,7 @@ void IridiumEngine::Shutdown()
  */
 void IridiumEngine::Create()
 {
-	Gameobject* testNode = sceneManager->CreateNewGameobject();
+	testNode = sceneManager->CreateNewGameobject();
 }
 
 /**

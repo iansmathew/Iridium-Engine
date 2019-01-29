@@ -25,7 +25,7 @@ void SceneManager::Initialize()
 	EventManager::Instance()->AddListener(delegateFunc, EvtDat_On_GO_Created::eventType);
 
 	//Create root scene
-	rootNode = new Gameobject(GetNewInstanceID());
+	rootNode = new Gameobject(GetNewInstanceID(), false);
 }
 
 /**

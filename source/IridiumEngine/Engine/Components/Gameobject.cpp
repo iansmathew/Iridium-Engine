@@ -51,6 +51,33 @@ void Gameobject::AddChild(Gameobject* _child)
 		//TODO: This will currently not allow any new go to be parented until a remove child is implemented
 }
 
+/**
+	Removes a child from the children vector 
+	and sets the parent of the child to null.
+
+	Iterates through the children vector and removes
+	child based on instance id
+
+	@return Success of remove operation. Fails if child was not found
+ */
+bool Gameobject::RemoveChild(Gameobject* _child)
+{
+	if (!_child->parent) //if child GO does not have a parent, why bother removing it? Return false so that dev knows this is stupid
+		return false;
+
+	for (int childIndex = 0; childIndex < children.size(); childIndex++)
+	{
+		if (_child->GetInstanceID() == children[childIndex]->GetInstanceID())
+		{
+			children[childIndex]->parent = nullptr;
+			children.erase(children.begin() + childIndex);
+			return true;
+		}
+	}
+
+	return false;
+}
+
 void Gameobject::Update()
 {
 	//Perform own update

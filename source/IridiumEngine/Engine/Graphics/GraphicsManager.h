@@ -11,7 +11,6 @@ class GraphicsManager : public BaseSingleton<GraphicsManager>
 {
 private:
 	sf::RenderWindow* window;
-	std::vector<Gameobject*> gameobjectList;
 
 private:
 	friend BaseSingleton;

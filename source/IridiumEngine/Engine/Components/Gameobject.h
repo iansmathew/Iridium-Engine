@@ -35,6 +35,8 @@ public:
 
 	void AddChild(Gameobject* _child);
 
+	bool RemoveChild(Gameobject* _child);
+
 	/* Returns the unique instance ID of the gameobject */
 	inline int GetInstanceID() const { return instanceID; }
 
