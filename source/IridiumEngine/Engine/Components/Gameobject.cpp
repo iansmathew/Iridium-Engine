@@ -4,11 +4,14 @@
 #include "RenderComponent.h"
 #include "TransformComponent.h"
 
+#include <iostream>
+
 /**
 	Constructor that sends out the GO_Created event
  */
-Gameobject::Gameobject(bool _isRendered /*= true*/)
+Gameobject::Gameobject(unsigned int _instanceId, bool _isRendered /*= true*/)
 {
+	instanceID = _instanceId;
 	transformComponent = new TransformComponent(this);
 	renderComponent = new RenderComponent(this, _isRendered);
 
@@ -23,22 +26,6 @@ Gameobject::~Gameobject()
 }
 
 /**
-	Returns the transform component
- */
-TransformComponent* Gameobject::GetTransform() const
-{
-	return transformComponent;
-}
-
-/**
-	Return the render component
- */
-RenderComponent* Gameobject::GetRenderComponent() const
-{
-	return renderComponent;
-}
-
-/**
 	Called on engine graphics initialization.
 	Used to set up components
  */
@@ -46,6 +33,11 @@ void Gameobject::Start()
 {
 	transformComponent->Start();
 	renderComponent->Start();
+
+	for (auto child : children)
+	{
+		child->Start();
+	}
 }
 
 /**
@@ -54,8 +46,18 @@ void Gameobject::Start()
  */
 void Gameobject::AddChild(Gameobject* _child)
 {
-	_child->parent = this;
-	children.push_back(_child);
+		_child->parent = this;
+		children.push_back(_child);
+		//TODO: This will currently not allow any new go to be parented until a remove child is implemented
+}
+
+void Gameobject::Update()
+{
+	//Perform own update
+
+	//Call update on children
+	for (auto child : children)
+		child->Update();
 }
 
 /**

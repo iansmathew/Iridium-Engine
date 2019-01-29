@@ -2,6 +2,7 @@
 #include "../Window/WindowManager.h"
 #include "../../Engine/Engine.h"
 #include "../Components/Gameobject.h"
+#include "../Scene/SceneManager.h"
 
 
 /**
@@ -30,10 +31,6 @@ void GraphicsManager::Initialize()
 {
 	window = WindowManager::Instance()->GetWindow();
 
-	//Subscribe to gameobject created event
-	EventListenerDelegate delegateFunc = fastdelegate::MakeDelegate(this, &GraphicsManager::OnNewGameobjectCreated);
-	EventManager::Instance()->AddListener(delegateFunc, EvtDat_On_GO_Created::eventType);
-
 	//TODO:[diegocamacho] Create splash screen here.
 }
 
@@ -42,10 +39,7 @@ void GraphicsManager::Initialize()
  */
 void GraphicsManager::Start()
 {
-	for (auto go : gameobjectList)
-	{
-		go->Start();
-	}
+	
 }
 
 /**
@@ -56,7 +50,7 @@ void GraphicsManager::Update()
 	window->clear();
 	
 	//Call draw on first gameobject which is root scene node created by engine
-	gameobjectList[0]->Draw(*window); 
+	SceneManager::Instance()->GetRootNode()->Draw(*window);
 
 	window->display();
 }
@@ -72,5 +66,5 @@ void GraphicsManager::DisplaySplashScreen()
 
 	window->display();
 	//exit condition
-	//IridiumEngine::Instance()->SetEngineState(ENGINE_STATE::Start);
+	IridiumEngine::Instance()->SetEngineState(ENGINE_STATE::Start);
 }

@@ -3,6 +3,7 @@
 #include "Input/InputManager.h"
 #include "Events/EventManager.h"
 #include "Graphics/GraphicsManager.h"
+#include "Scene/SceneManager.h"
 #include "Components/Gameobject.h"
 #include "../Helper/SysCheck.h"
 #include <iostream>
@@ -39,6 +40,7 @@ void IridiumEngine::Run()
 		else if (GetEngineState() == ENGINE_STATE::Update)
 		{
 			graphicsManager->Update();
+			sceneManager->Update();
 		}
 	}
 }
@@ -87,7 +89,7 @@ void IridiumEngine::Shutdown()
  */
 void IridiumEngine::Create()
 {
-	Gameobject* rootNode = new Gameobject(false);
+	Gameobject* testNode = sceneManager->CreateNewGameobject();
 }
 
 /**
@@ -96,6 +98,7 @@ void IridiumEngine::Create()
  */
 void IridiumEngine::Start()
 {
+	sceneManager->Start();
 	graphicsManager->Start();
 }
 
@@ -109,6 +112,7 @@ IridiumEngine::IridiumEngine()
 	graphicsManager = GraphicsManager::Instance();
 	inputManager = InputManager::Instance();
 	eventManager = EventManager::Instance();
+	sceneManager = SceneManager::Instance();
 }
 
 /**
@@ -127,6 +131,7 @@ bool IridiumEngine::Initialize()
 
 	windowManager->Initialize();
 	graphicsManager->Initialize();
+	sceneManager->Initialize();
 
 	Create();
 

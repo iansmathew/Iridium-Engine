@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
+class SceneManager;
 class TransformComponent;
 class RenderComponent;
 
@@ -10,6 +11,8 @@ class Gameobject
 public:
 
 private:
+	unsigned int instanceID;
+
 	TransformComponent* transformComponent;
 	RenderComponent* renderComponent;
 
@@ -17,19 +20,32 @@ private:
 	std::vector<Gameobject*> children;
 	
 private:
+	friend SceneManager;
+	Gameobject(unsigned int _instanceId, bool _isRendered = true);
 
 public:
-	Gameobject(bool _isRendered = true);
 	~Gameobject();
-
-	TransformComponent* GetTransform() const;
-	RenderComponent* GetRenderComponent() const;
 
 	void Start();
 
-	void AddChild(Gameobject* _child);
+
+	void Update();
 
 	void Draw(sf::RenderWindow& _windowRef);
+
+	void AddChild(Gameobject* _child);
+
+	/* Returns the unique instance ID of the gameobject */
+	inline int GetInstanceID() const { return instanceID; }
+
+	/* Returns the parents of the gameobject */
+	inline Gameobject* GetParent() const { return parent; }
+
+	/* Returns the transform component */
+	inline TransformComponent* GetTransform() const { return transformComponent; }
+
+	/* Return the render component */
+	inline RenderComponent* GetRenderComponent() const { return renderComponent; }
 
 	//TODO:[iansmathew] Create a remove child
 };

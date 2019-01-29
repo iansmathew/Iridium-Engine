@@ -156,6 +156,7 @@
     <ClCompile Include="Engine\Events\IEventManager.cpp" />
     <ClCompile Include="Engine\Graphics\GraphicsManager.cpp" />
     <ClCompile Include="Engine\Input\InputManager.cpp" />
+    <ClCompile Include="Engine\Scene\SceneManager.cpp" />
     <ClCompile Include="Engine\Window\WindowManager.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -171,6 +172,7 @@
     <ClInclude Include="Engine\Events\IEventManager.h" />
     <ClInclude Include="Engine\Graphics\GraphicsManager.h" />
     <ClInclude Include="Engine\Input\InputManager.h" />
+    <ClInclude Include="Engine\Scene\SceneManager.h" />
     <ClInclude Include="Engine\Window\WindowManager.h" />
     <ClInclude Include="ExternalTools\FastDelegate.h" />
     <ClInclude Include="Helper\BaseSingleton.h" />

@@ -58,6 +58,12 @@
     <Filter Include="Header Files\Engine\EngineStates">
       <UniqueIdentifier>{e8c02257-1773-4c6f-8dec-bfdbf9d0108f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Scene">
+      <UniqueIdentifier>{60932b6f-c298-46ec-a299-90fb5bd4d13d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Scene">
+      <UniqueIdentifier>{acb7a976-81e5-45cc-9885-8b6375f333d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -95,6 +101,9 @@
     </ClCompile>
     <ClCompile Include="Engine\Components\TransformComponent.cpp">
       <Filter>Source Files\Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Scene\SceneManager.cpp">
+      <Filter>Source Files\Engine\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="Engine\Components\TransformComponent.h">
       <Filter>Header Files\Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Scene\SceneManager.h">
+      <Filter>Header Files\Engine\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

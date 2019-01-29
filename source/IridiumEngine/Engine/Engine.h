@@ -16,6 +16,7 @@ class WindowManager;
 class InputManager;
 class EventManager;
 class GraphicsManager;
+class SceneManager;
 
 class IridiumEngine : public BaseSingleton<IridiumEngine>
 {
@@ -23,6 +24,7 @@ private:
 	WindowManager* windowManager;
 	GraphicsManager* graphicsManager;
 	InputManager* inputManager;
+	SceneManager* sceneManager;
 	EventManager* eventManager;
 
 	ENGINE_STATE engineState;
