@@ -56,10 +56,10 @@ void SceneManager::Start()
 /**
 	Calls update on all gameobjects
  */
-void SceneManager::Update() //TODO:[iansmathew] Make sure update is delta time based and passed to GOs
+void SceneManager::Update(float _deltaTime)
 {
-	testNode->GetTransformComponent()->Translate(0.01f, 0.01f);
-	rootNode->Update();
+	testNode->GetTransformComponent()->Translate(10.0f * _deltaTime, 10.0f * _deltaTime);
+	rootNode->Update(_deltaTime);
 }
 
 /**

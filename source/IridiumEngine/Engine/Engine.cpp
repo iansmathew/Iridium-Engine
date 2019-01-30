@@ -21,10 +21,12 @@ IridiumEngine::~IridiumEngine()
  */
 void IridiumEngine::Run()
 {
+	engineClock = sf::Clock(); //Create a clock
+
 	while (WindowManager::Instance()->GetWindow()->isOpen())
 	{
+		//Handle window events followed by game events
 		HandleWindowEvents();
-		//Handle event manager update queue
 		eventManager->Update(); 
 
 		//Choose which update loop to run
@@ -39,10 +41,12 @@ void IridiumEngine::Run()
 		}
 		else if (GetEngineState() == ENGINE_STATE::Update)
 		{
+			//Update GOs
+			float elapsedTime = engineClock.restart().asSeconds();
+			sceneManager->Update(elapsedTime); //Pass in elapsed time as deltaTime
+
+			//Update graphics
 			graphicsManager->Update();
-			sceneManager->Update();
-			//testNode->GetParent()->RemoveChild(testNode);
-			//testNode2->GetParent()->RemoveChild(testNode2);
 		}
 	}
 }

@@ -30,7 +30,7 @@ public:
 
 	void Start();
 
-	void Update();
+	void Update(float _deltaTime);
 
 	Gameobject* CreateNewGameobject(bool _isRendered = true, Gameobject* _parent = nullptr);
 

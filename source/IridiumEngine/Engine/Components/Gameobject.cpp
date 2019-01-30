@@ -85,14 +85,19 @@ bool Gameobject::RemoveChild(Gameobject* _child)
 	return false;
 }
 
-void Gameobject::Update()
+/**
+	Calls update on GO and recursively on children.
+
+	@param _deltaTime: The time elapsed as seconds since last frame
+ */
+void Gameobject::Update(float _deltaTime)
 {
 	//Perform own update
 	transformComponent->Update();
 
 	//Call update on children
 	for (auto child : children)
-		child->Update();
+		child->Update(_deltaTime);
 }
 
 /**

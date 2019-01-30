@@ -31,7 +31,7 @@ public:
 	void Start();
 
 
-	void Update();
+	void Update(float _deltaTime);
 
 	void Draw(sf::RenderWindow& _windowRef);
 

@@ -10,6 +10,8 @@
 
 #include "../Helper/BaseSingleton.h"
 #include "EngineStates/EngineState.h"
+#include <SFML/System/Clock.hpp>
+
 
 /*FORWARD DECLARATIONS*/
 class WindowManager;
@@ -21,13 +23,16 @@ class SceneManager;
 class IridiumEngine : public BaseSingleton<IridiumEngine>
 {
 private:
+	ENGINE_STATE engineState;
+
+	//Managers
 	WindowManager* windowManager;
 	GraphicsManager* graphicsManager;
 	InputManager* inputManager;
 	SceneManager* sceneManager;
 	EventManager* eventManager;
 
-	ENGINE_STATE engineState;
+	sf::Clock engineClock;
 
 public:
 	~IridiumEngine();
