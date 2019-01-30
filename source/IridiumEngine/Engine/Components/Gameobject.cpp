@@ -1,16 +1,16 @@
 #include "Gameobject.h"
 #include "../Events/EventManager.h"
 #include "../Events/Events.h"
-
+#include "../irincludes.h"
 
 #include <iostream>
 
 /**
 	Constructor that sends out the GO_Created event
  */
-Gameobject::Gameobject(unsigned int _instanceId, bool _isRendered /*= true*/)
+Gameobject::Gameobject(bool _isRendered /*= true*/)
 {
-	instanceID = _instanceId;
+	instanceID = IridiumEngine::Instance()->GetSceneManager()->GetNewInstanceID();
 	transformComponent = new TransformComponent(this);
 	renderComponent = new RenderComponent(this, _isRendered);
 

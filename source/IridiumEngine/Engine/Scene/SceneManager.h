@@ -17,9 +17,18 @@ private:
 	Scene* currentScene;
 
 private:
+#pragma region EVENT_HANDLERS
+
 	void OnNewGameobjectCreated(IEventDataPtr _event);
 
+#pragma endregion EVENT_HANDLERS
+
+#pragma region GAMEOBJECT_FUNCS
+
+	friend Gameobject;
 	unsigned int GetNewInstanceID();
+
+#pragma endregion GAMEOBJECT_FUNCS
 
 public:
 	friend BaseSingleton;
@@ -41,6 +50,9 @@ public:
 
 	template <class T>
 	T* CreateNewGameobject(bool _isRendered = true, Gameobject* _parent = nullptr);
+
+	template <class T>
+	T* CreateNewScene();
 
 	void LoadScene(Scene* _scene);
 

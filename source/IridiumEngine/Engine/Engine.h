@@ -68,6 +68,7 @@ public:
 
 	inline ENGINE_STATE GetEngineState() const { return engineState; }
 	inline void SetEngineState(ENGINE_STATE _val) { engineState = _val; }
+	inline SceneManager* GetSceneManager() const { return sceneManager; }
 
 #pragma endregion GETTERS
 

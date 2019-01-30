@@ -1,15 +1,11 @@
 #pragma once
-#include "../Components/Gameobject.h"
+#include "../Scene.h"
 
-class SceneManager;
-
-class Scene : public Gameobject
+class SplashScene : public Scene
 {
 protected:
-	/* The constructor is protected so that an instance of Scene cannot be created
-	unless through the Scene Manager*/
 	friend SceneManager;
-	Scene();
+	SplashScene();
 public:
 #pragma region GAME_FLOW_FUNCS
 

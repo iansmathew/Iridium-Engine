@@ -2,12 +2,8 @@
 #include <type_traits>
 #include <assert.h>
 
-#include "Scene.h"
 #include "../Components/Gameobject.h"
-
-Gameobject* testNode; //TODO: [iansmathew] Remove test node from global scope
-Gameobject* testNode2;
-
+#include "../Scene/SplashScene/SplashScene.h"
 
 /**
 	Initializing static member
@@ -33,7 +29,9 @@ void SceneManager::Initialize()
 	EventManager::Instance()->AddListener(delegateFunc, EvtData_On_GO_Created::eventType);
 
 	//Create root scene
-	currentScene = new Scene(GetNewInstanceID());
+	//currentScene = new SplashScene();
+	auto splashScene = CreateNewScene<SplashScene>();
+	LoadScene(splashScene);
 }
 
 /**
@@ -43,10 +41,7 @@ void SceneManager::Initialize()
 void SceneManager::Create()
 {
 	//TODO:[iansmathew] Create a scene that holds these gameobjects and calls the update inside the scene
-	testNode = CreateNewGameobject<Gameobject>();
-	testNode2 = CreateNewGameobject<Gameobject>(true, testNode);
-
-	testNode2->GetTransformComponent()->Translate(200, 200);
+	
 }
 
 /**
@@ -69,7 +64,6 @@ void SceneManager::Update(float _deltaTime)
 	}
 
 	currentScene->Update(_deltaTime);
-	testNode->GetTransformComponent()->Translate(10.0f * _deltaTime, 10.0f * _deltaTime);
 }
 
 template <class T>
@@ -95,6 +89,22 @@ T* SceneManager::CreateNewGameobject(bool _isRendered /*= true*/, Gameobject* _p
 		currentScene->AddChild(newGo);
 
 	return newGo;
+}
+
+/**
+	Creates and returns a new sceneNode. 
+	Use this to create new scenes.
+
+	Follows the factory design patern.
+ */
+template <class T>
+T* SceneManager::CreateNewScene()
+{
+	//Ensure that only of type Scene can be created 
+	static_assert(std::is_base_of<Scene, T>::value, "T should inherit from Scene");
+
+	T* newScene = new T();
+	return newScene;
 }
 
 /**

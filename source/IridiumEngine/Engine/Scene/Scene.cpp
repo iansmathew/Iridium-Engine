@@ -1,7 +1,7 @@
 #include "Scene.h"
 
-Scene::Scene(unsigned int _instanceID)
-	: Gameobject(_instanceID, false)
+Scene::Scene() : 
+	Gameobject(false)
 {
 
 }
