@@ -1,8 +1,7 @@
 #include "Gameobject.h"
 #include "../Events/EventManager.h"
 #include "../Events/Events.h"
-#include "RenderComponent.h"
-#include "TransformComponent.h"
+
 
 #include <iostream>
 
@@ -46,9 +45,17 @@ void Gameobject::Start()
  */
 void Gameobject::AddChild(Gameobject* _child)
 {
-		_child->parent = this;
-		children.push_back(_child);
-		//TODO: This will currently not allow any new go to be parented until a remove child is implemented
+	//TODO: Check if AddChild properly reparents the child so that it only lives under ONE parent and is not shared.
+	//i.e two parents do not have _child in their children vector
+
+	//if child already has a parent, remove it from the parent's list
+	if (_child->parent)
+	{
+		_child->parent->RemoveChild(_child);
+	}
+
+	_child->parent = this;
+	children.push_back(_child);
 }
 
 /**
@@ -81,6 +88,7 @@ bool Gameobject::RemoveChild(Gameobject* _child)
 void Gameobject::Update()
 {
 	//Perform own update
+	transformComponent->Update();
 
 	//Call update on children
 	for (auto child : children)
@@ -93,7 +101,7 @@ void Gameobject::Update()
  */
 void Gameobject::Draw(sf::RenderWindow& _windowRef)
 {
-	_windowRef.draw(renderComponent->GetSprite());
+	_windowRef.draw(renderComponent->GetSprite(), GetTransformComponent()->GetWorldTransform());
 
 	for (auto child : children)
 	{

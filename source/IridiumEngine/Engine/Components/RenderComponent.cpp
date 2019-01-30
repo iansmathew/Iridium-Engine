@@ -27,7 +27,7 @@ void RenderComponent::Start()
 
 	//Set default sprite properties
 	sprite.setTexture(texture);
-	sprite.setTextureRect(sf::IntRect(0, 0, 32, 32)); //making sure our default sprites scale to 32x32
+	//sprite.setTextureRect(sf::IntRect(0, 0, 32, 32)); //making sure our default sprites scale to 32x32
 	sprite.setOrigin(0.5f, 0.5f);
 
 	//If sprite is not to be rendered, make transparent

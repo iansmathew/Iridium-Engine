@@ -47,12 +47,15 @@ void SceneManager::Update()
 /**
 	Creates a new gameobject
  */
-Gameobject* SceneManager::CreateNewGameobject(bool _isRendered /*= true*/)
+Gameobject* SceneManager::CreateNewGameobject(bool _isRendered /*= true*/, Gameobject* _parent /*= nullptr*/)
 {
 	Gameobject* newGo = new Gameobject(GetNewInstanceID(), _isRendered);
 
-	//setting the default parent to the root node
-	rootNode->AddChild(newGo);
+	//set the parent if given, else default to root
+	if (_parent)
+		_parent->AddChild(newGo);
+	else
+		rootNode->AddChild(newGo);
 
 	return newGo;
 }

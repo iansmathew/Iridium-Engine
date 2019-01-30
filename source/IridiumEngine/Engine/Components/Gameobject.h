@@ -1,10 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include "RenderComponent.h"
+#include "TransformComponent.h"
 
 class SceneManager;
-class TransformComponent;
-class RenderComponent;
+//class TransformComponent;
+//class RenderComponent;
 
 class Gameobject
 {
@@ -44,7 +46,7 @@ public:
 	inline Gameobject* GetParent() const { return parent; }
 
 	/* Returns the transform component */
-	inline TransformComponent* GetTransform() const { return transformComponent; }
+	inline TransformComponent* GetTransformComponent() const { return transformComponent; }
 
 	/* Return the render component */
 	inline RenderComponent* GetRenderComponent() const { return renderComponent; }

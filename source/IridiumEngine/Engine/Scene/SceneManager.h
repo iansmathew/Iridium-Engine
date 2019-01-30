@@ -30,7 +30,7 @@ public:
 
 	void Update();
 
-	Gameobject* CreateNewGameobject(bool _isRendered = true);
+	Gameobject* CreateNewGameobject(bool _isRendered = true, Gameobject* _parent = nullptr);
 
 	inline Gameobject* GetRootNode() const { return rootNode; }
 
