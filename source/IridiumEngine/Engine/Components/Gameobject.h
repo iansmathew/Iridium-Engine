@@ -19,8 +19,9 @@ private:
 	Gameobject* parent;
 	std::vector<Gameobject*> children;
 	
-private:
-	/* The constructor is private so that an instance of GO cannot be created unless through the Scene Manager*/
+protected:
+	/* The constructor is protected so that an instance of GO cannot be created
+	unless through the Scene Manager or through derived classes*/
 	friend SceneManager;
 	Gameobject(unsigned int _instanceId, bool _isRendered = true);
 

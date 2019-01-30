@@ -6,6 +6,7 @@
 
 //FORWARD DECLARATIONS
 class Gameobject;
+class Scene;
 
 class SceneManager : public BaseSingleton<SceneManager>
 {
@@ -13,7 +14,7 @@ class SceneManager : public BaseSingleton<SceneManager>
 
 private:
 	std::vector<Gameobject*> gameobjectList;
-	Gameobject* sceneNode;
+	Scene* currentScene;
 
 private:
 	void OnNewGameobjectCreated(IEventDataPtr _event);
@@ -41,11 +42,13 @@ public:
 	template <class T>
 	T* CreateNewGameobject(bool _isRendered = true, Gameobject* _parent = nullptr);
 
+	void LoadScene(Scene* _scene);
+
 #pragma endregion SCENE_MANAGER_FUNCS
 
 #pragma region GETTERS
 
-	inline Gameobject* GetSceneNode() const { return sceneNode; }
+	Gameobject* GetSceneNodeGameobject() const;
 
 #pragma endregion GETTERS
 

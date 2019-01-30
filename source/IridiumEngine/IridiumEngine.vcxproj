@@ -156,6 +156,7 @@
     <ClCompile Include="Engine\Events\IEventManager.cpp" />
     <ClCompile Include="Engine\Graphics\GraphicsManager.cpp" />
     <ClCompile Include="Engine\Input\InputManager.cpp" />
+    <ClCompile Include="Engine\Scene\Scene.cpp" />
     <ClCompile Include="Engine\Scene\SceneManager.cpp" />
     <ClCompile Include="Engine\Scene\SplashScene\SplashScene.cpp" />
     <ClCompile Include="Engine\Window\WindowManager.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="Engine\Events\IEventManager.h" />
     <ClInclude Include="Engine\Graphics\GraphicsManager.h" />
     <ClInclude Include="Engine\Input\InputManager.h" />
+    <ClInclude Include="Engine\Scene\Scene.h" />
     <ClInclude Include="Engine\Scene\SceneManager.h" />
     <ClInclude Include="Engine\Scene\SplashScene\SplashScene.h" />
     <ClInclude Include="Engine\Window\WindowManager.h" />

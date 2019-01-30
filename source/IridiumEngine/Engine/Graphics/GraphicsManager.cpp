@@ -44,6 +44,13 @@ void GraphicsManager::Start()
  */
 void GraphicsManager::Update(Gameobject* _sceneNode)
 {
+	// if in between switching scenes, dont bother rendering.
+	if (!_sceneNode)
+	{
+		//TODO:[iansmathew] Create a global Logger
+		return;
+	}
+
 	window->clear();
 	//Call draw on first gameobject which is root scene node created by engine
 	//SceneManager::Instance()->GetRootNode()->Draw(*window);

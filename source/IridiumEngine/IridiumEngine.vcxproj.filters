@@ -114,6 +114,9 @@
     <ClCompile Include="Engine\Scene\SplashScene\SplashScene.cpp">
       <Filter>Source Files\Engine\Scene\Splash Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Scene\Scene.cpp">
+      <Filter>Source Files\Engine\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Engine.h">
@@ -166,6 +169,9 @@
     </ClInclude>
     <ClInclude Include="Engine\Scene\SplashScene\SplashScene.h">
       <Filter>Header Files\Engine\Scene\Splash Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Scene\Scene.h">
+      <Filter>Header Files\Engine\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,8 @@
 #include "SceneManager.h"
 #include <type_traits>
+#include <assert.h>
 
+#include "Scene.h"
 #include "../Components/Gameobject.h"
 
 Gameobject* testNode; //TODO: [iansmathew] Remove test node from global scope
@@ -31,7 +33,7 @@ void SceneManager::Initialize()
 	EventManager::Instance()->AddListener(delegateFunc, EvtDat_On_GO_Created::eventType);
 
 	//Create root scene
-	sceneNode = new Gameobject(GetNewInstanceID(), false);
+	currentScene = new Scene(GetNewInstanceID());
 }
 
 /**
@@ -52,7 +54,7 @@ void SceneManager::Create()
  */
 void SceneManager::Start()
 {
-	sceneNode->Start();
+	currentScene->Start();
 }
 
 /**
@@ -60,8 +62,14 @@ void SceneManager::Start()
  */
 void SceneManager::Update(float _deltaTime)
 {
+	if (!currentScene)
+	{
+		//TODO[iansmathew]: Log null scene
+		return;
+	}
+
+	currentScene->Update(_deltaTime);
 	testNode->GetTransformComponent()->Translate(10.0f * _deltaTime, 10.0f * _deltaTime);
-	sceneNode->Update(_deltaTime);
 }
 
 template <class T>
@@ -71,6 +79,9 @@ template <class T>
  */
 T* SceneManager::CreateNewGameobject(bool _isRendered /*= true*/, Gameobject* _parent /*= nullptr*/)
 {
+	//Do not create a gameobject if there is no scene to create it in
+	assert(currentScene);
+
 	//Ensure that only of type Gameobject can be created 
 	static_assert(std::is_base_of<Gameobject, T>::value, "T should inherit from Gameobject");
 
@@ -81,9 +92,28 @@ T* SceneManager::CreateNewGameobject(bool _isRendered /*= true*/, Gameobject* _p
 	if (_parent)
 		_parent->AddChild(newGo);
 	else
-		sceneNode->AddChild(newGo);
+		currentScene->AddChild(newGo);
 
 	return newGo;
+}
+
+/**
+	Switches the current scene to the passed in scene.
+	Flow is as follows:
+		Call destroy / shutdown on current scene
+		Switch scene
+		Call start on new scene
+
+	Update should follow as usual
+ */
+void SceneManager::LoadScene(Scene* _scene)
+{
+
+}
+
+Gameobject* SceneManager::GetSceneNodeGameobject() const
+{
+	return static_cast<Gameobject*>(currentScene);
 }
 
 /**
