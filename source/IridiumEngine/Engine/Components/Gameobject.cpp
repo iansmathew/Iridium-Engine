@@ -30,6 +30,8 @@ Gameobject::~Gameobject()
  */
 void Gameobject::Start()
 {
+	std::cout << "Base start method called on instance: " << GetInstanceID() << std::endl;
+
 	transformComponent->Start();
 	renderComponent->Start();
 

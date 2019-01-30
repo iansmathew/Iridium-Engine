@@ -38,7 +38,8 @@ public:
 
 #pragma region SCENE_MANAGER_FUNCS
 
-	Gameobject* CreateNewGameobject(bool _isRendered = true, Gameobject* _parent = nullptr);
+	template <class T>
+	T* CreateNewGameobject(bool _isRendered = true, Gameobject* _parent = nullptr);
 
 #pragma endregion SCENE_MANAGER_FUNCS
 

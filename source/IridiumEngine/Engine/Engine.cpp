@@ -1,3 +1,5 @@
+#define _DEBUG //TODO: [iansmathew] Remove in release. Redefinition on purpose since SFML release libraries have not been implemented
+
 #include "Engine.h"
 
 #include "../Helper/SysCheck.h"
@@ -132,8 +134,10 @@ IridiumEngine::IridiumEngine()
  */
 bool IridiumEngine::Initialize()
 {
+#ifndef _DEBUG
 	if (!CheckSystemRequirements())
 		return false;
+#endif
 
 	SetEngineState(ENGINE_STATE::Initialization);
 

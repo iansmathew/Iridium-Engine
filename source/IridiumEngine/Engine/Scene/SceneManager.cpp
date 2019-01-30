@@ -1,4 +1,6 @@
 #include "SceneManager.h"
+#include <type_traits>
+
 #include "../Components/Gameobject.h"
 
 Gameobject* testNode; //TODO: [iansmathew] Remove test node from global scope
@@ -39,8 +41,8 @@ void SceneManager::Initialize()
 void SceneManager::Create()
 {
 	//TODO: [Create a scene that holds these gameobjects and calls the update inside the scene]
-	testNode = CreateNewGameobject();
-	testNode2 = CreateNewGameobject(true, testNode);
+	testNode = CreateNewGameobject<Gameobject>();
+	testNode2 = CreateNewGameobject<Gameobject>(true, testNode);
 
 	testNode2->GetTransformComponent()->Translate(200, 200);
 }
@@ -62,12 +64,18 @@ void SceneManager::Update(float _deltaTime)
 	sceneNode->Update(_deltaTime);
 }
 
+template <class T>
 /**
-	Creates a new gameobject
+	Creates a new gameobject of a given Gameobject Derived class.
+	Follows a factory method design pattern
  */
-Gameobject* SceneManager::CreateNewGameobject(bool _isRendered /*= true*/, Gameobject* _parent /*= nullptr*/)
+T* SceneManager::CreateNewGameobject(bool _isRendered /*= true*/, Gameobject* _parent /*= nullptr*/)
 {
-	Gameobject* newGo = new Gameobject(GetNewInstanceID(), _isRendered);
+	//Ensure that only of type Gameobject can be created 
+	static_assert(std::is_base_of<Gameobject, T>::value, "T should inherit from Gameobject");
+
+	//Create the instance of type template
+	T* newGo = new T(GetNewInstanceID(), _isRendered);
 
 	//set the parent if given, else default to root
 	if (_parent)
