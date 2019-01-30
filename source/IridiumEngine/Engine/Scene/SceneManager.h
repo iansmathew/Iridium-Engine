@@ -24,6 +24,8 @@ public:
 	friend BaseSingleton;
 	SceneManager();
 
+#pragma region GAME_FLOW_FUNCS
+
 	void Initialize();
 
 	void Create();
@@ -32,7 +34,18 @@ public:
 
 	void Update(float _deltaTime);
 
+#pragma endregion GAME_FLOW_FUNCS
+
+#pragma region SCENE_MANAGER_FUNCS
+
 	Gameobject* CreateNewGameobject(bool _isRendered = true, Gameobject* _parent = nullptr);
 
+#pragma endregion SCENE_MANAGER_FUNCS
+
+#pragma region GETTERS
+
 	inline Gameobject* GetSceneNode() const { return sceneNode; }
+
+#pragma endregion GETTERS
+
 };

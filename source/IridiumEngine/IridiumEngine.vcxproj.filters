@@ -64,6 +64,12 @@
     <Filter Include="Source Files\Engine\Scene">
       <UniqueIdentifier>{acb7a976-81e5-45cc-9885-8b6375f333d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\Scene\Splash Scene">
+      <UniqueIdentifier>{8dd52010-7553-4284-9e07-fa20ced7c7ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Scene\Splash Scene">
+      <UniqueIdentifier>{83e0990e-c11f-4449-973f-4e6da339fee2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -104,6 +110,9 @@
     </ClCompile>
     <ClCompile Include="Engine\Scene\SceneManager.cpp">
       <Filter>Source Files\Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Scene\SplashScene\SplashScene.cpp">
+      <Filter>Source Files\Engine\Scene\Splash Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="Engine\Scene\SceneManager.h">
       <Filter>Header Files\Engine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Scene\SplashScene\SplashScene.h">
+      <Filter>Header Files\Engine\Scene\Splash Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

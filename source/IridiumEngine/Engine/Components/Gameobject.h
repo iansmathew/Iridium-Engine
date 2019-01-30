@@ -10,8 +10,6 @@ class SceneManager;
 
 class Gameobject
 {
-public:
-
 private:
 	unsigned int instanceID;
 
@@ -22,22 +20,24 @@ private:
 	std::vector<Gameobject*> children;
 	
 private:
+	/* The constructor is private so that an instance of GO cannot be created unless through the Scene Manager*/
 	friend SceneManager;
 	Gameobject(unsigned int _instanceId, bool _isRendered = true);
 
 public:
 	~Gameobject();
 
-	void Start();
+#pragma region GAME_FLOW_FUNCS
 
+	virtual void Start();
 
-	void Update(float _deltaTime);
+	virtual void Update(float _deltaTime);
 
 	void Draw(sf::RenderWindow& _windowRef);
 
-	void AddChild(Gameobject* _child);
-
-	bool RemoveChild(Gameobject* _child);
+#pragma endregion GAME_FLOW_FUNCS
+	
+#pragma region GETTERS
 
 	/* Returns the unique instance ID of the gameobject */
 	inline int GetInstanceID() const { return instanceID; }
@@ -51,5 +51,13 @@ public:
 	/* Return the render component */
 	inline RenderComponent* GetRenderComponent() const { return renderComponent; }
 
-	//TODO:[iansmathew] Create a remove child
+#pragma endregion GETTERS
+
+#pragma region GAMEOBJECT_FUNCS
+
+	void AddChild(Gameobject* _child);
+
+	bool RemoveChild(Gameobject* _child);
+
+#pragma endregion GAMEOBJECT_FUNCS
 };
