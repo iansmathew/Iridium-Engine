@@ -46,10 +46,10 @@ public:
 
 #pragma endregion SCENE_MANAGER_FUNCS
 
-#pragma region GETTERS
+#pragma region GETTERS_AND_SETTERS
 
 	Gameobject* GetSceneNodeGameobject() const;
 
-#pragma endregion GETTERS
+#pragma endregion GETTERS_AND_SETTERS
 
 };

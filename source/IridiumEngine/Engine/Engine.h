@@ -8,9 +8,11 @@
 
 #pragma once
 
+#include <SFML/System/Clock.hpp>
+
 #include "../Helper/BaseSingleton.h"
 #include "EngineStates/EngineState.h"
-#include <SFML/System/Clock.hpp>
+#include "Events/EventManager.h"
 
 
 /*FORWARD DECLARATIONS*/
@@ -34,8 +36,23 @@ private:
 
 	sf::Clock engineClock;
 
+private:
+	friend BaseSingleton<IridiumEngine>;
+	IridiumEngine();
+	IridiumEngine(const IridiumEngine &_copy) = delete; //no copy constructor
+
+	bool CheckSystemRequirements();
+
+#pragma region EVENT_HANDLERS
+
+	void OnSceneChange(IEventDataPtr _event);
+
+#pragma endregion EVENT_HANDLERS
+
 public:
 	~IridiumEngine();
+
+#pragma region GAME_FLOW_FUNCS
 
 	bool Initialize();
 
@@ -45,15 +62,13 @@ public:
 
 	void Shutdown();
 
-	inline ENGINE_STATE GetEngineState() const { return engineState; }
+#pragma endregion GAME_FLOW_FUNCS
 
+#pragma region GETTERS_AND_SETTERS
+
+	inline ENGINE_STATE GetEngineState() const { return engineState; }
 	inline void SetEngineState(ENGINE_STATE _val) { engineState = _val; }
 
+#pragma endregion GETTERS
 
-private:
-	friend BaseSingleton<IridiumEngine>;
-	IridiumEngine();
-	IridiumEngine(const IridiumEngine &_copy) = delete; //no copy constructor
-
-	bool CheckSystemRequirements();
 };

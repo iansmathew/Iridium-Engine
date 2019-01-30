@@ -50,6 +50,7 @@ void GraphicsManager::Update(Gameobject* _sceneNode)
 	window->display();
 }
 
+//TODO:[iansmathew] Refactor splash screen code to be part of sceneManager
 /**
 	Displays the splash screen for a set duration.
 */

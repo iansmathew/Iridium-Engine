@@ -111,11 +111,12 @@ void SceneManager::LoadScene(Scene* _scene)
 	if (currentScene)
 		currentScene->Shutdown();
 
-	//Update current scene and call start
+	//Update current scene, event will take care of calling Start
 	currentScene = _scene;
-	currentScene->Start();
-
-	//TODO: [iansmathew] Send Scene change event
+	
+	//Post scene change event
+	std::shared_ptr<EvtData_On_Scene_Change> pEvent(new EvtData_On_Scene_Change());
+	EventManager::Instance()->QueueEvent(pEvent);
 }
 
 /**

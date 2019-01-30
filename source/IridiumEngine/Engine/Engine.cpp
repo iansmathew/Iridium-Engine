@@ -2,15 +2,15 @@
 
 #include "Engine.h"
 
+#include <iostream>
+
 #include "../Helper/SysCheck.h"
 #include "Window/WindowManager.h"
 #include "Input/InputManager.h"
-#include "Events/EventManager.h"
 #include "Graphics/GraphicsManager.h"
+#include "Events/Events.h"
 #include "Scene/SceneManager.h"
 #include "Components/Gameobject.h"
-
-#include <iostream>
 
 /**
 	Default destructor for Engine.
@@ -129,6 +129,9 @@ bool IridiumEngine::Initialize()
 	sceneManager->Initialize();
 
 	//Subscribe to events
+	EventListenerDelegate delegateFunc = fastdelegate::MakeDelegate(this, &IridiumEngine::OnSceneChange);
+	EventManager::Instance()->AddListener(delegateFunc, EvtData_On_Scene_Change::eventType);
+
 	sceneManager->Create(); //TODO: [iansmathew] Remove
 
 	return true;
@@ -154,5 +157,11 @@ bool IridiumEngine::CheckSystemRequirements()
 		return false;
 
 	return true;
+}
+
+void IridiumEngine::OnSceneChange(IEventDataPtr _event)
+{
+	//std::shared_ptr<EvtData_On_Scene_Change> pCastEventData = std::static_pointer_cast<EvtData_On_Scene_Change>(_event);
+	SetEngineState(ENGINE_STATE::Start);
 }
 
