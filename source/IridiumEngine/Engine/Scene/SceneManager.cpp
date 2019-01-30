@@ -30,7 +30,7 @@ void SceneManager::Initialize()
 {
 	//Subscribe to gameobject created event
 	EventListenerDelegate delegateFunc = fastdelegate::MakeDelegate(this, &SceneManager::OnNewGameobjectCreated);
-	EventManager::Instance()->AddListener(delegateFunc, EvtDat_On_GO_Created::eventType);
+	EventManager::Instance()->AddListener(delegateFunc, EvtData_On_GO_Created::eventType);
 
 	//Create root scene
 	currentScene = new Scene(GetNewInstanceID());
@@ -42,7 +42,7 @@ void SceneManager::Initialize()
  */
 void SceneManager::Create()
 {
-	//TODO: [Create a scene that holds these gameobjects and calls the update inside the scene]
+	//TODO:[iansmathew] Create a scene that holds these gameobjects and calls the update inside the scene
 	testNode = CreateNewGameobject<Gameobject>();
 	testNode2 = CreateNewGameobject<Gameobject>(true, testNode);
 
@@ -108,9 +108,19 @@ T* SceneManager::CreateNewGameobject(bool _isRendered /*= true*/, Gameobject* _p
  */
 void SceneManager::LoadScene(Scene* _scene)
 {
+	if (currentScene)
+		currentScene->Shutdown();
 
+	//Update current scene and call start
+	currentScene = _scene;
+	currentScene->Start();
+
+	//TODO: [iansmathew] Send Scene change event
 }
 
+/**
+	Returns the current scene node casted as a Gameobject
+ */
 Gameobject* SceneManager::GetSceneNodeGameobject() const
 {
 	return static_cast<Gameobject*>(currentScene);
@@ -122,7 +132,7 @@ Gameobject* SceneManager::GetSceneNodeGameobject() const
  */
 void SceneManager::OnNewGameobjectCreated(IEventDataPtr _event)
 {
-	std::shared_ptr<EvtDat_On_GO_Created> pCastEventData = std::static_pointer_cast<EvtDat_On_GO_Created>(_event);
+	std::shared_ptr<EvtData_On_GO_Created> pCastEventData = std::static_pointer_cast<EvtData_On_GO_Created>(_event);
 	gameobjectList.push_back(pCastEventData->GetOwnedGameobject());
 }
 

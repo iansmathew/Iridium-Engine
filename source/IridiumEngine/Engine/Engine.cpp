@@ -40,7 +40,7 @@ void IridiumEngine::Run()
 		}
 		else if (GetEngineState() == ENGINE_STATE::Start)
 		{
-			Start();
+			sceneManager->Start();
 			SetEngineState(ENGINE_STATE::Update);
 		}
 		else if (GetEngineState() == ENGINE_STATE::Update)
@@ -91,25 +91,7 @@ void IridiumEngine::Shutdown()
 	//Destroying components in reverse order of initialization
 	inputManager->Shutdown();
 	windowManager->Shutdown();
-}
-
-/**
-	Called before update runs. 
-	Create gameobjects here
- */
-void IridiumEngine::Create()
-{
-	sceneManager->Create();
-}
-
-/**
-	Called right before update.
-	It calls start on all objects that require it.
- */
-void IridiumEngine::Start()
-{
-	sceneManager->Start();
-	graphicsManager->Start();
+	//TODO: [iansmathew] Add scenemanager shutdown
 }
 
 /**
@@ -141,11 +123,13 @@ bool IridiumEngine::Initialize()
 
 	SetEngineState(ENGINE_STATE::Initialization);
 
+	//Initialize managers
 	windowManager->Initialize();
 	graphicsManager->Initialize();
 	sceneManager->Initialize();
 
-	Create();
+	//Subscribe to events
+	sceneManager->Create(); //TODO: [iansmathew] Remove
 
 	return true;
 }

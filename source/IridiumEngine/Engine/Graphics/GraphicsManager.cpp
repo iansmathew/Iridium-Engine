@@ -18,7 +18,7 @@ GraphicsManager::GraphicsManager()
  */
 void GraphicsManager::OnNewGameobjectCreated(IEventDataPtr _event)
 {
-	std::shared_ptr<EvtDat_On_GO_Created> pCastEventData = std::static_pointer_cast<EvtDat_On_GO_Created>(_event);
+	std::shared_ptr<EvtData_On_GO_Created> pCastEventData = std::static_pointer_cast<EvtData_On_GO_Created>(_event);
 }
 
 /** 
@@ -29,14 +29,6 @@ void GraphicsManager::Initialize()
 	window = WindowManager::Instance()->GetWindow();
 
 	//TODO:[diegocamacho] Create splash screen here.
-}
-
-/**
-	Calls start on all currently held gameobjects
- */
-void GraphicsManager::Start()
-{
-	
 }
 
 /**

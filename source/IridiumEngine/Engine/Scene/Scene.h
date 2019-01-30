@@ -15,6 +15,10 @@ public:
 
 	virtual void Update(float _deltaTime) override;
 
+	virtual void Shutdown() override;
+
 #pragma endregion GAME_FLOW_FUNCS
+
+
 
 };

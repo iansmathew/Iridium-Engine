@@ -36,6 +36,8 @@ public:
 
 	void Draw(sf::RenderWindow& _windowRef);
 
+	virtual void Shutdown();
+
 #pragma endregion GAME_FLOW_FUNCS
 	
 #pragma region GETTERS

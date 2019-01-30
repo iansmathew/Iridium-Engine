@@ -4,7 +4,7 @@
 //FORWARD DECLARATION
 class Gameobject;
 
-class EvtDat_On_GO_Created : public BaseEventData
+class EvtData_On_GO_Created : public BaseEventData
 {
 private:
 	Gameobject* gameobject;
@@ -15,7 +15,7 @@ public:
 
 		@param _gameobject: Gameobject reference
 	*/
-	EvtDat_On_GO_Created(Gameobject* _gameobjectRef)
+	EvtData_On_GO_Created(Gameobject* _gameobjectRef)
 	{
 		gameobject = _gameobjectRef;
 	}
@@ -30,5 +30,21 @@ public:
 	Gameobject* GetOwnedGameobject()
 	{
 		return gameobject;
+	}
+};
+
+class EvtData_On_Scene_Change : public BaseEventData
+{
+public:
+	EvtData_On_Scene_Change()
+	{
+
+	}
+
+	static const EventType eventType;
+
+	virtual const EventType& GetEventType(void) const override
+	{
+		return eventType;
 	}
 };

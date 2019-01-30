@@ -45,10 +45,6 @@ public:
 
 	void Shutdown();
 
-	void Create();
-
-	void Start();
-
 	inline ENGINE_STATE GetEngineState() const { return engineState; }
 
 	inline void SetEngineState(ENGINE_STATE _val) { engineState = _val; }

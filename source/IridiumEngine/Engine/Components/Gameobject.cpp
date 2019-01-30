@@ -15,7 +15,7 @@ Gameobject::Gameobject(unsigned int _instanceId, bool _isRendered /*= true*/)
 	renderComponent = new RenderComponent(this, _isRendered);
 
 	//post GO created event
-	std::shared_ptr<EvtDat_On_GO_Created> pEvent(new EvtDat_On_GO_Created(this));
+	std::shared_ptr<EvtData_On_GO_Created> pEvent(new EvtData_On_GO_Created(this));
 	EventManager::Instance()->QueueEvent(pEvent);
 }
 
@@ -114,4 +114,12 @@ void Gameobject::Draw(sf::RenderWindow& _windowRef)
 	{
 		child->Draw(_windowRef);
 	}
+}
+
+/**
+	Takes care of marking the gameobject to be deleted
+ */
+void Gameobject::Shutdown()
+{
+	std::logic_error("Shutdown not implemented yet");
 }
