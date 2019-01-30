@@ -2,7 +2,6 @@
 #include "../Window/WindowManager.h"
 #include "../../Engine/Engine.h"
 #include "../Components/Gameobject.h"
-#include "../Scene/SceneManager.h"
 
 
 /**
@@ -41,15 +40,14 @@ void GraphicsManager::Start()
 }
 
 /**
-	Updates and display the SFML window contents
+	Passes the window to all GOs recursively and asks them to display themselves
  */
-void GraphicsManager::Update()
+void GraphicsManager::Update(Gameobject* _sceneNode)
 {
 	window->clear();
-	
 	//Call draw on first gameobject which is root scene node created by engine
-	SceneManager::Instance()->GetRootNode()->Draw(*window);
-
+	//SceneManager::Instance()->GetRootNode()->Draw(*window);
+	_sceneNode->Draw(*window);
 	window->display();
 }
 

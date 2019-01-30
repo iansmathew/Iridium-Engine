@@ -21,6 +21,6 @@ private:
 public:
 	void Initialize();
 	void Start();
-	void Update();
+	void Update(Gameobject* _sceneNode);
 	void DisplaySplashScreen();
 };

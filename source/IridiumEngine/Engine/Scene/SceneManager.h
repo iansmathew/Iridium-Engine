@@ -13,7 +13,7 @@ class SceneManager : public BaseSingleton<SceneManager>
 
 private:
 	std::vector<Gameobject*> gameobjectList;
-	Gameobject* rootNode;
+	Gameobject* sceneNode;
 
 private:
 	void OnNewGameobjectCreated(IEventDataPtr _event);
@@ -34,6 +34,5 @@ public:
 
 	Gameobject* CreateNewGameobject(bool _isRendered = true, Gameobject* _parent = nullptr);
 
-	inline Gameobject* GetRootNode() const { return rootNode; }
-
+	inline Gameobject* GetSceneNode() const { return sceneNode; }
 };

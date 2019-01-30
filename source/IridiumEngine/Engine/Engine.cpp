@@ -45,8 +45,8 @@ void IridiumEngine::Run()
 			float elapsedTime = engineClock.restart().asSeconds();
 			sceneManager->Update(elapsedTime); //Pass in elapsed time as deltaTime
 
-			//Update graphics
-			graphicsManager->Update();
+			//Update graphics, pass in the scene node to recursively call graphics draw
+			graphicsManager->Update(sceneManager->GetSceneNode());
 		}
 	}
 }

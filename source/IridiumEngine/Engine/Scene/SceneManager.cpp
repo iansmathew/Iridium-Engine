@@ -29,7 +29,7 @@ void SceneManager::Initialize()
 	EventManager::Instance()->AddListener(delegateFunc, EvtDat_On_GO_Created::eventType);
 
 	//Create root scene
-	rootNode = new Gameobject(GetNewInstanceID(), false);
+	sceneNode = new Gameobject(GetNewInstanceID(), false);
 }
 
 /**
@@ -50,7 +50,7 @@ void SceneManager::Create()
  */
 void SceneManager::Start()
 {
-	rootNode->Start();
+	sceneNode->Start();
 }
 
 /**
@@ -59,7 +59,7 @@ void SceneManager::Start()
 void SceneManager::Update(float _deltaTime)
 {
 	testNode->GetTransformComponent()->Translate(10.0f * _deltaTime, 10.0f * _deltaTime);
-	rootNode->Update(_deltaTime);
+	sceneNode->Update(_deltaTime);
 }
 
 /**
@@ -73,7 +73,7 @@ Gameobject* SceneManager::CreateNewGameobject(bool _isRendered /*= true*/, Gameo
 	if (_parent)
 		_parent->AddChild(newGo);
 	else
-		rootNode->AddChild(newGo);
+		sceneNode->AddChild(newGo);
 
 	return newGo;
 }
