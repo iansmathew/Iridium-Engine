@@ -26,6 +26,8 @@ public:
 
 	void Initialize();
 
+	void Create();
+
 	void Start();
 
 	void Update();

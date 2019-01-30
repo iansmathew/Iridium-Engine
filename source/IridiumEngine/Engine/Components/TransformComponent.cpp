@@ -51,3 +51,11 @@ void TransformComponent::SetLocalTransform(sf::Transform _transform)
 {
 	selfTransform = _transform;
 }
+
+/**
+	Moves the GO by _x pixels horizontally (+ve right) and _y pixels vertically (+ve down).
+ */
+void TransformComponent::Translate(float _x, float _y)
+{
+	selfTransform.translate(_x, _y);
+}

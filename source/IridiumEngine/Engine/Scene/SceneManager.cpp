@@ -1,6 +1,10 @@
 #include "SceneManager.h"
 #include "../Components/Gameobject.h"
 
+Gameobject* testNode; //TODO: [iansmathew] Remove test node from global scope
+Gameobject* testNode2;
+
+
 /**
 	Initializing static member
  */
@@ -29,6 +33,19 @@ void SceneManager::Initialize()
 }
 
 /**
+	Called before start methods are run.
+	Create GOs here.
+ */
+void SceneManager::Create()
+{
+	//TODO: [Create a scene that holds these gameobjects and calls the update inside the scene]
+	testNode = CreateNewGameobject();
+	testNode2 = CreateNewGameobject(true, testNode);
+
+	testNode2->GetTransformComponent()->Translate(200, 200);
+}
+
+/**
 	Calls start on the different gameobjects
  */
 void SceneManager::Start()
@@ -39,8 +56,9 @@ void SceneManager::Start()
 /**
 	Calls update on all gameobjects
  */
-void SceneManager::Update()
+void SceneManager::Update() //TODO:[iansmathew] Make sure update is delta time based and passed to GOs
 {
+	testNode->GetTransformComponent()->Translate(0.01f, 0.01f);
 	rootNode->Update();
 }
 

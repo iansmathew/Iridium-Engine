@@ -8,9 +8,6 @@
 #include "../Helper/SysCheck.h"
 #include <iostream>
 
-Gameobject* testNode; //TODO: [iansmathew] Remove test node from global scope
-Gameobject* testNode2;
-
 /**
 	Default destructor for Engine.
 */
@@ -94,15 +91,7 @@ void IridiumEngine::Shutdown()
  */
 void IridiumEngine::Create()
 {
-	testNode = sceneManager->CreateNewGameobject();
-	testNode2 = sceneManager->CreateNewGameobject(true, testNode);
-
-	auto tempTransform = sf::Transform::Identity;
-	tempTransform.translate(50, 0);
-	testNode->GetTransformComponent()->SetLocalTransform(tempTransform);
-	tempTransform.translate(100, 100);
-	testNode2->GetTransformComponent()->SetLocalTransform(tempTransform);
-
+	sceneManager->Create();
 }
 
 /**

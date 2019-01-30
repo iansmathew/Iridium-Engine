@@ -18,4 +18,6 @@ public:
 	sf::Transform GetWorldTransform() const;
 
 	void SetLocalTransform(sf::Transform _transform);
+
+	void Translate(float _x, float _y);
 };
