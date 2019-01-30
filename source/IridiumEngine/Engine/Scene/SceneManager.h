@@ -4,9 +4,15 @@
 #include "../Events/Events.h"
 #include <vector>
 
+#include <type_traits>
+#include <assert.h>
+
+#include "../Components/Gameobject.h"
+#include "Scene.h"
+
 //FORWARD DECLARATIONS
-class Gameobject;
-class Scene;
+//class Gameobject;
+//class Scene;
 
 class SceneManager : public BaseSingleton<SceneManager>
 {
@@ -49,10 +55,41 @@ public:
 #pragma region SCENE_MANAGER_FUNCS
 
 	template <class T>
-	T* CreateNewGameobject(bool _isRendered = true, Gameobject* _parent = nullptr);
+	T* CreateNewGameobject(bool _isRendered = true, Gameobject* _parent = nullptr)
+	{
+		//Do not create a gameobject if there is no scene to create it in
+		assert(currentScene);
 
+		//Ensure that only of type Gameobject can be created 
+		static_assert(std::is_base_of<Gameobject, T>::value, "T should inherit from Gameobject");
+
+		//Create the instance of type template
+		T* newGo = new T(_isRendered);
+
+		//set the parent if given, else default to root
+		if (_parent)
+			_parent->AddChild(newGo);
+		else
+			currentScene->AddChild(newGo);
+
+		return newGo;
+	}
+
+	/**
+		Creates and returns a new sceneNode.
+		Use this to create new scenes.
+
+		Follows the factory design patern.
+	 */
 	template <class T>
-	T* CreateNewScene();
+	T* CreateNewScene()
+	{
+		//Ensure that only of type Scene can be created 
+		static_assert(std::is_base_of<Scene, T>::value, "T should inherit from Scene");
+
+		T* newScene = new T();
+		return newScene;
+	}
 
 	void LoadScene(Scene* _scene);
 

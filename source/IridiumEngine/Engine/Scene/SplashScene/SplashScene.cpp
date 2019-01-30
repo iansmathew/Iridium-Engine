@@ -3,11 +3,11 @@
 
 SplashScene::SplashScene()
 {
-
 }
 
 void SplashScene::Start()
 {
+	auto splashImage = SceneManager::Instance()->CreateNewGameobject<Gameobject>(true, this);
 	__super::Start();
 }
 

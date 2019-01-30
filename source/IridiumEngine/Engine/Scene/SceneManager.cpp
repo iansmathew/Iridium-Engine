@@ -1,8 +1,5 @@
 #include "SceneManager.h"
-#include <type_traits>
-#include <assert.h>
 
-#include "../Components/Gameobject.h"
 #include "../Scene/SplashScene/SplashScene.h"
 
 /**
@@ -64,47 +61,6 @@ void SceneManager::Update(float _deltaTime)
 	}
 
 	currentScene->Update(_deltaTime);
-}
-
-template <class T>
-/**
-	Creates a new gameobject of a given Gameobject Derived class.
-	Follows a factory method design pattern
- */
-T* SceneManager::CreateNewGameobject(bool _isRendered /*= true*/, Gameobject* _parent /*= nullptr*/)
-{
-	//Do not create a gameobject if there is no scene to create it in
-	assert(currentScene);
-
-	//Ensure that only of type Gameobject can be created 
-	static_assert(std::is_base_of<Gameobject, T>::value, "T should inherit from Gameobject");
-
-	//Create the instance of type template
-	T* newGo = new T(GetNewInstanceID(), _isRendered);
-
-	//set the parent if given, else default to root
-	if (_parent)
-		_parent->AddChild(newGo);
-	else
-		currentScene->AddChild(newGo);
-
-	return newGo;
-}
-
-/**
-	Creates and returns a new sceneNode. 
-	Use this to create new scenes.
-
-	Follows the factory design patern.
- */
-template <class T>
-T* SceneManager::CreateNewScene()
-{
-	//Ensure that only of type Scene can be created 
-	static_assert(std::is_base_of<Scene, T>::value, "T should inherit from Scene");
-
-	T* newScene = new T();
-	return newScene;
 }
 
 /**
