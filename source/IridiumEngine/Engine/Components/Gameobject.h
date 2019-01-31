@@ -5,8 +5,6 @@
 #include "TransformComponent.h"
 
 class SceneManager;
-//class TransformComponent;
-//class RenderComponent;
 
 class Gameobject
 {

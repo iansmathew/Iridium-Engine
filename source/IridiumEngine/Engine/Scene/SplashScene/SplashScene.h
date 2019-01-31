@@ -17,6 +17,17 @@ public:
 
 #pragma endregion GAME_FLOW_FUNCS
 
+};
 
+/************************************************************************/
+/* TEST SCENE CLASS                                                     */
+/************************************************************************/
+class TestScene : public Scene
+{
+private:
+	friend SceneManager;
+	TestScene()
+	{
 
+	}
 };
