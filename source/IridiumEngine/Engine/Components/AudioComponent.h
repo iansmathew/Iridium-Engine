@@ -24,6 +24,8 @@ public:
 
 	void Start();
 
+	void Shutdown();
+
 	void PlaySound(std::string _clipName);
 
 	void AddSoundClip(std::string _soundNameId, std::string _filePath);

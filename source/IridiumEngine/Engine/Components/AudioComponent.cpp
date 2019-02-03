@@ -25,6 +25,20 @@ void AudioComponent::Start()
 }
 
 /**
+	Iterates through sound list, stop sounds and calls delete on pointers
+ */
+void AudioComponent::Shutdown()
+{
+	for (SoundClipList::iterator it = soundClipList.begin(); it != soundClipList.end(); ++it)
+	{
+		it->second->sound.stop();
+
+		delete it->second;
+		it->second = nullptr;
+	}
+}
+
+/**
 	Sends a request to play the given sound clip
  */
 void AudioComponent::PlaySound(std::string _clipName)

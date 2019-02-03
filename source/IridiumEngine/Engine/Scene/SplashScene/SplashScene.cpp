@@ -23,7 +23,7 @@ void SplashScene::Start()
 void SplashScene::Update(float _deltaTime)
 {
 	//If time up, switch scenes
-	if (elapsedTime > 2.f)
+	if (elapsedTime > 5.f)
 	{
 		auto newScene = SceneManager::Instance()->CreateNewScene<TestScene>();
 		SceneManager::Instance()->LoadScene(newScene);

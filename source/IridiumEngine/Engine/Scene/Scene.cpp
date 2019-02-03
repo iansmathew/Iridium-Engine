@@ -16,7 +16,7 @@ void Scene::Start()
 }
 
 /**
-	Recursively calls update on all children
+	Recursively calls update on all children through base
  */
 void Scene::Update(float _deltaTime)
 {
@@ -24,11 +24,13 @@ void Scene::Update(float _deltaTime)
 }
 
 /**
-	Recursively calls shutdown on all children
+	Recursively calls shutdown on all children through base
  */
 void Scene::Shutdown()
 {
 	musicComponent->Shutdown();
+
+	__super::Shutdown();
 }
 
 

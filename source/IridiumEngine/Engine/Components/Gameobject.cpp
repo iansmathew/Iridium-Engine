@@ -123,5 +123,9 @@ void Gameobject::Draw(sf::RenderWindow& _windowRef)
  */
 void Gameobject::Shutdown()
 {
-	std::logic_error("Shutdown not implemented yet");
+	audioComponent->Shutdown();
+
+	//Call shutdown on children
+	for (auto child : children)
+		child->Shutdown();
 }
