@@ -21,6 +21,7 @@ class InputManager;
 class EventManager;
 class GraphicsManager;
 class SceneManager;
+class AudioManager;
 
 class IridiumEngine : public BaseSingleton<IridiumEngine>
 {
@@ -33,6 +34,7 @@ private:
 	InputManager* inputManager;
 	SceneManager* sceneManager;
 	EventManager* eventManager;
+	AudioManager* audioManager;
 
 	sf::Clock engineClock;
 

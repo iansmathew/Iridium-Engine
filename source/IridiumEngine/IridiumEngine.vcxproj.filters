@@ -70,6 +70,12 @@
     <Filter Include="Header Files\Engine\Scene\Splash Scene">
       <UniqueIdentifier>{83e0990e-c11f-4449-973f-4e6da339fee2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Audio">
+      <UniqueIdentifier>{5419d6b0-f624-4c08-b2f6-2707ab2d80ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Audio">
+      <UniqueIdentifier>{e25deeb6-3e97-4c69-8ac4-cbb2ef3f5eaa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -116,6 +122,9 @@
     </ClCompile>
     <ClCompile Include="Engine\Scene\Scene.cpp">
       <Filter>Source Files\Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Audio\AudioManager.cpp">
+      <Filter>Source Files\Engine\Audio</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="Engine\Scene\Scene.h">
       <Filter>Header Files\Engine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Audio\AudioManager.h">
+      <Filter>Header Files\Engine\Audio</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -5,11 +5,12 @@
 #include <iostream>
 
 #include "../Helper/SysCheck.h"
+#include "Events/Events.h"
 #include "Window/WindowManager.h"
 #include "Input/InputManager.h"
 #include "Graphics/GraphicsManager.h"
-#include "Events/Events.h"
 #include "Scene/SceneManager.h"
+#include "Audio/AudioManager.h"
 #include "Components/Gameobject.h"
 
 /**
@@ -105,6 +106,7 @@ IridiumEngine::IridiumEngine()
 	inputManager = InputManager::Instance();
 	eventManager = EventManager::Instance();
 	sceneManager = SceneManager::Instance();
+	audioManager = AudioManager::Instance();
 }
 
 /**
@@ -127,6 +129,7 @@ bool IridiumEngine::Initialize()
 	windowManager->Initialize();
 	graphicsManager->Initialize();
 	sceneManager->Initialize();
+	audioManager->Initialize();
 
 	//Subscribe to events
 	EventListenerDelegate delegateFunc = fastdelegate::MakeDelegate(this, &IridiumEngine::OnSceneChange);

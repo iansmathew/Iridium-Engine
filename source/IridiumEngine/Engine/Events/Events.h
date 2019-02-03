@@ -48,3 +48,32 @@ public:
 		return eventType;
 	}
 };
+
+//Foward declaration inside the SFML namespace
+namespace sf
+{
+	class Sound;
+}
+class EvtData_On_Request_Play_Sound : public BaseEventData
+{
+private:
+	sf::Sound* soundClip;
+
+public:
+	EvtData_On_Request_Play_Sound(sf::Sound& _soundToPlay)
+	{
+		soundClip = &_soundToPlay; //set pointer to clip
+	}
+
+	static const EventType eventType;
+
+	virtual const EventType& GetEventType(void) const override
+	{
+		return eventType;
+	}
+
+	sf::Sound& GetSoundClip()
+	{
+		return *soundClip;
+	}
+};
