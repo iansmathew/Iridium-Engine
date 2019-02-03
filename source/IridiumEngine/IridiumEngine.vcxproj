@@ -150,6 +150,7 @@
     <ClCompile Include="Engine\Components\AudioComponent.cpp" />
     <ClCompile Include="Engine\Components\BaseComponent.cpp" />
     <ClCompile Include="Engine\Components\Gameobject.cpp" />
+    <ClCompile Include="Engine\Components\MusicComponent.cpp" />
     <ClCompile Include="Engine\Components\RenderComponent.cpp" />
     <ClCompile Include="Engine\Components\TransformComponent.cpp" />
     <ClCompile Include="Engine\Engine.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="Engine\Components\AudioComponent.h" />
     <ClInclude Include="Engine\Components\BaseComponent.h" />
     <ClInclude Include="Engine\Components\Gameobject.h" />
+    <ClInclude Include="Engine\Components\MusicComponent.h" />
     <ClInclude Include="Engine\Components\RenderComponent.h" />
     <ClInclude Include="Engine\Components\TransformComponent.h" />
     <ClInclude Include="Engine\Engine.h" />

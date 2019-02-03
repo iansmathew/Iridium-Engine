@@ -22,5 +22,7 @@ private:
 
 	void OnRequestPlaySoundReceived(IEventDataPtr _event);
 
+	void OnRequestPlayMusicReceived(IEventDataPtr _event);
+
 #pragma endregion EVENT_HANDLERS
 };

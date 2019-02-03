@@ -3,6 +3,9 @@
 
 class SplashScene : public Scene
 {
+private:
+	float elapsedTime;
+
 protected:
 	friend SceneManager;
 	SplashScene();

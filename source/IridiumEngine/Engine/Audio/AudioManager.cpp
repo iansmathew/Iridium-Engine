@@ -7,8 +7,11 @@
 void AudioManager::Initialize()
 {
 	//Sbscribe to request audio player event
-	EventListenerDelegate delegateFunc = fastdelegate::MakeDelegate(this, &AudioManager::OnRequestPlaySoundReceived);
-	EventManager::Instance()->AddListener(delegateFunc, EvtData_On_Request_Play_Sound::eventType);
+	EventListenerDelegate soundDelegateFunc = fastdelegate::MakeDelegate(this, &AudioManager::OnRequestPlaySoundReceived);
+	EventManager::Instance()->AddListener(soundDelegateFunc, EvtData_On_Request_Play_Sound::eventType);
+
+	EventListenerDelegate musicDelegateFunc = fastdelegate::MakeDelegate(this, &AudioManager::OnRequestPlayMusicReceived);
+	EventManager::Instance()->AddListener(musicDelegateFunc, EvtData_On_Request_Stream_Music::eventType);
 }
 
 /**
@@ -27,4 +30,13 @@ void AudioManager::OnRequestPlaySoundReceived(IEventDataPtr _event)
 	std::shared_ptr<EvtData_On_Request_Play_Sound> pCastEventData = std::static_pointer_cast<EvtData_On_Request_Play_Sound>(_event);
 	pCastEventData->GetSound()->play();
 
+}
+
+/**
+	Event handler func that runs when a request to play an sf::Music is received
+ */
+void AudioManager::OnRequestPlayMusicReceived(IEventDataPtr _event)
+{
+	std::shared_ptr<EvtData_On_Request_Stream_Music> pCastEventData = std::static_pointer_cast<EvtData_On_Request_Stream_Music>(_event);
+	pCastEventData->GetMusic()->play();
 }

@@ -53,6 +53,7 @@ public:
 namespace sf
 {
 	class Sound;
+	class Music;
 }
 class EvtData_On_Request_Play_Sound : public BaseEventData
 {
@@ -76,4 +77,26 @@ public:
 	{
 		return soundClip;
 	}
+};
+
+class EvtData_On_Request_Stream_Music : public BaseEventData
+{
+private:
+	sf::Music* musicClip;
+
+public:
+	EvtData_On_Request_Stream_Music(sf::Music* _musicToPlay)
+	{
+		musicClip = _musicToPlay;
+	}
+
+	static const EventType eventType;
+
+	virtual const EventType& GetEventType(void) const override
+	{
+		return eventType;
+	}
+
+	sf::Music* GetMusic() { return musicClip; }
+
 };

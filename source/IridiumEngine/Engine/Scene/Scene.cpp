@@ -3,7 +3,7 @@
 Scene::Scene() : 
 	Gameobject(false)
 {
-
+	musicComponent = new MusicComponent(this);
 }
 
 /**
@@ -11,6 +11,7 @@ Scene::Scene() :
  */
 void Scene::Start()
 {
+	musicComponent->Start();
 	__super::Start();
 }
 
@@ -27,5 +28,7 @@ void Scene::Update(float _deltaTime)
  */
 void Scene::Shutdown()
 {
-	throw std::logic_error("The method or operation is not implemented.");
+	musicComponent->Shutdown();
 }
+
+
