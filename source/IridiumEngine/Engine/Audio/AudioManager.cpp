@@ -25,5 +25,6 @@ AudioManager::AudioManager()
 void AudioManager::OnRequestPlaySoundReceived(IEventDataPtr _event)
 {
 	std::shared_ptr<EvtData_On_Request_Play_Sound> pCastEventData = std::static_pointer_cast<EvtData_On_Request_Play_Sound>(_event);
-	pCastEventData->GetSoundClip().play();
+	pCastEventData->GetSound()->play();
+
 }

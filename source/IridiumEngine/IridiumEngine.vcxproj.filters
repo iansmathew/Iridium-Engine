@@ -126,6 +126,9 @@
     <ClCompile Include="Engine\Audio\AudioManager.cpp">
       <Filter>Source Files\Engine\Audio</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Components\AudioComponent.cpp">
+      <Filter>Source Files\Engine\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Engine.h">
@@ -184,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="Engine\Audio\AudioManager.h">
       <Filter>Header Files\Engine\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Components\AudioComponent.h">
+      <Filter>Header Files\Engine\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

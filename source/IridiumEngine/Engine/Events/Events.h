@@ -60,9 +60,9 @@ private:
 	sf::Sound* soundClip;
 
 public:
-	EvtData_On_Request_Play_Sound(sf::Sound& _soundToPlay)
+	EvtData_On_Request_Play_Sound(sf::Sound* _soundToPlay)
 	{
-		soundClip = &_soundToPlay; //set pointer to clip
+		soundClip = _soundToPlay; //set pointer to clip
 	}
 
 	static const EventType eventType;
@@ -72,8 +72,8 @@ public:
 		return eventType;
 	}
 
-	sf::Sound& GetSoundClip()
+	sf::Sound* GetSound()
 	{
-		return *soundClip;
+		return soundClip;
 	}
 };

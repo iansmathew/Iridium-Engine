@@ -3,6 +3,7 @@
 #include <vector>
 #include "RenderComponent.h"
 #include "TransformComponent.h"
+#include "AudioComponent.h"
 
 class SceneManager;
 
@@ -13,6 +14,7 @@ private:
 
 	TransformComponent* transformComponent;
 	RenderComponent* renderComponent;
+	AudioComponent* audioComponent;
 
 	Gameobject* parent;
 	std::vector<Gameobject*> children;
@@ -51,6 +53,9 @@ public:
 
 	/* Return the render component */
 	inline RenderComponent* GetRenderComponent() const { return renderComponent; }
+
+	/* Returns the audio component */
+	inline AudioComponent* GetAudioComponent() const { return audioComponent; }
 
 #pragma endregion GETTERS
 
