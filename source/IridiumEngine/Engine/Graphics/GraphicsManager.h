@@ -5,7 +5,7 @@
 #include "../Events/Events.h"
 #include <vector>
 
-class Gameobject;
+class Scene;
 
 class GraphicsManager : public BaseSingleton<GraphicsManager>
 {
@@ -20,6 +20,6 @@ private:
 
 public:
 	void Initialize();
-	void Update(Gameobject* _sceneNode);
+	void Update(Scene* _sceneNode);
 	void DisplaySplashScreen();
 };

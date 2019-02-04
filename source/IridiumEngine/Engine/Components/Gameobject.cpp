@@ -108,13 +108,14 @@ void Gameobject::Update(float _deltaTime)
 	Calls draw from the window passed into it.
 	Also recursively calls draw for its children
  */
-void Gameobject::Draw(sf::RenderWindow& _windowRef)
+void Gameobject::Draw(sf::RenderTarget& _windowRef, sf::RenderStates _states)
 {
-	_windowRef.draw(renderComponent->GetSprite(), GetTransformComponent()->GetWorldTransform());
+	_states.transform *= transformComponent->getTransform();
+	_windowRef.draw(renderComponent->GetSprite(), _states);
 
 	for (auto child : children)
 	{
-		child->Draw(_windowRef);
+		child->Draw(_windowRef, _states);
 	}
 }
 

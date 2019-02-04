@@ -7,7 +7,6 @@
 #include <type_traits>
 #include <assert.h>
 
-#include "../Components/Gameobject.h"
 #include "Scene.h"
 
 //FORWARD DECLARATIONS
@@ -97,7 +96,7 @@ public:
 
 #pragma region GETTERS_AND_SETTERS
 
-	Gameobject* GetSceneNodeGameobject() const;
+	Scene* GetSceneNodeGameobject() const;
 
 #pragma endregion GETTERS_AND_SETTERS
 

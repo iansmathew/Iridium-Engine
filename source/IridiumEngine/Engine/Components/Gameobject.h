@@ -34,7 +34,7 @@ public:
 
 	virtual void Update(float _deltaTime);
 
-	void Draw(sf::RenderWindow& _windowRef);
+	virtual void Draw(sf::RenderTarget& _windowRef, sf::RenderStates _states);
 
 	virtual void Shutdown();
 

@@ -1,7 +1,7 @@
 #include "GraphicsManager.h"
 #include "../Window/WindowManager.h"
 #include "../../Engine/Engine.h"
-#include "../Components/Gameobject.h"
+#include "../Scene/Scene.h"
 
 
 /**
@@ -34,7 +34,7 @@ void GraphicsManager::Initialize()
 /**
 	Passes the window to all GOs recursively and asks them to display themselves
  */
-void GraphicsManager::Update(Gameobject* _sceneNode)
+void GraphicsManager::Update(Scene* _sceneNode)
 {
 	// if in between switching scenes, dont bother rendering.
 	if (!_sceneNode)
@@ -45,8 +45,7 @@ void GraphicsManager::Update(Gameobject* _sceneNode)
 
 	window->clear();
 	//Call draw on first gameobject which is root scene node created by engine
-	//SceneManager::Instance()->GetRootNode()->Draw(*window);
-	_sceneNode->Draw(*window);
+	_sceneNode->Draw(*window, sf::RenderStates::Default);
 	window->display();
 }
 

@@ -88,9 +88,9 @@ void SceneManager::LoadScene(Scene* _scene)
 /**
 	Returns the current scene node casted as a Gameobject
  */
-Gameobject* SceneManager::GetSceneNodeGameobject() const
+Scene* SceneManager::GetSceneNodeGameobject() const
 {
-	return static_cast<Gameobject*>(currentScene);
+	return currentScene;
 }
 
 /**

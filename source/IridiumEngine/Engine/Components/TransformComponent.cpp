@@ -25,37 +25,3 @@ void TransformComponent::Update()
 {
 
 }
-
-/**
-	Returns the transform of the GO in relation to the world space coordinates.
-	Calls recursively to multiply parent transforms.
-
-	@param Transform in world space coordinates
- */
-sf::Transform TransformComponent::GetWorldTransform() const
-{
-	//Recursive exit condition
-	if (GetGameobject()->GetParent() == nullptr)
-		return sf::Transform::Identity * selfTransform;
-	else
-	{
-		return GetGameobject()->GetParent()->GetTransformComponent()->GetWorldTransform() * selfTransform;
-	}
-
-}
-
-/**
-	Sets the local transform of the GO 
- */
-void TransformComponent::SetLocalTransform(sf::Transform _transform)
-{
-	selfTransform = _transform;
-}
-
-/**
-	Moves the GO by _x pixels horizontally (+ve right) and _y pixels vertically (+ve down).
- */
-void TransformComponent::Translate(float _x, float _y)
-{
-	selfTransform.translate(_x, _y);
-}

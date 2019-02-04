@@ -1,5 +1,5 @@
 #pragma once
-#include <SFML/Graphics/Transform.hpp>
+#include <SFML/Graphics/Transformable.hpp>
 #include "BaseComponent.h"
 
 class TransformComponent : public BaseComponent, public sf::Transformable
@@ -13,10 +13,4 @@ public:
 	virtual void Start() override;
 
 	virtual void Update() override;
-
-	sf::Transform GetWorldTransform() const;
-
-	void SetLocalTransform(sf::Transform _transform);
-
-	void Translate(float _x, float _y);
 };

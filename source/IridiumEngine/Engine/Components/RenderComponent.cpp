@@ -15,7 +15,7 @@ void RenderComponent::LoadDefaultTexture()
 	texture.setRepeated(false);
 
 	//Set default sprite properties
-	sprite.setTexture(texture);
+	sprite.setTexture(texture, true);
 	sprite.setOrigin(0.5f, 0.5f);
 
 	//If sprite is not to be rendered, make transparent
@@ -63,5 +63,6 @@ void RenderComponent::SetTexture(std::string _filePath)
 	texture.setSmooth(true);
 	texture.setRepeated(false);
 
+	sprite.setTexture(texture, true);
 }
 
