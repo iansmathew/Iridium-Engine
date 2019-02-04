@@ -1,5 +1,6 @@
 #include "SplashScene.h"
 #include "../SceneManager.h"
+#include "../TestScene/TestScene.h"
 
 SplashScene::SplashScene()
 {

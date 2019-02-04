@@ -31,8 +31,4 @@ public:
 	inline MusicComponent* GetMusicComponent() const { return musicComponent; }
 
 #pragma endregion GETTERS
-
-
-
-
 };
