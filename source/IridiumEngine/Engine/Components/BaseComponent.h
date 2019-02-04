@@ -20,5 +20,7 @@ public:
 
 	virtual void Update();
 
+	virtual void Shutdown();
+
 	Gameobject* GetGameobject() const;
 };

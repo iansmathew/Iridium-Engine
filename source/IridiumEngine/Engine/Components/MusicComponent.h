@@ -17,9 +17,9 @@ public:
 
 #pragma region GAME_FLOW_FUNCS
 
-	void Start();
+	virtual void Start() override;
 
-	void Shutdown();
+	virtual void Shutdown() override;
 
 #pragma endregion GAME_FLOW_FUNCS
 

@@ -124,6 +124,8 @@ void Gameobject::Draw(sf::RenderWindow& _windowRef)
 void Gameobject::Shutdown()
 {
 	audioComponent->Shutdown();
+	transformComponent->Shutdown();
+	renderComponent->Shutdown();
 
 	//Call shutdown on children
 	for (auto child : children)

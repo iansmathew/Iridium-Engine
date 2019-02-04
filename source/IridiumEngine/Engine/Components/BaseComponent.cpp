@@ -27,6 +27,14 @@ void BaseComponent::Update()
 }
 
 /**
+	Shutdown function that takes care of destruction
+ */
+void BaseComponent::Shutdown()
+{
+
+}
+
+/**
 	Returns a pointer to the gameobject it belongs to.
 
 	@return Gameobject owner

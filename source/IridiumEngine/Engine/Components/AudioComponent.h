@@ -22,9 +22,9 @@ public:
 	AudioComponent(Gameobject* _owner);
 	~AudioComponent();
 
-	void Start();
+	virtual void Start() override;
 
-	void Shutdown();
+	virtual void Shutdown() override;
 
 	void PlaySound(std::string _clipName);
 
