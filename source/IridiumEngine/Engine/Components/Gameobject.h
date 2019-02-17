@@ -1,9 +1,11 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <string>
 #include "RenderComponent.h"
 #include "TransformComponent.h"
 #include "AudioComponent.h"
+#include "RigidbodyComponent.h"
 
 class SceneManager;
 
@@ -24,6 +26,9 @@ protected:
 	unless through the Scene Manager or through derived classes*/
 	friend SceneManager;
 	Gameobject(bool _isRendered = true);
+
+public:
+	std::string name;
 
 public:
 	~Gameobject();
