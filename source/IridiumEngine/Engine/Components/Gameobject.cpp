@@ -14,6 +14,7 @@ Gameobject::Gameobject(bool _isRendered /*= true*/)
 	transformComponent = new TransformComponent(this);
 	renderComponent = new RenderComponent(this, _isRendered);
 	audioComponent = new AudioComponent(this);
+	rigidbodyComponent = new RigidbodyComponent(this);
 
 	//post GO created event
 	std::shared_ptr<EvtData_On_GO_Created> pEvent(new EvtData_On_GO_Created(this));
@@ -36,6 +37,7 @@ void Gameobject::Start()
 	transformComponent->Start();
 	renderComponent->Start();
 	audioComponent->Start();
+	rigidbodyComponent->Start();
 
 	for (auto child : children)
 	{

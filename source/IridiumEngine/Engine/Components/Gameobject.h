@@ -1,9 +1,11 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <string>
 #include "RenderComponent.h"
 #include "TransformComponent.h"
 #include "AudioComponent.h"
+#include "RigidbodyComponent.h"
 
 class SceneManager;
 
@@ -15,6 +17,7 @@ private:
 	TransformComponent* transformComponent;
 	RenderComponent* renderComponent;
 	AudioComponent* audioComponent;
+	RigidbodyComponent* rigidbodyComponent;
 
 	Gameobject* parent;
 	std::vector<Gameobject*> children;
@@ -24,6 +27,9 @@ protected:
 	unless through the Scene Manager or through derived classes*/
 	friend SceneManager;
 	Gameobject(bool _isRendered = true);
+
+public:
+	std::string name = "Gameobject";
 
 public:
 	~Gameobject();
@@ -56,6 +62,11 @@ public:
 
 	/* Returns the audio component */
 	inline AudioComponent* GetAudioComponent() const { return audioComponent; }
+
+	/* Returns the rigidbody component */
+	inline RigidbodyComponent* GetRigidbodyComponent() const { return rigidbodyComponent; }
+
+
 
 #pragma endregion GETTERS
 
