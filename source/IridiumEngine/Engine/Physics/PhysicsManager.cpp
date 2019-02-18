@@ -1,6 +1,7 @@
 #include "PhysicsManager.h"
 #include "../Window/WindowManager.h"
 #include <iostream>
+#include <cstdlib>
 
 PhysicsManager::PhysicsManager()
 {
@@ -34,6 +35,8 @@ void PhysicsManager::Update(float _deltaTime)
 		}
 	}
 	
+	CollisionDetection();
+
 	CollisionResolution();
 
 	GroundCorrection();
@@ -55,7 +58,7 @@ bool PhysicsManager::OverlapTest(RigidbodyComponent * rigidbodyA, RigidbodyCompo
 	return true;
 }
 
-void PhysicsManager::CollisionResolution()
+void PhysicsManager::CollisionDetection()
 {
 	for (int rigidbodyAIndex = 0; rigidbodyAIndex < rigidbodyList.size(); rigidbodyAIndex++)
 	{
@@ -63,15 +66,67 @@ void PhysicsManager::CollisionResolution()
 		for (int rigidbodyBIndex = rigidbodyAIndex; rigidbodyBIndex < rigidbodyList.size(); rigidbodyBIndex++)
 		{
 			RigidbodyComponent* rigidbodyB = rigidbodyList[rigidbodyBIndex];
-			if (rigidbodyA != rigidbodyB)
+			if (rigidbodyA->enabled)
 			{
-				if (OverlapTest(rigidbodyA,rigidbodyB))
+				if (rigidbodyA != rigidbodyB)
 				{
-					std::cout << "Collision" << std::endl;
+					if (OverlapTest(rigidbodyA,rigidbodyB))
+					{
+						std::cout << "Overlapping" << std::endl;
+						CollisionInfo collisionInfo(rigidbodyA,rigidbodyB);
+						sf::Vector2f positionA, positionB;
+	
+						positionA = rigidbodyA->GetGameobject()->GetTransformComponent()->getPosition();
+						positionB = rigidbodyB->GetGameobject()->GetTransformComponent()->getPosition();
+	
+						if (positionA.x < positionB.x)
+						{
+							collisionInfo.collisionNormal = sf::Vector2i(-1, collisionInfo.collisionNormal.y);
+						}
+						else {
+							collisionInfo.collisionNormal = sf::Vector2i(1, collisionInfo.collisionNormal.y);
+						}
+	
+						if (positionA.y < positionB.y)
+						{
+							collisionInfo.collisionNormal = sf::Vector2i(collisionInfo.collisionNormal.x, -1);
+						}
+						else {
+							collisionInfo.collisionNormal = sf::Vector2i(collisionInfo.collisionNormal.x, 1);
+						}
+	
+						collisionList.push_back(collisionInfo);
+					}
 				}
 			}
 		}
 	}
+}
+
+void PhysicsManager::CollisionResolution()
+{
+	for (auto collision : collisionList) {
+		float xDistance, yDistance;
+
+		if (collision.collisionNormal.x == -1)
+		{
+			xDistance = collision.rigidbodyA->axisAlignedCorners.bottomLeft.x - collision.rigidbodyA->axisAlignedCorners.topRight.x;
+		}
+
+		xDistance = collision.rigidbodyA->axisAlignedCorners.bottomLeft.x - collision.rigidbodyA->axisAlignedCorners.topRight.x;
+		xDistance = abs(xDistance);
+
+		yDistance = collision.rigidbodyA->GetGameobject()->GetTransformComponent()->getPosition().y - collision.rigidbodyB->GetGameobject()->GetTransformComponent()->getPosition().y;
+		yDistance = abs(yDistance);
+
+		sf::Vector2f oldPosition = collision.rigidbodyB->GetGameobject()->GetTransformComponent()->getPosition();
+		sf::Vector2f newPosition = sf::Vector2f(oldPosition.x + (collision.collisionNormal.x * xDistance), oldPosition.y + (collision.collisionNormal.y * yDistance));
+		//sf::Vector2f newPosition = sf::Vector2f(300,300);
+
+		collision.rigidbodyA->GetGameobject()->GetTransformComponent()->setPosition(newPosition);
+	}
+
+	collisionList.clear();
 }
 
 void PhysicsManager::GroundCorrection()
@@ -92,6 +147,8 @@ void PhysicsManager::GroundCorrection()
 			}
 		}
 	}
+
+	
 }
 
 void PhysicsManager::OnNewGameobjectCreated(IEventDataPtr _event)

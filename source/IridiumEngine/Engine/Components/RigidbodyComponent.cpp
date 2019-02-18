@@ -16,8 +16,6 @@ RigidbodyComponent::~RigidbodyComponent()
 void RigidbodyComponent::Start()
 {
 	SetAABB();
-
-	
 }
 
 void RigidbodyComponent::Update(float _deltaTime)

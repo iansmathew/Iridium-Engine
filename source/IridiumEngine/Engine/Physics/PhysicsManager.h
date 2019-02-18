@@ -9,9 +9,24 @@ class PhysicsManager : public BaseSingleton<PhysicsManager>
 {
 
 private:
+
+	struct CollisionInfo {
+		RigidbodyComponent* rigidbodyA = nullptr;
+		RigidbodyComponent* rigidbodyB = nullptr;
+
+		sf::Vector2i collisionNormal = sf::Vector2i(0,0);
+
+		CollisionInfo() = default;
+		CollisionInfo(RigidbodyComponent* _rigidbodyA, RigidbodyComponent* _rigidbodyB) : rigidbodyA(_rigidbodyA), rigidbodyB(_rigidbodyB) {}
+	};
+
 	std::vector<RigidbodyComponent*> rigidbodyList;
+	std::vector<CollisionInfo> collisionList;
 
 public:
+
+	
+
 
 	float groundTolerance = 0.01f;
 
@@ -37,6 +52,8 @@ public:
 private:
 
 	bool OverlapTest(RigidbodyComponent* rigidbodyA, RigidbodyComponent* rigidbodyB);
+
+	void CollisionDetection();
 
 	void CollisionResolution();
 

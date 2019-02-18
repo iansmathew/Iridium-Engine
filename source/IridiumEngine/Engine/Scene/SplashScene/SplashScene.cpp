@@ -8,12 +8,14 @@ SplashScene::SplashScene()
 
 void SplashScene::Start()
 {
+	this->GetRigidbodyComponent()->enabled = false;
 	//Add image
 	Gameobject* splashImage = SceneManager::Instance()->CreateNewGameobject<Gameobject>(true, this);
 	splashImage->GetRenderComponent()->SetTexture("../../assets/engine/images/splashImage.png");
 
 	Gameobject* testObj = SceneManager::Instance()->CreateNewGameobject<Gameobject>(true, splashImage);
-	testObj->GetTransformComponent()->move(splashImage->GetRenderComponent()->GetSprite().getTextureRect().width, 0);
+	testObj->GetRenderComponent()->SetTexture("../../assets/engine/images/splashImage.png");
+	testObj->GetTransformComponent()->move(300, 0);
 
 	//Add background music
 	GetMusicComponent()->AddMusicClip("bgMusic", "../../assets/splash_scene/splashSceneBgMusic.wav");

@@ -5,7 +5,7 @@ class RigidbodyComponent : public BaseComponent
 {
 public:
 	bool enabled = true;
-	bool enableGravity = true;
+	bool enableGravity = false;
 
 	float mass = 1.0f;
 

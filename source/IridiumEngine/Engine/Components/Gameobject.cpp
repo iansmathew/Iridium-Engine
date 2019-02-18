@@ -37,6 +37,7 @@ void Gameobject::Start()
 	transformComponent->Start();
 	renderComponent->Start();
 	audioComponent->Start();
+	rigidbodyComponent->Start();
 
 	for (auto child : children)
 	{
