@@ -16,7 +16,7 @@ void TestScene::Start()
 	crashGo->GetRenderComponent()->SetTexture("../../assets/engine/images/splashImage.png");
 	crashGo->GetAudioComponent()->AddSoundClip("spaceSound", "../../assets/engine/sounds/testSound.wav");
 
-	Gameobject* testSprite = SceneManager::Instance()->CreateNewGameobject<Gameobject>(true, crashGo);
+	Gameobject* testSprite = SceneManager::Instance()->CreateNewGameobject<Gameobject>(true, this);
 	testSprite->name = "Splash";
 	testSprite->GetRenderComponent()->SetTexture("../../assets/engine/images/splashImage.png");
 	testSprite->GetTransformComponent()->move(300, 300);

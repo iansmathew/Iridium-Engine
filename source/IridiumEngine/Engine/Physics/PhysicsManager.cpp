@@ -81,19 +81,25 @@ void PhysicsManager::CollisionDetection()
 	
 						if (positionA.x < positionB.x)
 						{
-							collisionInfo.collisionNormal = sf::Vector2i(-1, collisionInfo.collisionNormal.y);
+							collisionInfo.collisionNormal = sf::Vector2i(-1, 0);
 						}
 						else {
-							collisionInfo.collisionNormal = sf::Vector2i(1, collisionInfo.collisionNormal.y);
+							collisionInfo.collisionNormal = sf::Vector2i(1, 0);
 						}
-	
-						if (positionA.y < positionB.y)
+						
+						int collisionOffset = 5;
+						if (positionA.x > rigidbodyB->axisAlignedCorners.bottomLeft.x - collisionOffset && positionA.x < rigidbodyB->axisAlignedCorners.topRight.x - collisionOffset)
 						{
-							collisionInfo.collisionNormal = sf::Vector2i(collisionInfo.collisionNormal.x, -1);
+							if (positionA.y < positionB.y)
+							{
+								collisionInfo.collisionNormal = sf::Vector2i(0, -1);
+							}
+							else {
+								collisionInfo.collisionNormal = sf::Vector2i(0, 1);
+							}
+							
 						}
-						else {
-							collisionInfo.collisionNormal = sf::Vector2i(collisionInfo.collisionNormal.x, 1);
-						}
+					
 	
 						collisionList.push_back(collisionInfo);
 					}
@@ -108,22 +114,32 @@ void PhysicsManager::CollisionResolution()
 	for (auto collision : collisionList) {
 		float xDistance, yDistance;
 
-		if (collision.collisionNormal.x == -1)
+		if (collision.collisionNormal.x == -1 || collision.collisionNormal.x == 1)
 		{
 			xDistance = collision.rigidbodyA->axisAlignedCorners.bottomLeft.x - collision.rigidbodyA->axisAlignedCorners.topRight.x;
+			xDistance = abs(xDistance);
+
+			sf::Vector2f oldPosition = collision.rigidbodyB->GetGameobject()->GetTransformComponent()->getPosition();
+
+			sf::Vector2f newPosition = sf::Vector2f(oldPosition.x + (collision.collisionNormal.x * xDistance), collision.rigidbodyA->GetGameobject()->GetTransformComponent()->getPosition().y);
+
+			collision.rigidbodyA->GetGameobject()->GetTransformComponent()->setPosition(newPosition);
 		}
+		else
+		{
+			if (collision.collisionNormal.y == -1 || collision.collisionNormal.y == 1)
+			{
 
-		xDistance = collision.rigidbodyA->axisAlignedCorners.bottomLeft.x - collision.rigidbodyA->axisAlignedCorners.topRight.x;
-		xDistance = abs(xDistance);
+				yDistance = collision.rigidbodyA->axisAlignedCorners.bottomLeft.y - collision.rigidbodyA->axisAlignedCorners.topRight.y;
+				yDistance = yDistance;
 
-		yDistance = collision.rigidbodyA->GetGameobject()->GetTransformComponent()->getPosition().y - collision.rigidbodyB->GetGameobject()->GetTransformComponent()->getPosition().y;
-		yDistance = abs(yDistance);
+				sf::Vector2f oldPosition = collision.rigidbodyB->GetGameobject()->GetTransformComponent()->getPosition();
 
-		sf::Vector2f oldPosition = collision.rigidbodyB->GetGameobject()->GetTransformComponent()->getPosition();
-		sf::Vector2f newPosition = sf::Vector2f(oldPosition.x + (collision.collisionNormal.x * xDistance), oldPosition.y + (collision.collisionNormal.y * yDistance));
-		//sf::Vector2f newPosition = sf::Vector2f(300,300);
+				sf::Vector2f newPosition = sf::Vector2f(collision.rigidbodyA->GetGameobject()->GetTransformComponent()->getPosition().x, oldPosition.y + (collision.collisionNormal.y * yDistance));
 
-		collision.rigidbodyA->GetGameobject()->GetTransformComponent()->setPosition(newPosition);
+				collision.rigidbodyA->GetGameobject()->GetTransformComponent()->setPosition(newPosition);
+			}
+		}
 	}
 
 	collisionList.clear();
