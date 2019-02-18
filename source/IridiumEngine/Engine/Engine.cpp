@@ -11,6 +11,7 @@
 #include "Graphics/GraphicsManager.h"
 #include "Scene/SceneManager.h"
 #include "Audio/AudioManager.h"
+#include "Physics/PhysicsManager.h"
 #include "Components/Gameobject.h"
 
 /**
@@ -46,8 +47,10 @@ void IridiumEngine::Run()
 		}
 		else if (GetEngineState() == ENGINE_STATE::Update)
 		{
-			//Update GOs
 			float elapsedTime = engineClock.restart().asSeconds();
+
+			physicsManager->Update(elapsedTime);
+			//Update GOs
 			sceneManager->Update(elapsedTime); //Pass in elapsed time as deltaTime
 
 			//Update graphics, pass in the scene node to recursively call graphics draw
@@ -107,6 +110,7 @@ IridiumEngine::IridiumEngine()
 	eventManager = EventManager::Instance();
 	sceneManager = SceneManager::Instance();
 	audioManager = AudioManager::Instance();
+	physicsManager = PhysicsManager::Instance();
 }
 
 /**
@@ -130,6 +134,7 @@ bool IridiumEngine::Initialize()
 	graphicsManager->Initialize();
 	sceneManager->Initialize();
 	audioManager->Initialize();
+	physicsManager->Initialize();
 
 	//Subscribe to events
 	EventListenerDelegate delegateFunc = fastdelegate::MakeDelegate(this, &IridiumEngine::OnSceneChange);
