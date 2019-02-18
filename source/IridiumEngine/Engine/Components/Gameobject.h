@@ -17,6 +17,7 @@ private:
 	TransformComponent* transformComponent;
 	RenderComponent* renderComponent;
 	AudioComponent* audioComponent;
+	RigidbodyComponent* rigidbodyComponent;
 
 	Gameobject* parent;
 	std::vector<Gameobject*> children;
@@ -28,7 +29,7 @@ protected:
 	Gameobject(bool _isRendered = true);
 
 public:
-	std::string name;
+	std::string name = "Gameobject";
 
 public:
 	~Gameobject();
@@ -61,6 +62,11 @@ public:
 
 	/* Returns the audio component */
 	inline AudioComponent* GetAudioComponent() const { return audioComponent; }
+
+	/* Returns the rigidbody component */
+	inline RigidbodyComponent* GetRigidbodyComponent() const { return rigidbodyComponent; }
+
+
 
 #pragma endregion GETTERS
 
