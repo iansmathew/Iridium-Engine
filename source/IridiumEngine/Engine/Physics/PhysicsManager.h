@@ -1,0 +1,56 @@
+#include <vector>
+#include "../Events/EventManager.h"
+#include "../Events/Events.h"
+#include "../../Helper/BaseSingleton.h"
+#include "../Components/Gameobject.h"
+#include "SFML/System//Vector2.hpp"
+
+class PhysicsManager : public BaseSingleton<PhysicsManager>
+{
+
+private:
+	std::vector<RigidbodyComponent*> rigidbodyList;
+
+public:
+
+	float groundTolerance = 0.01f;
+
+	sf::Vector2f gravity = sf::Vector2f(0, 9.8f);
+
+public:
+
+	friend BaseSingleton;
+	PhysicsManager();
+
+	~PhysicsManager();
+
+#pragma region GAME_FLOW_FUNCS
+
+	void Initialize();
+
+	void Start();
+
+	void Update(float _deltaTime);
+
+#pragma endregion GAME_FLOW_FUNCS
+
+private:
+
+	bool OverlapTest(RigidbodyComponent* rigidbodyA, RigidbodyComponent* rigidbodyB);
+
+	void CollisionResolution();
+
+	void GroundCorrection();
+	
+
+#pragma region EVENT_HANDLERS
+
+	void OnNewGameobjectCreated(IEventDataPtr _event);
+
+#pragma endregion EVENT_HANDLERS
+
+	void AddRigidbody(RigidbodyComponent* _rigidbody);
+
+	void RemoveRigidbodies(IEventDataPtr _event);
+
+};
