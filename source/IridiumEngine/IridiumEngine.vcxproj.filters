@@ -82,6 +82,12 @@
     <Filter Include="Source Files\Engine\Scene\TestScene">
       <UniqueIdentifier>{9a977585-9c19-40d4-9545-0db39a32e22e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Physics">
+      <UniqueIdentifier>{e91c064a-8d5e-4550-bdd1-f8026b52471a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Physics">
+      <UniqueIdentifier>{631320ef-6f4d-4917-97ab-9a0c3ccb4812}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -140,6 +146,12 @@
     </ClCompile>
     <ClCompile Include="Engine\Scene\TestScene\TestScene.cpp">
       <Filter>Source Files\Engine\Scene\TestScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Components\RigidbodyComponent.cpp">
+      <Filter>Source Files\Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Physics\PhysicsManager.cpp">
+      <Filter>Source Files\Engine\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +220,12 @@
     </ClInclude>
     <ClInclude Include="Engine\Scene\TestScene\TestScene.h">
       <Filter>Header Files\Engine\Scene\TestScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Components\RigidbodyComponent.h">
+      <Filter>Header Files\Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Physics\PhysicsManager.h">
+      <Filter>Header Files\Engine\Physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

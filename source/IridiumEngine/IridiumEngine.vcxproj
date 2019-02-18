@@ -152,6 +152,7 @@
     <ClCompile Include="Engine\Components\Gameobject.cpp" />
     <ClCompile Include="Engine\Components\MusicComponent.cpp" />
     <ClCompile Include="Engine\Components\RenderComponent.cpp" />
+    <ClCompile Include="Engine\Components\RigidbodyComponent.cpp" />
     <ClCompile Include="Engine\Components\TransformComponent.cpp" />
     <ClCompile Include="Engine\Engine.cpp" />
     <ClCompile Include="Engine\Events\EventManager.cpp" />
@@ -159,6 +160,7 @@
     <ClCompile Include="Engine\Events\IEventManager.cpp" />
     <ClCompile Include="Engine\Graphics\GraphicsManager.cpp" />
     <ClCompile Include="Engine\Input\InputManager.cpp" />
+    <ClCompile Include="Engine\Physics\PhysicsManager.cpp" />
     <ClCompile Include="Engine\Scene\Scene.cpp" />
     <ClCompile Include="Engine\Scene\SceneManager.cpp" />
     <ClCompile Include="Engine\Scene\SplashScene\SplashScene.cpp" />
@@ -173,6 +175,7 @@
     <ClInclude Include="Engine\Components\Gameobject.h" />
     <ClInclude Include="Engine\Components\MusicComponent.h" />
     <ClInclude Include="Engine\Components\RenderComponent.h" />
+    <ClInclude Include="Engine\Components\RigidbodyComponent.h" />
     <ClInclude Include="Engine\Components\TransformComponent.h" />
     <ClInclude Include="Engine\Engine.h" />
     <ClInclude Include="Engine\EngineStates\EngineState.h" />
@@ -181,6 +184,7 @@
     <ClInclude Include="Engine\Events\IEventManager.h" />
     <ClInclude Include="Engine\Graphics\GraphicsManager.h" />
     <ClInclude Include="Engine\Input\InputManager.h" />
+    <ClInclude Include="Engine\Physics\PhysicsManager.h" />
     <ClInclude Include="Engine\Scene\Scene.h" />
     <ClInclude Include="Engine\Scene\SceneManager.h" />
     <ClInclude Include="Engine\Scene\SplashScene\SplashScene.h" />
