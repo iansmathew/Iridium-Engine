@@ -29,21 +29,21 @@ void TestScene::Update(float _deltaTime)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		crashGo->GetTransformComponent()->move(-150 *_deltaTime, 0.0f);
+		crashGo->GetRigidbodyComponent()->AddForce(-150, 0.0f);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		crashGo->GetTransformComponent()->move(150 * _deltaTime, 0.0f);
+		crashGo->GetRigidbodyComponent()->AddForce(150, 0.0f);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-		crashGo->GetTransformComponent()->move(0.0f, -150 * _deltaTime);
+		crashGo->GetRigidbodyComponent()->AddForce(0.0f, -150);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-		crashGo->GetTransformComponent()->move(0.0f, 150 * _deltaTime);
+		crashGo->GetRigidbodyComponent()->AddForce(0.0f, 150);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))

@@ -88,7 +88,8 @@ void PhysicsManager::CollisionDetection()
 						}
 						
 						int collisionOffset = 5;
-						if (positionA.x > rigidbodyB->axisAlignedCorners.bottomLeft.x - collisionOffset && positionA.x < rigidbodyB->axisAlignedCorners.topRight.x - collisionOffset)
+						float size = rigidbodyA->GetGameobject()->GetRenderComponent()->GetSprite().getTextureRect().width - collisionOffset;
+						if (positionA.x > rigidbodyB->axisAlignedCorners.bottomLeft.x - size && positionA.x < rigidbodyB->axisAlignedCorners.topRight.x - collisionOffset)
 						{
 							if (positionA.y < positionB.y)
 							{
