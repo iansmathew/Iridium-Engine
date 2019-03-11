@@ -17,10 +17,6 @@ void RenderComponent::LoadDefaultTexture()
 	//Set default sprite properties
 	sprite.setTexture(texture, true);
 	sprite.setOrigin(0.5f, 0.5f);
-
-	//If sprite is not to be rendered, make transparent
-	if (!isRendered)
-		sprite.setColor(sf::Color(0, 0, 0, 0));
 }
 
 /**

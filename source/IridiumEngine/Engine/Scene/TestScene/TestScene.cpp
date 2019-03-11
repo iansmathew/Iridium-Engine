@@ -11,12 +11,12 @@ void TestScene::Start()
 {
 	this->GetComponent<RigidbodyComponent>()->enabled = false;
 
-	crashGo = SceneManager::Instance()->CreateNewGameobject<Gameobject>(true, this);
+	crashGo = SceneManager::Instance()->CreateNewGameobject<Gameobject>(this);
 	crashGo->name = "Crash";
 	crashGo->GetComponent<RenderComponent>()->SetTexture("../../assets/engine/images/splashImage.png");
 	crashGo->GetComponent<AudioComponent>()->AddSoundClip("spaceSound", "../../assets/engine/sounds/testSound.wav");
 
-	Gameobject* testSprite = SceneManager::Instance()->CreateNewGameobject<Gameobject>(true, this);
+	Gameobject* testSprite = SceneManager::Instance()->CreateNewGameobject<Gameobject>(this);
 	testSprite->name = "Splash";
 	testSprite->GetComponent<RenderComponent>()->SetTexture("../../assets/engine/images/splashImage.png");
 	testSprite->GetComponent<TransformComponent>()->move(300, 300);

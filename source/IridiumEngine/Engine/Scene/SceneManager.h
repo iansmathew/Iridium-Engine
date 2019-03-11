@@ -53,8 +53,7 @@ public:
 
 #pragma region SCENE_MANAGER_FUNCS
 
-	template <class T>
-	T* CreateNewGameobject(bool _isRendered = true, Gameobject* _parent = nullptr)
+	template <class T> T* CreateNewGameobject(Gameobject* _parent = nullptr, bool _isRendered = true)
 	{
 		//Do not create a gameobject if there is no scene to create it in
 		assert(currentScene);

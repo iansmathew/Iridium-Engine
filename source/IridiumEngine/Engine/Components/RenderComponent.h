@@ -22,7 +22,8 @@ public:
 
 	void SetTexture(std::string _filePath);
 
-	inline void SetIsRendered(bool _isRendered) { isRendered = _isRendered; }
+	inline void SetVisibility(bool _isRendered) { isRendered = _isRendered; }
+	inline bool GetVisibility() const { return isRendered; }
 
 
 };

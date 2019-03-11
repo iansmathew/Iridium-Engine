@@ -23,7 +23,7 @@ Gameobject::Gameobject(bool _isRendered /*= true*/)
 
 	transformComponent = GetComponent<TransformComponent>();
 	renderComponent = GetComponent<RenderComponent>();
-	renderComponent->SetIsRendered(_isRendered);
+	renderComponent->SetVisibility(_isRendered);
 
 	//post GO created event
 	std::shared_ptr<EvtData_On_GO_Created> pEvent(new EvtData_On_GO_Created(this));
@@ -131,7 +131,10 @@ void Gameobject::Update(float _deltaTime)
 void Gameobject::Draw(sf::RenderTarget& _windowRef, sf::RenderStates _states)
 {
 	_states.transform *= transformComponent->getTransform();
-	_windowRef.draw(renderComponent->GetSprite(), _states);
+
+	//Draw object if isRendered is set to true
+	if (renderComponent->GetVisibility())
+		_windowRef.draw(renderComponent->GetSprite(), _states);
 
 	for (auto child : children)
 	{
