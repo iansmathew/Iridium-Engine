@@ -6,7 +6,7 @@
 
 typedef std::map<std::string, sf::Music*> MusicClipList;
 
-class MusicComponent : public BaseComponent<MusicComponent>
+class MusicComponent : public BaseComponent
 {
 private:
 	MusicClipList musicClipList;
@@ -18,6 +18,8 @@ public:
 #pragma region GAME_FLOW_FUNCS
 
 	virtual void Start() override;
+
+	virtual void Update() override;
 
 	virtual void Shutdown() override;
 

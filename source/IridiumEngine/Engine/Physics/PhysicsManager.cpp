@@ -76,8 +76,8 @@ void PhysicsManager::CollisionDetection()
 						CollisionInfo collisionInfo(rigidbodyA,rigidbodyB);
 						sf::Vector2f positionA, positionB;
 	
-						positionA = rigidbodyA->GetGameobject()->GetTransformComponent()->getPosition();
-						positionB = rigidbodyB->GetGameobject()->GetTransformComponent()->getPosition();
+						positionA = rigidbodyA->GetGameobject()->GetComponent<TransformComponent>()->getPosition();
+						positionB = rigidbodyB->GetGameobject()->GetComponent<TransformComponent>()->getPosition();
 	
 						if (positionA.x < positionB.x)
 						{
@@ -88,7 +88,7 @@ void PhysicsManager::CollisionDetection()
 						}
 						
 						int collisionOffset = 5;
-						float size = rigidbodyA->GetGameobject()->GetRenderComponent()->GetSprite().getTextureRect().width - collisionOffset;
+						float size = rigidbodyA->GetGameobject()->GetComponent<RenderComponent>()->GetSprite().getTextureRect().width - collisionOffset;
 						if (positionA.x > rigidbodyB->axisAlignedCorners.bottomLeft.x - size && positionA.x < rigidbodyB->axisAlignedCorners.topRight.x - collisionOffset)
 						{
 							if (positionA.y < positionB.y)
@@ -120,11 +120,11 @@ void PhysicsManager::CollisionResolution()
 			xDistance = collision.rigidbodyA->axisAlignedCorners.bottomLeft.x - collision.rigidbodyA->axisAlignedCorners.topRight.x;
 			xDistance = abs(xDistance);
 
-			sf::Vector2f oldPosition = collision.rigidbodyB->GetGameobject()->GetTransformComponent()->getPosition();
+			sf::Vector2f oldPosition = collision.rigidbodyB->GetGameobject()->GetComponent<TransformComponent>()->getPosition();
 
-			sf::Vector2f newPosition = sf::Vector2f(oldPosition.x + (collision.collisionNormal.x * xDistance), collision.rigidbodyA->GetGameobject()->GetTransformComponent()->getPosition().y);
+			sf::Vector2f newPosition = sf::Vector2f(oldPosition.x + (collision.collisionNormal.x * xDistance), collision.rigidbodyA->GetGameobject()->GetComponent<TransformComponent>()->getPosition().y);
 
-			collision.rigidbodyA->GetGameobject()->GetTransformComponent()->setPosition(newPosition);
+			collision.rigidbodyA->GetGameobject()->GetComponent<TransformComponent>()->setPosition(newPosition);
 		}
 		else
 		{
@@ -134,11 +134,11 @@ void PhysicsManager::CollisionResolution()
 				yDistance = collision.rigidbodyA->axisAlignedCorners.bottomLeft.y - collision.rigidbodyA->axisAlignedCorners.topRight.y;
 				yDistance = yDistance;
 
-				sf::Vector2f oldPosition = collision.rigidbodyB->GetGameobject()->GetTransformComponent()->getPosition();
+				sf::Vector2f oldPosition = collision.rigidbodyB->GetGameobject()->GetComponent<TransformComponent>()->getPosition();
 
-				sf::Vector2f newPosition = sf::Vector2f(collision.rigidbodyA->GetGameobject()->GetTransformComponent()->getPosition().x, oldPosition.y + (collision.collisionNormal.y * yDistance));
+				sf::Vector2f newPosition = sf::Vector2f(collision.rigidbodyA->GetGameobject()->GetComponent<TransformComponent>()->getPosition().x, oldPosition.y + (collision.collisionNormal.y * yDistance));
 
-				collision.rigidbodyA->GetGameobject()->GetTransformComponent()->setPosition(newPosition);
+				collision.rigidbodyA->GetGameobject()->GetComponent<TransformComponent>()->setPosition(newPosition);
 			}
 		}
 	}
@@ -156,11 +156,11 @@ void PhysicsManager::GroundCorrection()
 		{
 			if (rigidbody->axisAlignedCorners.bottomLeft.y >= (windowHeight - groundTolerance))
 			{
-				float imageSize = rigidbody->axisAlignedCorners.bottomLeft.y - rigidbody->GetGameobject()->GetTransformComponent()->getPosition().y;
+				float imageSize = rigidbody->axisAlignedCorners.bottomLeft.y - rigidbody->GetGameobject()->GetComponent<TransformComponent>()->getPosition().y;
 
-				sf::Vector2f newPosition = sf::Vector2f(rigidbody->GetGameobject()->GetTransformComponent()->getPosition().x, windowHeight - imageSize);
+				sf::Vector2f newPosition = sf::Vector2f(rigidbody->GetGameobject()->GetComponent<TransformComponent>()->getPosition().x, windowHeight - imageSize);
 
-				rigidbody->GetGameobject()->GetTransformComponent()->setPosition(newPosition);
+				rigidbody->GetGameobject()->GetComponent<TransformComponent>()->setPosition(newPosition);
 			}
 		}
 	}
@@ -173,9 +173,9 @@ void PhysicsManager::OnNewGameobjectCreated(IEventDataPtr _event)
 	std::shared_ptr<EvtData_On_GO_Created> pCastEventData = std::static_pointer_cast<EvtData_On_GO_Created>(_event);
 	Gameobject* GO = pCastEventData->GetOwnedGameobject();
 
-	if (GO->GetRigidbodyComponent() != nullptr)
+	if (GO->GetComponent<RigidbodyComponent>() != nullptr)
 	{
-		AddRigidbody(GO->GetRigidbodyComponent());
+		AddRigidbody(GO->GetComponent<RigidbodyComponent>());
 	}
 }
 

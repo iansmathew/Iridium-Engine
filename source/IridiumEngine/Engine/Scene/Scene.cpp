@@ -3,7 +3,7 @@
 Scene::Scene() : 
 	Gameobject(false)
 {
-	musicComponent = new MusicComponent(this);
+	AddComponent<MusicComponent>();
 }
 
 /**
@@ -11,7 +11,6 @@ Scene::Scene() :
  */
 void Scene::Start()
 {
-	musicComponent->Start();
 	__super::Start();
 }
 
@@ -28,8 +27,6 @@ void Scene::Update(float _deltaTime)
  */
 void Scene::Shutdown()
 {
-	musicComponent->Shutdown();
-
 	__super::Shutdown();
 }
 

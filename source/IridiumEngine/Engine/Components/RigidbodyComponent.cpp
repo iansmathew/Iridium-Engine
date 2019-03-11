@@ -5,6 +5,11 @@
 
 #define VECTOR2ZERO sf::Vector2f(0,0)
 
+void RigidbodyComponent::Shutdown()
+{
+	
+}
+
 RigidbodyComponent::RigidbodyComponent(Gameobject* _owner) : BaseComponent(_owner)
 {
 }
@@ -43,10 +48,10 @@ void RigidbodyComponent::PhysicsUpdate(float _deltaTime)
 
 		currentVelocity += velocity * _deltaTime;
 
-		sf::Vector2f position = GetGameobject()->GetTransformComponent()->getPosition();
+		sf::Vector2f position = GetGameobject()->GetComponent<TransformComponent>()->getPosition();
 		position += currentVelocity * _deltaTime;
 
-		GetGameobject()->GetTransformComponent()->setPosition(position);
+		GetGameobject()->GetComponent<TransformComponent>()->setPosition(position);
 
 		SetAABB();
 
@@ -96,11 +101,11 @@ void RigidbodyComponent::AddForce(float _x, float _y)
 
 void RigidbodyComponent::SetAABB()
 {
-	float bottomX = GetGameobject()->GetTransformComponent()->getPosition().x;
-	float bottomY = GetGameobject()->GetTransformComponent()->getPosition().y + GetGameobject()->GetRenderComponent()->GetSprite().getTextureRect().height;
+	float bottomX = GetGameobject()->GetComponent<TransformComponent>()->getPosition().x;
+	float bottomY = GetGameobject()->GetComponent<TransformComponent>()->getPosition().y + GetGameobject()->GetComponent<RenderComponent>()->GetSprite().getTextureRect().height;
 
-	float topX = GetGameobject()->GetTransformComponent()->getPosition().x + GetGameobject()->GetRenderComponent()->GetSprite().getTextureRect().width;
-	float topY = GetGameobject()->GetTransformComponent()->getPosition().y;
+	float topX = GetGameobject()->GetComponent<TransformComponent>()->getPosition().x + GetGameobject()->GetComponent<RenderComponent>()->GetSprite().getTextureRect().width;
+	float topY = GetGameobject()->GetComponent<TransformComponent>()->getPosition().y;
 
 	axisAlignedCorners.bottomLeft = sf::Vector2f(bottomX, bottomY);
 	axisAlignedCorners.topRight = sf::Vector2f(topX, topY);

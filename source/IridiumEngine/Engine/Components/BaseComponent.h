@@ -5,8 +5,18 @@
 /*************************/
 class Gameobject;
 
-template <class T>
-class BaseComponent
+//class BaseComponentNonTemplated
+//{
+//public:
+//	BaseComponentNonTemplated() {}
+//	~BaseComponentNonTemplated() {}
+//
+//	virtual void Start() = 0;
+//	virtual void Update() = 0;
+//	virtual void Shutdown() = 0;
+//};
+
+class BaseComponent 
 {
 protected:
 	bool isUpdated;
@@ -29,26 +39,17 @@ public:
 		Called before any updates are run.
 		Use this to set up the component
 	 */
-	virtual void Start()
-	{
-		static_cast<T*>(this)->Start();
-	}
+	virtual void Start() = 0;
 
 	/**
 		The update function for the component
 	 */
-	virtual void Update()
-	{
-		static_cast<T*>(this)->Update();
-	}
+	virtual void Update() = 0;
 
 	/**
 		Shutdown function that takes care of destruction
 	 */
-	virtual void Shutdown()
-	{
-		static_cast<T*>(this)->Shutdown();
-	}
+	virtual void Shutdown() = 0;
 
 	/**
 		Returns a pointer to the gameobject it belongs to.

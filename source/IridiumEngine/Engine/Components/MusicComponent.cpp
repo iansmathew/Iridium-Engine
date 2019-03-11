@@ -21,6 +21,11 @@ void MusicComponent::Start()
 
 }
 
+void MusicComponent::Update()
+{
+
+}
+
 /**
 	Stops all music and destroys them
  */

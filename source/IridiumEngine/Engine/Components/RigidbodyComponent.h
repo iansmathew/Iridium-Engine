@@ -1,7 +1,7 @@
 #include "BaseComponent.h"
 #include <SFML/System/Vector2.hpp>
 
-class RigidbodyComponent : public BaseComponent<RigidbodyComponent>
+class RigidbodyComponent : public BaseComponent
 {
 public:
 	bool enabled = true;
@@ -15,6 +15,7 @@ public:
 	};
 
 	AABB axisAlignedCorners;
+
 
 private:
 	sf::Vector2f currentVelocity;
@@ -31,6 +32,9 @@ public:
 	virtual void Start() override;
 	
 	virtual void Update() override;
+
+	virtual void Shutdown() override;
+	
 
 	void PhysicsUpdate(float _deltaTime);
 

@@ -11,10 +11,19 @@
 Gameobject::Gameobject(bool _isRendered /*= true*/)
 {
 	instanceID = IridiumEngine::Instance()->GetSceneManager()->GetNewInstanceID();
-	transformComponent = new TransformComponent(this);
-	renderComponent = new RenderComponent(this, _isRendered);
+	//transformComponent = new TransformComponent(this);
+	/*renderComponent = new RenderComponent(this, _isRendered);
 	audioComponent = new AudioComponent(this);
-	rigidbodyComponent = new RigidbodyComponent(this);
+	rigidbodyComponent = new RigidbodyComponent(this);*/
+
+	AddComponent<TransformComponent>();
+	AddComponent<RenderComponent>();
+	AddComponent<AudioComponent>();
+	AddComponent<RigidbodyComponent>();
+
+	transformComponent = GetComponent<TransformComponent>();
+	renderComponent = GetComponent<RenderComponent>();
+	renderComponent->SetIsRendered(_isRendered);
 
 	//post GO created event
 	std::shared_ptr<EvtData_On_GO_Created> pEvent(new EvtData_On_GO_Created(this));
@@ -35,10 +44,15 @@ void Gameobject::Start()
 {
 	std::cout << "Base start method called on instance: " << GetInstanceID() << std::endl;
 
-	transformComponent->Start();
-	renderComponent->Start();
-	audioComponent->Start();
-	rigidbodyComponent->Start();
+	//transformComponent->Start();
+	//renderComponent->Start();
+	//audioComponent->Start();
+	//rigidbodyComponent->Start();
+
+	for (auto comp : componentList)
+	{
+		comp->Start();
+	}
 
 	for (auto child : children)
 	{
@@ -100,7 +114,10 @@ bool Gameobject::RemoveChild(Gameobject* _child)
 void Gameobject::Update(float _deltaTime)
 {
 	//Perform own update
-	transformComponent->Update();
+	for (auto comp : componentList)
+	{
+		comp->Update();
+	}
 
 	//Call update on children
 	for (auto child : children)
@@ -127,9 +144,10 @@ void Gameobject::Draw(sf::RenderTarget& _windowRef, sf::RenderStates _states)
  */
 void Gameobject::Shutdown()
 {
-	audioComponent->Shutdown();
-	transformComponent->Shutdown();
-	renderComponent->Shutdown();
+	for (auto comp : componentList)
+	{
+		comp->Shutdown();
+	}
 
 	//Call shutdown on children
 	for (auto child : children)

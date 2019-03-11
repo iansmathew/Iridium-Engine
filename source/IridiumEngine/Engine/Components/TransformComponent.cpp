@@ -1,6 +1,8 @@
 #include "TransformComponent.h"
 #include "Gameobject.h"
 
+#include <iostream>
+
 /**
 	Constructor that takes in the gameobject owner.
  */
@@ -16,6 +18,7 @@ TransformComponent::TransformComponent(Gameobject* _owner)
  */
 void TransformComponent::Start()
 {
+	std::cout << "Transform called start" << std::endl;
 }
 
 /**
@@ -24,4 +27,9 @@ void TransformComponent::Start()
 void TransformComponent::Update()
 {
 
+}
+
+void TransformComponent::Shutdown()
+{
+	
 }

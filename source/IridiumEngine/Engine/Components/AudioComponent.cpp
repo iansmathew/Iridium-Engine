@@ -24,6 +24,11 @@ void AudioComponent::Start()
 
 }
 
+void AudioComponent::Update()
+{
+
+}
+
 /**
 	Iterates through sound list, stop sounds and calls delete on pointers
  */

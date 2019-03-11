@@ -13,7 +13,7 @@ struct SoundClip
 //Typedefs
 typedef std::map<std::string, SoundClip*> SoundClipList;
 
-class AudioComponent : public BaseComponent<AudioComponent>
+class AudioComponent : public BaseComponent
 {
 private:
 	SoundClipList soundClipList;
@@ -23,6 +23,8 @@ public:
 	~AudioComponent();
 
 	virtual void Start() override;
+
+	virtual void Update() override;
 
 	virtual void Shutdown() override;
 

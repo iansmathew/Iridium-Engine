@@ -66,3 +66,11 @@ void RenderComponent::SetTexture(std::string _filePath)
 	sprite.setTexture(texture, true);
 }
 
+void RenderComponent::Update()
+{
+}
+
+void RenderComponent::Shutdown()
+{
+}
+
