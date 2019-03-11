@@ -6,7 +6,7 @@
 
 typedef std::map<std::string, sf::Music*> MusicClipList;
 
-class MusicComponent : public BaseComponent
+class MusicComponent : public BaseComponent<MusicComponent>
 {
 private:
 	MusicClipList musicClipList;

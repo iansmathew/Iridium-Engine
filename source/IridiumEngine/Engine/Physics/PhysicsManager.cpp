@@ -31,7 +31,7 @@ void PhysicsManager::Update(float _deltaTime)
 	{
 		if (rigidbody->enabled)
 		{
-			rigidbody->Update(_deltaTime);
+			rigidbody->PhysicsUpdate(_deltaTime);
 		}
 	}
 	

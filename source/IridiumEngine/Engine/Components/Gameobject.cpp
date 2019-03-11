@@ -2,7 +2,7 @@
 #include "../Events/EventManager.h"
 #include "../Events/Events.h"
 #include "../irincludes.h"
-
+#include <vector>
 #include <iostream>
 
 /**
@@ -19,6 +19,7 @@ Gameobject::Gameobject(bool _isRendered /*= true*/)
 	//post GO created event
 	std::shared_ptr<EvtData_On_GO_Created> pEvent(new EvtData_On_GO_Created(this));
 	EventManager::Instance()->QueueEvent(pEvent);
+	//std::vector<BaseComponent> test;
 }
 
 Gameobject::~Gameobject()

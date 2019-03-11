@@ -5,6 +5,7 @@
 /*************************/
 class Gameobject;
 
+template <class T>
 class BaseComponent
 {
 protected:
@@ -14,13 +15,49 @@ private:
 	Gameobject* owner;
 
 public:
-	BaseComponent(Gameobject* _owner);
 
-	virtual void Start();
+	/**
+		Constructor that takes in the owned gameobject.
+	 */
+	BaseComponent(Gameobject* _owner)
+	{
+		isUpdated = true;
+		owner = _owner;
+	}
 
-	virtual void Update();
+	/**
+		Called before any updates are run.
+		Use this to set up the component
+	 */
+	virtual void Start()
+	{
+		static_cast<T*>(this)->Start();
+	}
 
-	virtual void Shutdown();
+	/**
+		The update function for the component
+	 */
+	virtual void Update()
+	{
+		static_cast<T*>(this)->Update();
+	}
 
-	Gameobject* GetGameobject() const;
+	/**
+		Shutdown function that takes care of destruction
+	 */
+	virtual void Shutdown()
+	{
+		static_cast<T*>(this)->Shutdown();
+	}
+
+	/**
+		Returns a pointer to the gameobject it belongs to.
+
+		@return Gameobject owner
+	 */
+	Gameobject* GetGameobject() const
+	{
+		return owner;
+	}
+
 };

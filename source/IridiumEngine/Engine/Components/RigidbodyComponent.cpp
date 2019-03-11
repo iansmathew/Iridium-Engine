@@ -18,7 +18,12 @@ void RigidbodyComponent::Start()
 	SetAABB();
 }
 
-void RigidbodyComponent::Update(float _deltaTime)
+void RigidbodyComponent::Update()
+{
+
+}
+
+void RigidbodyComponent::PhysicsUpdate(float _deltaTime)
 {
 	sf::Vector2f velocity = sf::Vector2f();
 

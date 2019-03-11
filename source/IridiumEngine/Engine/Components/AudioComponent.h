@@ -13,7 +13,7 @@ struct SoundClip
 //Typedefs
 typedef std::map<std::string, SoundClip*> SoundClipList;
 
-class AudioComponent : public BaseComponent
+class AudioComponent : public BaseComponent<AudioComponent>
 {
 private:
 	SoundClipList soundClipList;

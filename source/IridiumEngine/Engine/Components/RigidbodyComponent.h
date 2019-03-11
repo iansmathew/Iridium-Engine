@@ -1,7 +1,7 @@
 #include "BaseComponent.h"
 #include <SFML/System/Vector2.hpp>
 
-class RigidbodyComponent : public BaseComponent
+class RigidbodyComponent : public BaseComponent<RigidbodyComponent>
 {
 public:
 	bool enabled = true;
@@ -29,8 +29,10 @@ public:
 #pragma region GAME_FLOW_FUNCS
 
 	virtual void Start() override;
+	
+	virtual void Update() override;
 
-	virtual void Update(float _deltaTime);
+	void PhysicsUpdate(float _deltaTime);
 
 #pragma endregion GAME_FLOW_FUNCS
 

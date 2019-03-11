@@ -2,7 +2,7 @@
 #include <SFML/Graphics/Transformable.hpp>
 #include "BaseComponent.h"
 
-class TransformComponent : public BaseComponent, public sf::Transformable
+class TransformComponent : public BaseComponent<TransformComponent>, public sf::Transformable
 {
 private:
 	sf::Transform selfTransform;

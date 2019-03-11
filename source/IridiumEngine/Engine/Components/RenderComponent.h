@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "BaseComponent.h"
 
-class RenderComponent : public BaseComponent
+class RenderComponent : public BaseComponent<RenderComponent>
 {
 private:
 	bool isRendered;
