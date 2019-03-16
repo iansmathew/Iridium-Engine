@@ -13,6 +13,7 @@
 #include "Audio/AudioManager.h"
 #include "Physics/PhysicsManager.h"
 #include "Components/Gameobject.h"
+#include "Scene/SplashScene/SplashScene.h"
 
 /**
 	Default destructor for Engine.
@@ -140,7 +141,8 @@ bool IridiumEngine::Initialize()
 	EventListenerDelegate delegateFunc = fastdelegate::MakeDelegate(this, &IridiumEngine::OnSceneChange);
 	EventManager::Instance()->AddListener(delegateFunc, EvtData_On_Scene_Change::eventType);
 
-	sceneManager->Create(); //TODO: [iansmathew] Remove
+	auto splashScene = sceneManager->CreateNewScene<SplashScene>();
+	sceneManager->LoadScene(splashScene);
 
 	return true;
 }

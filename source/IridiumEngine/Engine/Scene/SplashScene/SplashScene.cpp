@@ -22,7 +22,12 @@ void SplashScene::Start()
 	GetComponent<MusicComponent>()->AddMusicClip("bgMusic", "../../assets/splash_scene/splashSceneBgMusic.wav");
 	GetComponent<MusicComponent>()->PlayMusic("bgMusic");
 
-	//elapsedTime = 0.f;
+	elapsedTime = 0.f;
+
+	//TODO: Save the scene here
+	SceneManager::Instance()->SaveScene("SplashScene", this);
+
+	splashImage->SerializeData("jsonString");
 
 	__super::Start();
 }
@@ -30,13 +35,13 @@ void SplashScene::Start()
 void SplashScene::Update(float _deltaTime)
 {
 	//If time up, switch scenes
-	if (elapsedTime > 5.f)
+	/*if (elapsedTime > 5.f)
 	{
 		auto newScene = SceneManager::Instance()->CreateNewScene<TestScene>();
 		SceneManager::Instance()->LoadScene(newScene);
 	}
 
-	elapsedTime += _deltaTime;
+	elapsedTime += _deltaTime;*/
 
 	//Call base update on end
 	__super::Update(_deltaTime);

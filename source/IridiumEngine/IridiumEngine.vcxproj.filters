@@ -40,9 +40,6 @@
     <Filter Include="Source Files\Engine\Events">
       <UniqueIdentifier>{eaaeb63a-e29c-46e6-bb01-c82b9b6312aa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Engine\ExternalTools">
-      <UniqueIdentifier>{8e49fdd3-db32-4e65-a910-94ac6c6709ab}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Engine\Graphics">
       <UniqueIdentifier>{bde0d7ae-8f20-4902-b4bf-eca2ff3b8b21}</UniqueIdentifier>
     </Filter>
@@ -87,6 +84,9 @@
     </Filter>
     <Filter Include="Source Files\Engine\Physics">
       <UniqueIdentifier>{631320ef-6f4d-4917-97ab-9a0c3ccb4812}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ExternalTools">
+      <UniqueIdentifier>{8e49fdd3-db32-4e65-a910-94ac6c6709ab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -180,7 +180,7 @@
       <Filter>Header Files\Engine\Events</Filter>
     </ClInclude>
     <ClInclude Include="ExternalTools\FastDelegate.h">
-      <Filter>Header Files\Engine\ExternalTools</Filter>
+      <Filter>Header Files\ExternalTools</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Graphics\GraphicsManager.h">
       <Filter>Header Files\Engine\Graphics</Filter>
@@ -226,6 +226,9 @@
     </ClInclude>
     <ClInclude Include="Engine\Physics\PhysicsManager.h">
       <Filter>Header Files\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="ExternalTools\json.hpp">
+      <Filter>Header Files\ExternalTools</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

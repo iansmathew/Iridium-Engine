@@ -1,7 +1,5 @@
 #include "SceneManager.h"
 
-#include "../Scene/SplashScene/SplashScene.h"
-
 /**
 	Initializing static member
  */
@@ -24,11 +22,6 @@ void SceneManager::Initialize()
 	//Subscribe to gameobject created event
 	EventListenerDelegate delegateFunc = fastdelegate::MakeDelegate(this, &SceneManager::OnNewGameobjectCreated);
 	EventManager::Instance()->AddListener(delegateFunc, EvtData_On_GO_Created::eventType);
-
-	//Create root scene
-	//currentScene = new SplashScene();
-	auto splashScene = CreateNewScene<SplashScene>();
-	LoadScene(splashScene);
 }
 
 /**
@@ -83,6 +76,11 @@ void SceneManager::LoadScene(Scene* _scene)
 	//Post scene change event
 	std::shared_ptr<EvtData_On_Scene_Change> pEvent(new EvtData_On_Scene_Change());
 	EventManager::Instance()->QueueEvent(pEvent);
+}
+
+void SceneManager::SaveScene(std::string _fileName, Scene* _sceneNode)
+{
+
 }
 
 /**

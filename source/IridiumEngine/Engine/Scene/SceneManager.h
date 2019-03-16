@@ -91,6 +91,8 @@ public:
 
 	void LoadScene(Scene* _scene);
 
+	void SaveScene(std::string _fileName, Scene* _sceneNode);
+
 #pragma endregion SCENE_MANAGER_FUNCS
 
 #pragma region GETTERS_AND_SETTERS

@@ -2,8 +2,13 @@
 #include "../Events/EventManager.h"
 #include "../Events/Events.h"
 #include "../irincludes.h"
+#include "../../ExternalTools/json.hpp"
 #include <vector>
 #include <iostream>
+#include <fstream>
+#include <iomanip>
+
+using json = nlohmann::json;
 
 /**
 	Constructor that sends out the GO_Created event
@@ -104,6 +109,25 @@ bool Gameobject::RemoveChild(Gameobject* _child)
 	}
 
 	return false;
+}
+
+/**
+	Serializes the data into a json string 
+ */
+void Gameobject::SerializeData(std::string _jsonString)
+{
+	json jsonObj = {
+		{"name", this->name},
+		{"instanceID", this->instanceID}
+	};
+
+	json newComp = {
+		{"name", "NewGameobject"},
+		{"instanceID", 24}
+	};
+
+	std::ofstream o("../savedScene.json");
+	o << std::setw(4) << jsonObj << newComp <<  std::endl;
 }
 
 /**
