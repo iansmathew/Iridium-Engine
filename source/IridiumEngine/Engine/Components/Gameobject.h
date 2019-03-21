@@ -90,12 +90,8 @@ public:
 	template<typename T>
 	bool HasComponent() const { return componentExists[GetComponentTypeID<T>()];}
 
-	TransformComponent GetTransform() {
+	TransformComponent* GetTransform() {
 		return GetComponent<TransformComponent>();
-	}
-
-	void SetTransform(TransformComponent transformComponent) {
-		GetComponent<TransformComponent>() = transformComponent;
 	}
 
 
@@ -112,7 +108,7 @@ public:
 	bool RemoveChild(Gameobject* _child);
 
 	template <class T, typename... TArgs, class = typename std::enable_if<std::is_base_of<BaseComponent,T>::value,void*>::type>
-	T& AddComponent(TArgs&&... mArgs)
+	T* AddComponent(TArgs&&... mArgs)
 	{
 		T* c = (new T(std::forward<TArgs>(mArgs)...));
 
@@ -125,15 +121,15 @@ public:
 
 		c->Start();
 
-		return *c;
+		return c;
 	}
 
 	template <class T>
-	T& GetComponent() const
+	T* GetComponent() const
 	{
 
 		auto ptr(componentArray[GetComponentTypeID<T>()]);
-		return *dynamic_cast<T*>(ptr);
+		return dynamic_cast<T*>(ptr);
 
 	}
 

@@ -161,8 +161,8 @@ void Gameobject::Draw(sf::RenderTarget& _windowRef, sf::RenderStates _states)
 	if (HasComponent<RenderComponent>())
 	{
 		auto renderComponent = GetComponent<RenderComponent>();
-		if (renderComponent.GetVisibility())
-			_windowRef.draw(renderComponent.GetSprite(), _states);
+		if (renderComponent->GetVisibility())
+			_windowRef.draw(renderComponent->GetSprite(), _states);
 
 		for (auto& child : children)
 		{

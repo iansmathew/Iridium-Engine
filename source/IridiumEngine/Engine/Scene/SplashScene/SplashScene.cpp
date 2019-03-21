@@ -18,27 +18,27 @@ void SplashScene::Start()
 	Gameobject* splashImage = SceneManager::Instance()->CreateNewGameobject<Gameobject>(true);
 	
 	splashImage->AddComponent<RenderComponent>(splashImage);
-	splashImage->GetComponent<RenderComponent>().SetTexture("../../assets/test_scene/crashTestSprite.png");
-	splashImage->GetComponent<RenderComponent>().SetVisibility(false);
+	splashImage->GetComponent<RenderComponent>()->SetTexture("../../assets/test_scene/crashTestSprite.png");
+	splashImage->GetComponent<RenderComponent>()->SetVisibility(false);
 
 	Gameobject* testObj = SceneManager::Instance()->CreateNewGameobject<Gameobject>(this);
 	testObj->AddComponent<RenderComponent>(testObj);
-	testObj->GetComponent<RenderComponent>().SetTexture("../../assets/engine/images/splashImage.png");
-	testObj->GetComponent<RenderComponent>().SetVisibility(true);
-	testObj->GetTransform().move(500, 200);
+	testObj->GetComponent<RenderComponent>()->SetTexture("../../assets/engine/images/splashImage.png");
+	testObj->GetComponent<RenderComponent>()->SetVisibility(true);
+	testObj->GetTransform()->move(500, 200);
 
 	//Add background music
 	auto audioManagerGO = SceneManager::Instance()->CreateNewGameobject<Gameobject>(false);
 	auto musicComponent = audioManagerGO->AddComponent<MusicComponent>(audioManagerGO);
-	musicComponent.AddMusicClip("bgMusic", "../../assets/splash_scene/splashSceneBgMusic.wav");
-	musicComponent.PlayMusic("bgMusic");
+	musicComponent->AddMusicClip("bgMusic", "../../assets/splash_scene/splashSceneBgMusic.wav");
+	musicComponent->PlayMusic("bgMusic");
 
 	elapsedTime = 0.f;
 
 	//TODO: Save the scene here
-	//SceneManager::Instance()->SaveScene("SplashScene", this);
+	SceneManager::Instance()->SaveScene("SplashScene", this);
 
-	//splashImage->SerializeData("jsonString");
+	splashImage->SerializeData("jsonString");
 
 	__super::Start();
 }
@@ -47,10 +47,10 @@ void SplashScene::Update(float _deltaTime)
 {
 	//If time up, switch scenes
 	if (elapsedTime > 5.f)
-	//{
-	//	auto newScene = SceneManager::Instance()->CreateNewScene<SplashScene>();
-	//	SceneManager::Instance()->LoadScene(newScene);
-	//}
+	{
+		auto newScene = SceneManager::Instance()->CreateNewScene<TestScene>();
+		SceneManager::Instance()->LoadScene(newScene);
+	}
 
 	elapsedTime += _deltaTime;
 

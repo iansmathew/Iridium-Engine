@@ -15,21 +15,24 @@ void TestScene::Start()
 {
 
 	crashGo = SceneManager::Instance()->CreateNewGameobject<Gameobject>(this);
+
 	crashGo->name = "Crash";
 	crashGo->AddComponent<RenderComponent>(crashGo);
-	crashGo->GetComponent<RenderComponent>().SetTexture("../../assets/engine/images/splashImage.png");
+	crashGo->GetComponent<RenderComponent>()->SetTexture("../../assets/test_scene/crashTestSprite.png");
 
 	crashGo->AddComponent<RigidbodyComponent>(crashGo);
 	
 	
 	auto crashAudio = crashGo->AddComponent<AudioComponent>(crashGo);
-	crashAudio.AddSoundClip("spaceSound", "../../assets/engine/sounds/testSound.wav");
+	//auto crashAudio = crashGo->GetComponent<AudioComponent>();
+	crashAudio->AddSoundClip("spaceSound", "../../assets/engine/sounds/testSound.wav");
+	crashAudio->PlaySound("spaceSound");
 	
 	Gameobject* testSprite = SceneManager::Instance()->CreateNewGameobject<Gameobject>(this);
 	
 	testSprite->name = "Splash";
-	testSprite->GetComponent<RenderComponent>().SetTexture("../../assets/engine/images/splashImage.png");
-	testSprite->GetComponent<TransformComponent>().move(300, 300);
+	testSprite->AddComponent<RenderComponent>(crashGo)->SetTexture("../../assets/engine/images/splashImage.png");
+	testSprite->GetComponent<TransformComponent>()->move(300, 300);
 	
 	////Call base
 	__super::Start();
@@ -39,26 +42,27 @@ void TestScene::Update(float _deltaTime)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		crashGo->GetComponent<RigidbodyComponent>().AddForce(-150, 0.0f);
+		crashGo->GetComponent<RigidbodyComponent>()->AddForce(-150, 0.0f);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		crashGo->GetComponent<RigidbodyComponent>().AddForce(150, 0.0f);
+		crashGo->GetComponent<RigidbodyComponent>()->AddForce(150, 0.0f);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-		crashGo->GetComponent<RigidbodyComponent>().AddForce(0.0f, -150);
+		crashGo->GetComponent<RigidbodyComponent>()->AddForce(0.0f, -150);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-		crashGo->GetComponent<RigidbodyComponent>().AddForce(0.0f, 150);
+		crashGo->GetComponent<RigidbodyComponent>()->AddForce(0.0f, 150);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		crashGo->GetComponent<AudioComponent>().PlaySound("spaceSound");
+		auto autdo = crashGo->GetComponent<AudioComponent>();
+ 		autdo->PlaySound("spaceSound");
 	}
 
 
