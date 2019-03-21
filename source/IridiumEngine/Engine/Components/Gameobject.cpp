@@ -155,6 +155,7 @@ void Gameobject::Update(float _deltaTime)
 /// <param name="_states"></param>
 void Gameobject::Draw(sf::RenderTarget& _windowRef, sf::RenderStates _states)
 {
+	_states.transform *= GetComponent<TransformComponent>()->getTransform();
 
 	//Draw object if isRendered is set to true
 	
