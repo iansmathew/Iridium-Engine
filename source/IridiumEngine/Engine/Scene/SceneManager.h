@@ -18,7 +18,7 @@ class SceneManager : public BaseSingleton<SceneManager>
 	static unsigned int nextGoID;
 
 private:
-	std::vector<Gameobject*> gameobjectList;
+	std::vector<std::unique_ptr<Gameobject>> gameobjectList;
 	Scene* currentScene;
 
 private:
@@ -53,7 +53,8 @@ public:
 
 #pragma region SCENE_MANAGER_FUNCS
 
-	template <class T> T* CreateNewGameobject(Gameobject* _parent = nullptr, bool _isRendered = true)
+	template <class T, class = typename std::enable_if<std::is_base_of<Gameobject,T>::value,void*>::type>
+	T* CreateNewGameobject(Gameobject* _parent = nullptr, bool _isRendered = true)
 	{
 		//Do not create a gameobject if there is no scene to create it in
 		assert(currentScene);
@@ -73,17 +74,36 @@ public:
 		return newGo;
 	}
 
+	template <class T, class = typename std::enable_if<std::is_base_of<Gameobject, T>::value, void*>::type>
+	T* CreateNewGameobject(bool _isRendered = true)
+	{
+		//Do not create a gameobject if there is no scene to create it in
+		assert(currentScene);
+
+		////Ensure that only of type Gameobject can be created 
+		//static_assert(std::is_base_of<Gameobject, T>::value, "T should inherit from Gameobject");
+
+		//Create the instance of type template
+		T* newGo = new T(_isRendered);
+
+		//set the parent if given, else default to root
+	
+		currentScene->AddChild(newGo);
+
+		return newGo;
+	}
+
 	/**
 		Creates and returns a new sceneNode.
 		Use this to create new scenes.
 
 		Follows the factory design patern.
 	 */
-	template <class T>
+	template <class T  , class = typename std::enable_if<std::is_base_of<Scene,T>::value,void*>::type>
 	T* CreateNewScene()
 	{
 		//Ensure that only of type Scene can be created 
-		static_assert(std::is_base_of<Scene, T>::value, "T should inherit from Scene");
+		/*static_assert(std::is_base_of<Scene, T>::value, "T should inherit from Scene");*/
 
 		T* newScene = new T();
 		return newScene;
@@ -97,7 +117,7 @@ public:
 
 #pragma region GETTERS_AND_SETTERS
 
-	Scene* GetSceneNodeGameobject() const;
+	Scene* GetSceneNode() const;
 
 #pragma endregion GETTERS_AND_SETTERS
 
