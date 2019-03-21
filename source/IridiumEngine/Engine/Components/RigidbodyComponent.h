@@ -40,6 +40,11 @@ public:
 
 #pragma endregion GAME_FLOW_FUNCS
 
+#pragma region OPERATOR_OVERLOAD
+
+	
+#pragma endregion OPERATOR_OVERLOAD
+
 	sf::Vector2f GetCurrentVelocity() const;
 
 	//void PositionCorrection();

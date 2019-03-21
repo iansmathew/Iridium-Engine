@@ -2,35 +2,67 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <string>
-#include "RenderComponent.h"
+#include <bitset>
+#include <memory>
+#include <array>
+
+#include "BaseComponent.h"
+#include "TrialComponent.h"
 #include "TransformComponent.h"
-#include "AudioComponent.h"
-#include "RigidbodyComponent.h"
 
 class SceneManager;
 
+constexpr std::size_t  maxComponents = 32;
+
+using ComponentsExistBitset = std::bitset<maxComponents>;
+using ComponentPointerArray = std::array<BaseComponent*, maxComponents>;
+
+
+//Temp
+class TransformComponent;
+class RenderComponent;
+
+
+
+
+/// <summary>
+/// Gameobject Class
+/// </summary>
 class Gameobject
 {
 private:
+
+	/// <summary>
+	/// Is Gameobject active.
+	/// </summary>
+	bool isActive = true;
+
 	unsigned int instanceID;
 
-	TransformComponent* transformComponent;
-	RenderComponent* renderComponent;
-	//AudioComponent* audioComponent;
-	//RigidbodyComponent* rigidbodyComponent;
-
+	// Scene Hierarchy
 	Gameobject* parent;
 	std::vector<Gameobject*> children;
-	std::vector<BaseComponent*> componentList;
+
+
+	//Component System
+	std::vector<std::unique_ptr<BaseComponent>> components;
+
+	ComponentsExistBitset componentExists;
+	ComponentPointerArray componentArray;
 	
 protected:
+
 	/* The constructor is protected so that an instance of GO cannot be created
 	unless through the Scene Manager or through derived classes*/
 	friend SceneManager;
 	Gameobject(bool _isRendered = true);
 
 public:
+	/// <summary>
+	/// Game Object Name
+	/// </summary>
 	std::string name = "Gameobject";
+	
 
 public:
 	~Gameobject();
@@ -52,20 +84,24 @@ public:
 	/* Returns the unique instance ID of the gameobject */
 	inline int GetInstanceID() const { return instanceID; }
 
+
+	inline bool IsActive() const { return isActive; }
+
+	template<typename T>
+	bool HasComponent() const { return componentExists[GetComponentTypeID<T>()];}
+
+	TransformComponent GetTransform() {
+		return GetComponent<TransformComponent>();
+	}
+
+	void SetTransform(TransformComponent transformComponent) {
+		GetComponent<TransformComponent>() = transformComponent;
+	}
+
+
 	/* Returns the parents of the gameobject */
 	inline Gameobject* GetParent() const { return parent; }
 
-	///* Returns the transform component */
-	//inline TransformComponent* GetComponent<TransformComponent>() const { return transformComponent; }
-
-	///* Return the render component */
-	//inline RenderComponent* GetComponent<RenderComponent>() const { return renderComponent; }
-
-	///* Returns the audio component */
-	//inline AudioComponent* GetComponent<AudioComponent>() const { return audioComponent; }
-
-	///* Returns the rigidbody component */
-	//inline RigidbodyComponent* GetComponent<RigidbodyComponent>() const { return rigidbodyComponent; }
 
 #pragma endregion GETTERS
 
@@ -75,27 +111,35 @@ public:
 
 	bool RemoveChild(Gameobject* _child);
 
-	template <class T>
-	void AddComponent()
+	template <class T, typename... TArgs, class = typename std::enable_if<std::is_base_of<BaseComponent,T>::value,void*>::type>
+	T& AddComponent(TArgs&&... mArgs)
 	{
-		componentList.push_back(new T(this));
+		T* c = (new T(std::forward<TArgs>(mArgs)...));
+
+		std::unique_ptr<BaseComponent> uPtr{ c };
+
+		components.emplace_back(std::move(uPtr));
+
+		componentArray[GetComponentTypeID<T>()] = c;
+		componentExists[GetComponentTypeID<T>()] = true;
+
+		c->Start();
+
+		return *c;
 	}
 
 	template <class T>
-	T* GetComponent()
+	T& GetComponent() const
 	{
-		for (auto comp : componentList)
-		{
-			if (T* requestComp = dynamic_cast<T*>(comp))
-			{
-				return requestComp;
-			}
-		}
 
-		return nullptr;
+		auto ptr(componentArray[GetComponentTypeID<T>()]);
+		return *dynamic_cast<T*>(ptr);
+
 	}
 
 	virtual void SerializeData(std::string _jsonString);
 
 #pragma endregion GAMEOBJECT_FUNCS
 };
+
+

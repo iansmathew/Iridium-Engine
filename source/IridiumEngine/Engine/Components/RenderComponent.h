@@ -25,5 +25,11 @@ public:
 	inline void SetVisibility(bool _isRendered) { isRendered = _isRendered; }
 	inline bool GetVisibility() const { return isRendered; }
 
+#pragma region OPERATOR_OVERLOADING
+
+	
+#pragma endregion
+
+
 
 };

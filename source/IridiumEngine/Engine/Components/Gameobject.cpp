@@ -7,6 +7,8 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include "RenderComponent.h"
+#include "TransformComponent.h"
 
 using json = nlohmann::json;
 
@@ -16,19 +18,9 @@ using json = nlohmann::json;
 Gameobject::Gameobject(bool _isRendered /*= true*/)
 {
 	instanceID = IridiumEngine::Instance()->GetSceneManager()->GetNewInstanceID();
-	//transformComponent = new TransformComponent(this);
-	/*renderComponent = new RenderComponent(this, _isRendered);
-	audioComponent = new AudioComponent(this);
-	rigidbodyComponent = new RigidbodyComponent(this);*/
 
-	AddComponent<TransformComponent>();
-	AddComponent<RenderComponent>();
-	AddComponent<AudioComponent>();
-	AddComponent<RigidbodyComponent>();
+	AddComponent<TransformComponent>(this);
 
-	transformComponent = GetComponent<TransformComponent>();
-	renderComponent = GetComponent<RenderComponent>();
-	renderComponent->SetVisibility(_isRendered);
 
 	//post GO created event
 	std::shared_ptr<EvtData_On_GO_Created> pEvent(new EvtData_On_GO_Created(this));
@@ -49,26 +41,27 @@ void Gameobject::Start()
 {
 	std::cout << "Base start method called on instance: " << GetInstanceID() << std::endl;
 
-	//transformComponent->Start();
-	//renderComponent->Start();
-	//audioComponent->Start();
-	//rigidbodyComponent->Start();
 
-	for (auto comp : componentList)
+	for (auto& comp : components)
 	{
 		comp->Start();
 	}
 
-	for (auto child : children)
+	for (auto& child : children)
 	{
 		child->Start();
 	}
 }
 
 /**
-	Adds a child to the node
-	and set the parent node to this.
+	
+	
  */
+ /// <summary>
+ /// Adds a child to the node
+ /// and set the parent node to this.
+ /// </summary>
+ /// <param name="_child">The child gameobject.</param>
 void Gameobject::AddChild(Gameobject* _child)
 {
 	//TODO: Check if AddChild properly reparents the child so that it only lives under ONE parent and is not shared.
@@ -80,19 +73,20 @@ void Gameobject::AddChild(Gameobject* _child)
 		_child->parent->RemoveChild(_child);
 	}
 
+
 	_child->parent = this;
 	children.push_back(_child);
 }
 
-/**
-	Removes a child from the children vector 
-	and sets the parent of the child to null.
 
-	Iterates through the children vector and removes
-	child based on instance id
-
-	@return Success of remove operation. Fails if child was not found
- */
+ /// <summary>
+ /// Removes a child from the children vector.
+ /// and sets the parent of the child to null.
+ /// Iterates through the children vector and removes
+ /// child based on instance id
+ /// </summary>
+ /// <param name="_child">The child gamemobject to remove.</param>
+ /// <returns>Success of remove operation. Fails if child was not found</returns>
 bool Gameobject::RemoveChild(Gameobject* _child)
 {
 	if (!_child->parent) //if child GO does not have a parent, why bother removing it? Return false so that dev knows this is stupid
@@ -111,9 +105,11 @@ bool Gameobject::RemoveChild(Gameobject* _child)
 	return false;
 }
 
-/**
-	Serializes the data into a json string 
- */
+
+ /// <summary>
+ /// Serializes the data into a json string .
+ /// </summary>
+ /// <param name="_jsonString">The json string.</param>
 void Gameobject::SerializeData(std::string _jsonString)
 {
 	json jsonObj = {
@@ -130,21 +126,20 @@ void Gameobject::SerializeData(std::string _jsonString)
 	o << std::setw(4) << jsonObj << newComp <<  std::endl;
 }
 
-/**
-	Calls update on GO and recursively on children.
-
-	@param _deltaTime: The time elapsed as seconds since last frame
- */
+ /// <summary>
+ /// Calls update on GO and recursively on children.
+ /// </summary>
+ /// <param name="_deltaTime">The time elapsed as seconds since last frame</param>
 void Gameobject::Update(float _deltaTime)
 {
 	//Perform own update
-	for (auto comp : componentList)
+	for (auto& comp : components)
 	{
 		comp->Update();
 	}
 
 	//Call update on children
-	for (auto child : children)
+	for (auto& child : children)
 		child->Update(_deltaTime);
 }
 
@@ -152,17 +147,27 @@ void Gameobject::Update(float _deltaTime)
 	Calls draw from the window passed into it.
 	Also recursively calls draw for its children
  */
+/// <summary>
+/// Calls draw from the window passed into it.
+/// Also recursively calls draw for its children
+/// </summary>
+/// <param name="_windowRef">Windows Target to which it will draw</param>
+/// <param name="_states"></param>
 void Gameobject::Draw(sf::RenderTarget& _windowRef, sf::RenderStates _states)
 {
-	_states.transform *= transformComponent->getTransform();
 
 	//Draw object if isRendered is set to true
-	if (renderComponent->GetVisibility())
-		_windowRef.draw(renderComponent->GetSprite(), _states);
-
-	for (auto child : children)
+	
+	if (HasComponent<RenderComponent>())
 	{
-		child->Draw(_windowRef, _states);
+		auto renderComponent = GetComponent<RenderComponent>();
+		if (renderComponent.GetVisibility())
+			_windowRef.draw(renderComponent.GetSprite(), _states);
+
+		for (auto& child : children)
+		{
+			child->Draw(_windowRef, _states);
+		}
 	}
 }
 
@@ -171,12 +176,12 @@ void Gameobject::Draw(sf::RenderTarget& _windowRef, sf::RenderStates _states)
  */
 void Gameobject::Shutdown()
 {
-	for (auto comp : componentList)
+	for (auto& comp : components)
 	{
 		comp->Shutdown();
 	}
 
 	//Call shutdown on children
-	for (auto child : children)
+	for (auto& child : children)
 		child->Shutdown();
 }
