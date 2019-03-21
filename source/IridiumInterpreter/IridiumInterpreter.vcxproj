@@ -60,7 +60,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(HOMEDRIVE)/Program Files (x86)/Python37-32/include;F:\Game Engine\Iridium-Engine\lib\pybind11\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(HOMEDRIVE)/Program Files (x86)/Python37-32/include;$(SolutionDir)/../../lib/Pybind11/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Debug;$(HOMEDRIVE)/Program Files (x86)/Python37-32/libs;$</AdditionalLibraryDirectories>
@@ -75,7 +75,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(HOMEDRIVE)/Program Files (x86)/Python37-32/include;F:\Game Engine\Iridium-Engine\lib\pybind11\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(HOMEDRIVE)/Program Files (x86)/Python37-32/include;$(SolutionDir)/../../lib/Pybind11/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
