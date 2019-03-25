@@ -105,27 +105,6 @@ bool Gameobject::RemoveChild(Gameobject* _child)
 	return false;
 }
 
-
- /// <summary>
- /// Serializes the data into a json string .
- /// </summary>
- /// <param name="_jsonString">The json string.</param>
-void Gameobject::SerializeData(std::string _jsonString)
-{
-	//json jsonObj = {
-	//	{"name", this->name},
-	//	{"instanceID", this->instanceID}
-	//};
-
-	//json newComp = {
-	//	{"name", "NewGameobject"},
-	//	{"instanceID", 24}
-	//};
-
-	//std::ofstream o("../savedScene.json");
-	//o << std::setw(4) << jsonObj << newComp <<  std::endl;
-}
-
  /// <summary>
  /// Calls update on GO and recursively on children.
  /// </summary>

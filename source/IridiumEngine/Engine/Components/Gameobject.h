@@ -135,8 +135,6 @@ public:
 
 	}
 
-	virtual void SerializeData(std::string _jsonString);
-
 #pragma endregion GAMEOBJECT_FUNCS
 };
 

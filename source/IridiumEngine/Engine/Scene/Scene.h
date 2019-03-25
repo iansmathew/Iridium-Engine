@@ -34,6 +34,4 @@ public:
 	void AddChild(Gameobject* _child);
 
 	bool RemoveChild(Gameobject* _child);
-
-	void SerializeScene(std::string _jsonString);
 };

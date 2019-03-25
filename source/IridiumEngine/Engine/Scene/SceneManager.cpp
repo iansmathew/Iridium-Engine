@@ -78,7 +78,10 @@ void SceneManager::LoadScene(Scene* _scene)
 	EventManager::Instance()->QueueEvent(pEvent);
 }
 
-void SceneManager::SaveScene(std::string _fileName, Scene* _sceneNode)
+/**
+	Loads a scene from a JSON file and creates it accordingly
+ */
+void SceneManager::LoadSceneFromFile(std::string _filePath)
 {
 
 }

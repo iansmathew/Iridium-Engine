@@ -74,19 +74,3 @@ bool Scene::RemoveChild(Gameobject* _child)
 
 }
 
-void Scene::SerializeScene(std::string _jsonString)
-{
-	json jsonObj = {
-		{"name", "NewGameobject"},
-		{"instanceID", 24 }
-	};
-
-	json newComp = {
-		{"name", "NewGameobject"},
-		{"instanceID", 24}
-	};
-
-	std::ofstream o("../savedScene.json");
-	o << std::setw(4) << jsonObj << newComp << std::endl;
-}
-

@@ -44,11 +44,6 @@ void SplashScene::Start()
 
 	elapsedTime = 0.f;
 
-	//TODO: Save the scene here
-	SceneManager::Instance()->SaveScene("SplashScene", this);
-
-	splashImage->SerializeData("jsonString");
-
 	__super::Start();
 }
 

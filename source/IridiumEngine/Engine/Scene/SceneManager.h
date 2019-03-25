@@ -1,17 +1,15 @@
 #pragma once
+//----------------------------------------------------
 #include "../../Helper/BaseSingleton.h"
 #include "../Events/EventManager.h"
 #include "../Events/Events.h"
 #include <vector>
-
+//----------------------------------------------------
 #include <type_traits>
 #include <assert.h>
-
+//----------------------------------------------------
+#include "../ExternalTools/json.hpp"
 #include "Scene.h"
-
-//FORWARD DECLARATIONS
-//class Gameobject;
-//class Scene;
 
 class SceneManager : public BaseSingleton<SceneManager>
 {
@@ -111,7 +109,7 @@ public:
 
 	void LoadScene(Scene* _scene);
 
-	void SaveScene(std::string _fileName, Scene* _sceneNode);
+	void LoadSceneFromFile(std::string _filePath);
 
 #pragma endregion SCENE_MANAGER_FUNCS
 
