@@ -10,7 +10,7 @@ unsigned int SceneManager::nextGoID = 0;
  */
 SceneManager::SceneManager()
 {
-	gameobjectList = std::vector<Gameobject*>();
+	gameobjectList = std::vector<std::unique_ptr<Gameobject>>();
 }
 
 /**
@@ -86,7 +86,7 @@ void SceneManager::SaveScene(std::string _fileName, Scene* _sceneNode)
 /**
 	Returns the current scene node casted as a Gameobject
  */
-Scene* SceneManager::GetSceneNodeGameobject() const
+Scene* SceneManager::GetSceneNode() const
 {
 	return currentScene;
 }
@@ -98,7 +98,7 @@ Scene* SceneManager::GetSceneNodeGameobject() const
 void SceneManager::OnNewGameobjectCreated(IEventDataPtr _event)
 {
 	std::shared_ptr<EvtData_On_GO_Created> pCastEventData = std::static_pointer_cast<EvtData_On_GO_Created>(_event);
-	gameobjectList.push_back(pCastEventData->GetOwnedGameobject());
+	gameobjectList.emplace_back(pCastEventData->GetOwnedGameobject());
 }
 
 unsigned int SceneManager::GetNewInstanceID()

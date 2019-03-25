@@ -55,7 +55,7 @@ void IridiumEngine::Run()
 			sceneManager->Update(elapsedTime); //Pass in elapsed time as deltaTime
 
 			//Update graphics, pass in the scene node to recursively call graphics draw
-			graphicsManager->Update(sceneManager->GetSceneNodeGameobject());
+			graphicsManager->Update(sceneManager->GetSceneNode());
 		}
 	}
 }

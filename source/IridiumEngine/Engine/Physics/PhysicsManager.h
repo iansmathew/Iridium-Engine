@@ -2,8 +2,12 @@
 #include "../Events/EventManager.h"
 #include "../Events/Events.h"
 #include "../../Helper/BaseSingleton.h"
-#include "../Components/Gameobject.h"
 #include "SFML/System//Vector2.hpp"
+
+#include "../Components/Gameobject.h"
+
+class RigidbodyComponent;
+
 
 class PhysicsManager : public BaseSingleton<PhysicsManager>
 {
@@ -11,8 +15,8 @@ class PhysicsManager : public BaseSingleton<PhysicsManager>
 private:
 
 	struct CollisionInfo {
-		RigidbodyComponent* rigidbodyA = nullptr;
-		RigidbodyComponent* rigidbodyB = nullptr;
+		RigidbodyComponent* rigidbodyA;
+		RigidbodyComponent* rigidbodyB;
 
 		sf::Vector2i collisionNormal = sf::Vector2i(0,0);
 
@@ -51,6 +55,8 @@ public:
 
 private:
 
+	
+
 	bool OverlapTest(RigidbodyComponent* rigidbodyA, RigidbodyComponent* rigidbodyB);
 
 	void CollisionDetection();
@@ -58,6 +64,8 @@ private:
 	void CollisionResolution();
 
 	void GroundCorrection();
+
+	//void AddRigidbody(RigidbodyComponent * _rigidbody);
 	
 
 #pragma region EVENT_HANDLERS
@@ -66,7 +74,7 @@ private:
 
 #pragma endregion EVENT_HANDLERS
 
-	void AddRigidbody(RigidbodyComponent* _rigidbody);
+	//void AddRigidbody(RigidbodyComponent& _rigidbody);
 
 	void RemoveRigidbodies(IEventDataPtr _event);
 

@@ -1,6 +1,11 @@
 #include "Gameobject.h"
 #include <iostream>
+#include "BaseComponent.h"
+#include "RigidbodyComponent.h"
 #include "../Physics/PhysicsManager.h"
+#include "TransformComponent.h"
+#include "RenderComponent.h"
+
 
 
 #define VECTOR2ZERO sf::Vector2f(0,0)
@@ -60,6 +65,7 @@ void RigidbodyComponent::PhysicsUpdate(float _deltaTime)
 		//PositionCorrection();
 	}
 }
+
 
 sf::Vector2f RigidbodyComponent::GetCurrentVelocity() const
 {

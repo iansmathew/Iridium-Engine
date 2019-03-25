@@ -1,7 +1,13 @@
-#include "PhysicsManager.h"
 #include "../Window/WindowManager.h"
 #include <iostream>
 #include <cstdlib>
+
+#include "PhysicsManager.h"
+
+#include "../Components/TransformComponent.h"
+#include "../Components/RenderComponent.h"
+
+#include "../Components/RigidbodyComponent.h"
 
 PhysicsManager::PhysicsManager()
 {
@@ -42,12 +48,9 @@ void PhysicsManager::Update(float _deltaTime)
 	GroundCorrection();
 }
 
-void PhysicsManager::AddRigidbody(RigidbodyComponent * _rigidbody)
-{
-	rigidbodyList.push_back(_rigidbody);
-}
 
-bool PhysicsManager::OverlapTest(RigidbodyComponent * rigidbodyA, RigidbodyComponent * rigidbodyB)
+
+bool PhysicsManager::OverlapTest(RigidbodyComponent* rigidbodyA, RigidbodyComponent* rigidbodyB)
 {
 	RigidbodyComponent::AABB  boundingBoxA = rigidbodyA->axisAlignedCorners;
 	RigidbodyComponent::AABB  boundingBoxB = rigidbodyB->axisAlignedCorners;
@@ -62,10 +65,10 @@ void PhysicsManager::CollisionDetection()
 {
 	for (int rigidbodyAIndex = 0; rigidbodyAIndex < rigidbodyList.size(); rigidbodyAIndex++)
 	{
-		RigidbodyComponent* rigidbodyA = rigidbodyList[rigidbodyAIndex];
+		auto rigidbodyA = rigidbodyList[rigidbodyAIndex];
 		for (int rigidbodyBIndex = rigidbodyAIndex; rigidbodyBIndex < rigidbodyList.size(); rigidbodyBIndex++)
 		{
-			RigidbodyComponent* rigidbodyB = rigidbodyList[rigidbodyBIndex];
+			auto rigidbodyB = rigidbodyList[rigidbodyBIndex];
 			if (rigidbodyA->enabled)
 			{
 				if (rigidbodyA != rigidbodyB)
@@ -168,18 +171,18 @@ void PhysicsManager::GroundCorrection()
 	
 }
 
+
+void PhysicsManager::RemoveRigidbodies(IEventDataPtr _event)
+{
+	rigidbodyList.clear();
+}
+
 void PhysicsManager::OnNewGameobjectCreated(IEventDataPtr _event)
 {
 	std::shared_ptr<EvtData_On_GO_Created> pCastEventData = std::static_pointer_cast<EvtData_On_GO_Created>(_event);
 	Gameobject* GO = pCastEventData->GetOwnedGameobject();
 
-	if (GO->GetComponent<RigidbodyComponent>() != nullptr)
-	{
-		AddRigidbody(GO->GetComponent<RigidbodyComponent>());
-	}
-}
-
-void PhysicsManager::RemoveRigidbodies(IEventDataPtr _event)
-{
-	rigidbodyList.clear();
+	
+	//AddRigidbody(GO->GetComponent<RigidbodyComponent>());
+	
 }

@@ -1,6 +1,10 @@
 #include "TestScene.h"
 #include <string>
 #include "../SceneManager.h"
+#include "../../Components/RigidbodyComponent.h"
+#include "../../Components/AudioComponent.h"
+#include "../../Components/RenderComponent.h"
+#include "../../Components/TransformComponent.h"
 
 TestScene::TestScene()
 {
@@ -9,19 +13,30 @@ TestScene::TestScene()
 
 void TestScene::Start()
 {
-	this->GetComponent<RigidbodyComponent>()->enabled = false;
 
 	crashGo = SceneManager::Instance()->CreateNewGameobject<Gameobject>(this);
+
 	crashGo->name = "Crash";
-	crashGo->GetComponent<RenderComponent>()->SetTexture("../../assets/engine/images/splashImage.png");
-	crashGo->GetComponent<AudioComponent>()->AddSoundClip("spaceSound", "../../assets/engine/sounds/testSound.wav");
+	crashGo->AddComponent<RenderComponent>(crashGo);
+	crashGo->GetComponent<RenderComponent>()->SetTexture("../../assets/test_scene/crashTestSprite.png");
 
+	crashGo->GetTransform()->move(500, 100);
+
+	//crashGo->AddComponent<RigidbodyComponent>(crashGo);
+	
+	
+	auto crashAudio = crashGo->AddComponent<AudioComponent>(crashGo);
+	//auto crashAudio = crashGo->GetComponent<AudioComponent>();
+	crashAudio->AddSoundClip("spaceSound", "../../assets/engine/sounds/testSound.wav");
+	crashAudio->PlaySound("spaceSound");
+	
 	Gameobject* testSprite = SceneManager::Instance()->CreateNewGameobject<Gameobject>(this);
+	
 	testSprite->name = "Splash";
-	testSprite->GetComponent<RenderComponent>()->SetTexture("../../assets/engine/images/splashImage.png");
+	testSprite->AddComponent<RenderComponent>(crashGo)->SetTexture("../../assets/engine/images/splashImage.png");
 	testSprite->GetComponent<TransformComponent>()->move(300, 300);
-
-	//Call base
+	
+	////Call base
 	__super::Start();
 }
 
@@ -48,7 +63,8 @@ void TestScene::Update(float _deltaTime)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		crashGo->GetComponent<AudioComponent>()->PlaySound("spaceSound");
+		auto autdo = crashGo->GetComponent<AudioComponent>();
+ 		autdo->PlaySound("spaceSound");
 	}
 
 

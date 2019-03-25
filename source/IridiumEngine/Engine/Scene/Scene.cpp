@@ -1,9 +1,20 @@
 #include "Scene.h"
+#include "../../ExternalTools/json.hpp"
+#include <iomanip>
+#include <iosfwd>
+#include <fstream>
 
-Scene::Scene() : 
-	Gameobject(false)
+using json = nlohmann::json;
+
+
+Scene::Scene()
 {
-	AddComponent<MusicComponent>();
+
+}
+
+Scene::~Scene()
+{
+
 }
 
 /**
@@ -11,7 +22,8 @@ Scene::Scene() :
  */
 void Scene::Start()
 {
-	__super::Start();
+	for (auto& child : gameobjects)
+		child->Start();
 }
 
 /**
@@ -19,7 +31,16 @@ void Scene::Start()
  */
 void Scene::Update(float _deltaTime)
 {
-	__super::Update(_deltaTime);
+		for (auto& child : gameobjects)
+		child->Update(_deltaTime);
+}
+
+void Scene::Draw(sf::RenderTarget& _windowRef, sf::RenderStates _states)
+{
+	for (auto& child : gameobjects)
+	{
+		child->Draw(_windowRef, _states);
+	}
 }
 
 /**
@@ -27,6 +48,45 @@ void Scene::Update(float _deltaTime)
  */
 void Scene::Shutdown()
 {
-	__super::Shutdown();
+	for (auto& child : gameobjects)
+		child->Shutdown();
+
+}
+
+void Scene::AddChild(Gameobject* _child)
+{
+	gameobjects.emplace_back(std::move(_child));
+
+}
+
+bool Scene::RemoveChild(Gameobject* _child)
+{
+	for (int childIndex = 0; childIndex < gameobjects.size(); childIndex++)
+	{
+		if (_child->GetInstanceID() == gameobjects[childIndex]->GetInstanceID())
+		{
+			gameobjects.erase(gameobjects.begin() + childIndex);
+			return true;
+		}
+	}
+
+	return false;
+
+}
+
+void Scene::SerializeScene(std::string _jsonString)
+{
+	json jsonObj = {
+		{"name", "NewGameobject"},
+		{"instanceID", 24 }
+	};
+
+	json newComp = {
+		{"name", "NewGameobject"},
+		{"instanceID", 24}
+	};
+
+	std::ofstream o("../savedScene.json");
+	o << std::setw(4) << jsonObj << newComp << std::endl;
 }
 
