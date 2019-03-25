@@ -20,7 +20,9 @@ void TestScene::Start()
 	crashGo->AddComponent<RenderComponent>(crashGo);
 	crashGo->GetComponent<RenderComponent>()->SetTexture("../../assets/test_scene/crashTestSprite.png");
 
-	crashGo->AddComponent<RigidbodyComponent>(crashGo);
+	crashGo->GetTransform()->move(500, 100);
+
+	//crashGo->AddComponent<RigidbodyComponent>(crashGo);
 	
 	
 	auto crashAudio = crashGo->AddComponent<AudioComponent>(crashGo);

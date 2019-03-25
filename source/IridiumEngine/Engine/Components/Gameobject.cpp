@@ -2,7 +2,7 @@
 #include "../Events/EventManager.h"
 #include "../Events/Events.h"
 #include "../irincludes.h"
-#include "../../ExternalTools/json.hpp"
+//#include "../../ExternalTools/json.hpp"
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -10,7 +10,7 @@
 #include "RenderComponent.h"
 #include "TransformComponent.h"
 
-using json = nlohmann::json;
+//using json = nlohmann::json;
 
 /**
 	Constructor that sends out the GO_Created event
@@ -112,18 +112,18 @@ bool Gameobject::RemoveChild(Gameobject* _child)
  /// <param name="_jsonString">The json string.</param>
 void Gameobject::SerializeData(std::string _jsonString)
 {
-	json jsonObj = {
-		{"name", this->name},
-		{"instanceID", this->instanceID}
-	};
+	//json jsonObj = {
+	//	{"name", this->name},
+	//	{"instanceID", this->instanceID}
+	//};
 
-	json newComp = {
-		{"name", "NewGameobject"},
-		{"instanceID", 24}
-	};
+	//json newComp = {
+	//	{"name", "NewGameobject"},
+	//	{"instanceID", 24}
+	//};
 
-	std::ofstream o("../savedScene.json");
-	o << std::setw(4) << jsonObj << newComp <<  std::endl;
+	//std::ofstream o("../savedScene.json");
+	//o << std::setw(4) << jsonObj << newComp <<  std::endl;
 }
 
  /// <summary>

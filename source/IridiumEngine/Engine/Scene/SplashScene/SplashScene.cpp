@@ -6,6 +6,8 @@
 #include "../../Components/TransformComponent.h"
 #include "../../Components/TrialComponent.h"
 #include "../../Components/AudioComponent.h"
+#include "../../../../IridiumInterpreter/PyBehaviour.h"
+
 
 SplashScene::SplashScene()
 {
@@ -19,7 +21,14 @@ void SplashScene::Start()
 	
 	splashImage->AddComponent<RenderComponent>(splashImage);
 	splashImage->GetComponent<RenderComponent>()->SetTexture("../../assets/test_scene/crashTestSprite.png");
-	splashImage->GetComponent<RenderComponent>()->SetVisibility(false);
+	splashImage->GetComponent<RenderComponent>()->SetVisibility(true);
+
+
+	splashImage->AddComponent<PyBehaviour>(splashImage);
+
+
+
+	//splashImage->AddComponent<PyBehaviour>(splashImage);
 
 	Gameobject* testObj = SceneManager::Instance()->CreateNewGameobject<Gameobject>(this);
 	testObj->AddComponent<RenderComponent>(testObj);

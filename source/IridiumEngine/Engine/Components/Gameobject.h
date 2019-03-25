@@ -9,6 +9,7 @@
 #include "BaseComponent.h"
 #include "TrialComponent.h"
 #include "TransformComponent.h"
+#include <assert.h>
 
 class SceneManager;
 
@@ -128,6 +129,7 @@ public:
 	T* GetComponent() const
 	{
 
+		assert(HasComponent<T>() && "Does not have component.");
 		auto ptr(componentArray[GetComponentTypeID<T>()]);
 		return dynamic_cast<T*>(ptr);
 

@@ -50,6 +50,8 @@ public:
 		owner = _owner;
 	}
 
+	~BaseComponent() = default;
+
 	 /// <summary>
 	 /// Called before any updates are run.
 	 /// Use this to set up the component

@@ -43,15 +43,15 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <TargetName>IridiumPy</TargetName>
+    <TargetName>IridiumInterpreter</TargetName>
     <TargetExt>.pyd</TargetExt>
-    <OutDir>$(SolutionDir)/../../game/$(PlatformName)</OutDir>
+    <OutDir>$(SolutionDir)/../../game/$(SolutionName)</OutDir>
     <IntDir>$(SolutionDir)..\..\temp\$(PlatformName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <TargetName>IridiumPy</TargetName>
+    <TargetName>IridiumInterpreter</TargetName>
     <TargetExt>.pyd</TargetExt>
-    <OutDir>$(SolutionDir)/../../game/$(PlatformName)</OutDir>
+    <OutDir>$(SolutionDir)/../../game/$(SolutionName)</OutDir>
     <IntDir>$(SolutionDir)..\..\temp\$(PlatformName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -60,11 +60,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(HOMEDRIVE)/Program Files (x86)/Python37-32/include;$(SolutionDir)/../../lib/Pybind11/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(HOMEDRIVE)/Program Files (x86)/Python37-32/include;$(SolutionDir)/../../lib/Pybind11/include;$(SolutionDir)/../../lib/SFML/include;$(SolutionDir)Engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)Debug;$(HOMEDRIVE)/Program Files (x86)/Python37-32/libs;$</AdditionalLibraryDirectories>
-      <AdditionalDependencies>python37_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)/../../game/$(SolutionName)/$(Configuration);$(HOMEDRIVE)/Program Files (x86)/Python37-32/libs</AdditionalLibraryDirectories>
+      <AdditionalDependencies>python37.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -75,18 +76,28 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(HOMEDRIVE)/Program Files (x86)/Python37-32/include;$(SolutionDir)/../../lib/Pybind11/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(HOMEDRIVE)/Program Files (x86)/Python37-32/include;$(SolutionDir)/../../lib/Pybind11/include;$(SolutionDir)/../../lib/SFML/include;$(SolutionDir)Engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(HOMEDRIVE)/Program Files (x86)/Python37-32/libs;$(SolutionDir)Release</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)/../../game/$(SolutionName)/$(Configuration);$(HOMEDRIVE)/Program Files (x86)/Python37-32/libs</AdditionalLibraryDirectories>
       <AdditionalDependencies>python37.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="InterpreterModule.cpp" />
+    <ClCompile Include="PyBehaviour.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PyBehaviour.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IridiumEngine\IridiumEngine.vcxproj">
+      <Project>{ed0fba8c-6d65-45b8-9c86-3a8cafc46e63}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
