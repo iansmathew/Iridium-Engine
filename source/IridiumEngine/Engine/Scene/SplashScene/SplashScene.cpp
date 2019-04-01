@@ -6,7 +6,9 @@
 #include "../../Components/TransformComponent.h"
 #include "../../Components/TrialComponent.h"
 #include "../../Components/AudioComponent.h"
-#include "../../../../IridiumInterpreter/PyBehaviour.h"
+#include "../../Components/PyBehaviour.h"
+
+
 
 
 SplashScene::SplashScene()
@@ -23,8 +25,7 @@ void SplashScene::Start()
 	splashImage->GetComponent<RenderComponent>()->SetTexture("../../assets/test_scene/crashTestSprite.png");
 	splashImage->GetComponent<RenderComponent>()->SetVisibility(true);
 
-	//TODO: Fix PyBehaviour
-	//splashImage->AddComponent<PyBehaviour>(splashImage);
+	splashImage->AddComponent<PyBehaviour>(splashImage);
 
 
 

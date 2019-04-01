@@ -79,8 +79,5 @@ public:
 		return owner;
 	}
 
-	//bool operator!=(const BaseComponent& rhs) {
-	//	return this != nullptr;
-	//}
 
 };

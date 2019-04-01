@@ -3,46 +3,19 @@
 
 #include <pybind11/pybind11.h>
 
+
 namespace py = pybind11;
 
-class Base
-{
-public:
-	Base() = default;
-
-	virtual int Start() = 0;
 
 
-	~Base() = default;
-	
-
-private:
-
-};
-
-
-class Derived : public Base
-{
-public:
-	Derived() = default;
-
-	int Start() override {
-		PYBIND11_OVERLOAD_PURE(int, Base, Start);
-	}
-
-	~Derived() = default;
-
-
-private:
-
-};
-
-PYBIND11_MODULE(IridiumEngine, m) {
+PYBIND11_MODULE(IridiumPython, m) {
 	m.attr("Engine-Name") = "IridiumEngine";
-	
-	py::class_<Derived, Base>(m, "PyBehaviour")
-		.def(py::init<>())
-		.def("Start", &Base::Start);
 
-	
+
+	py::class_<BaseComponent, PyBehaviour> pyBehaviour(m, "PyBehavior");
+	pyBehaviour.def(py::init<Gameobject*>());
+	//pyBehaviour.def("GetGameObject", &BaseComponent::GetGameobject);
+	pyBehaviour.def("Start", &BaseComponent::Start);
+	pyBehaviour.def("Update", &BaseComponent::Update);
+	pyBehaviour.def("Shutdown", &BaseComponent::Shutdown);
 }

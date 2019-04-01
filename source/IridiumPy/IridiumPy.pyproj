@@ -24,9 +24,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="IridiumPy.py" />
-    <Compile Include="module1.py">
-      <SubType>Code</SubType>
-    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|3.7-32" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IridiumInterpreter\IridiumInterpreter.vcxproj">
@@ -34,9 +34,6 @@
       <Project>{85dff6eb-eb4d-4c11-adcf-2ba711106f4f}</Project>
       <Private>True</Private>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <InterpreterReference Include="Global|PythonCore|3.7-32" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

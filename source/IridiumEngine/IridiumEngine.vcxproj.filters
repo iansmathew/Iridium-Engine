@@ -153,8 +153,8 @@
     <ClCompile Include="Engine\Components\TrialComponent.cpp">
       <Filter>Source Files\Engine\Components</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Engine\Components\PyBehaviour.cpp">
+      <Filter>Header Files\Engine\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +234,9 @@
       <Filter>Header Files\ExternalTools</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Components\TrialComponent.h">
+      <Filter>Header Files\Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Components\PyBehaviour.h">
       <Filter>Header Files\Engine\Components</Filter>
     </ClInclude>
   </ItemGroup>

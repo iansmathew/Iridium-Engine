@@ -1,0 +1,7 @@
+﻿  main.cpp
+IridiumEngine.lib(Engine.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in main.obj
+IridiumEngine.lib(Engine.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in main.obj
+IridiumEngine.lib(Engine.obj) : error LNK2019: unresolved external symbol __imp___invalid_parameter referenced in function "void * __cdecl std::_Allocate_manually_vector_aligned<struct std::_Default_allocate_traits>(unsigned int)" (??$_Allocate_manually_vector_aligned@U_Default_allocate_traits@std@@@std@@YAPAXI@Z)
+IridiumEngine.lib(Engine.obj) : error LNK2019: unresolved external symbol __imp___calloc_dbg referenced in function "char * __cdecl std::_Maklocstr<char>(char const *,char *,struct _Cvtvec const &)" (??$_Maklocstr@D@std@@YAPADPBDPADABU_Cvtvec@@@Z)
+IridiumEngine.lib(Engine.obj) : error LNK2019: unresolved external symbol __imp___CrtDbgReport referenced in function "void * __cdecl std::_Allocate_manually_vector_aligned<struct std::_Default_allocate_traits>(unsigned int)" (??$_Allocate_manually_vector_aligned@U_Default_allocate_traits@std@@@std@@YAPAXI@Z)
+F:\Game Engine\Iridium Engine\source\IridiumEngine\Debug\IridiumExecutable.exe : fatal error LNK1120: 3 unresolved externals

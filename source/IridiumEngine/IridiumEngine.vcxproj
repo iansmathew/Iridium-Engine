@@ -32,7 +32,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -45,7 +45,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -75,7 +75,9 @@
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <TargetExt>.exe</TargetExt>
+    <TargetExt>.lib</TargetExt>
+    <OutDir>$(SolutionDir)/../../game/$(SolutionName)/$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\temp\$(PlatformName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)/../../game/$(SolutionName)\</OutDir>
@@ -83,7 +85,9 @@
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <TargetExt>.exe</TargetExt>
+    <TargetExt>.lib</TargetExt>
+    <OutDir>$(SolutionDir)/../../game/$(SolutionName)/$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\temp\$(PlatformName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -109,6 +113,8 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)/../../lib/SFML/include;$(HOMEDRIVE)/Program Files (x86)/Python37-32/include;$(SolutionDir)/../../lib/Pybind11/include;$(SolutionDir)/../../lib/SFML/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PreprocessorDefinitions>_ITERATOR_DEBUG_LEVEL=0</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)/../../game/$(SolutionName)/$(Configuration);$(SolutionDir)/../../lib/SFML/lib;$(HOMEDRIVE)/Program Files (x86)/Python37-32/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -150,9 +156,9 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)/../../lib/Pybind11/include;$(HOMEDRIVE)/Program Files (x86)/Python37-32/include;$(SolutionDir)/../../lib/SFML/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/../../lib/SFML/include;$(HOMEDRIVE)/Program Files (x86)/Python37-32/include;$(SolutionDir)/../../lib/Pybind11/include;$(SolutionDir)/../../lib/SFML/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <PreprocessorDefinitions>SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_ITERATOR_DEBUG_LEVEL=0</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -162,7 +168,7 @@
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>$(SolutionDir)../../lib/SFML/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -171,6 +177,7 @@
     <ClCompile Include="Engine\Components\BaseComponent.cpp" />
     <ClCompile Include="Engine\Components\Gameobject.cpp" />
     <ClCompile Include="Engine\Components\MusicComponent.cpp" />
+    <ClCompile Include="Engine\Components\PyBehaviour.cpp" />
     <ClCompile Include="Engine\Components\RenderComponent.cpp" />
     <ClCompile Include="Engine\Components\RigidbodyComponent.cpp" />
     <ClCompile Include="Engine\Components\TransformComponent.cpp" />
@@ -187,7 +194,6 @@
     <ClCompile Include="Engine\Scene\SplashScene\SplashScene.cpp" />
     <ClCompile Include="Engine\Scene\TestScene\TestScene.cpp" />
     <ClCompile Include="Engine\Window\WindowManager.cpp" />
-    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Audio\AudioManager.h" />
@@ -195,6 +201,7 @@
     <ClInclude Include="Engine\Components\BaseComponent.h" />
     <ClInclude Include="Engine\Components\Gameobject.h" />
     <ClInclude Include="Engine\Components\MusicComponent.h" />
+    <ClInclude Include="Engine\Components\PyBehaviour.h" />
     <ClInclude Include="Engine\Components\RenderComponent.h" />
     <ClInclude Include="Engine\Components\RigidbodyComponent.h" />
     <ClInclude Include="Engine\Components\TransformComponent.h" />

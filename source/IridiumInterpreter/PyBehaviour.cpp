@@ -26,7 +26,3 @@ void PyBehaviour::Shutdown()
 
 }
 
-
-PyBehaviour::~PyBehaviour()
-{
-}

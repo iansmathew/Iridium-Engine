@@ -14,6 +14,6 @@ public:
 
 	virtual void Shutdown() override;
 
-	~PyBehaviour();
+	~PyBehaviour() = default;
 };
 

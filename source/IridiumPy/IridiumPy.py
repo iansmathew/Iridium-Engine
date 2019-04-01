@@ -1,4 +1,13 @@
-import os
+from IridiumPython import PyBehavior
 
-print(os.getcwd())
+class PrintClass(PyBehaviour):
+    def Start():
+        print("Start")
+
+    def Update():
+        print("Update")
+
+    def Shutdown():
+        print("Shutdown")
+
 
