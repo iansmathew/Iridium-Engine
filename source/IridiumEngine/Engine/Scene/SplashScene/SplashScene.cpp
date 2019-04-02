@@ -25,7 +25,7 @@ void SplashScene::Start()
 	splashImage->GetComponent<RenderComponent>()->SetTexture("../../assets/test_scene/crashTestSprite.png");
 	splashImage->GetComponent<RenderComponent>()->SetVisibility(true);
 
-	splashImage->AddComponent<PyBehaviour>(splashImage);
+	splashImage->AddComponent<PyBehaviour>("module1",splashImage);
 
 
 

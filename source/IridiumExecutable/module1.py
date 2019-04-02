@@ -1,3 +1,8 @@
+def Start():
+    print("Start")
 
-def Print():
-    print("print Hello")
+def Update():
+    print("Update")
+
+def Shutdown():
+    print("Shutdown")
