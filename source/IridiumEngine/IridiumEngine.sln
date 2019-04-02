@@ -10,13 +10,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IridiumInterpreter", "..\Ir
 		{ED0FBA8C-6D65-45B8-9C86-3A8CAFC46E63} = {ED0FBA8C-6D65-45B8-9C86-3A8CAFC46E63}
 	EndProjectSection
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "IridiumPython", "IridiumPython.pyproj", "{7843E114-9B18-4E00-8FE9-D22C8017AF51}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IridiumExecutable", "..\IridiumExecutable\IridiumExecutable.vcxproj", "{A76A7DF1-0425-465A-87C3-38E92E79B733}"
 	ProjectSection(ProjectDependencies) = postProject
 		{ED0FBA8C-6D65-45B8-9C86-3A8CAFC46E63} = {ED0FBA8C-6D65-45B8-9C86-3A8CAFC46E63}
 		{85DFF6EB-EB4D-4C11-ADCF-2BA711106F4F} = {85DFF6EB-EB4D-4C11-ADCF-2BA711106F4F}
 	EndProjectSection
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "IridiumPython", "..\IridiumExecutable\IridiumPython.pyproj", "{7843E114-9B18-4E00-8FE9-D22C8017AF51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,14 +56,6 @@ Global
 		{85DFF6EB-EB4D-4C11-ADCF-2BA711106F4F}.Release|x64.ActiveCfg = Release|Win32
 		{85DFF6EB-EB4D-4C11-ADCF-2BA711106F4F}.Release|x86.ActiveCfg = Release|Win32
 		{85DFF6EB-EB4D-4C11-ADCF-2BA711106F4F}.Release|x86.Build.0 = Release|Win32
-		{7843E114-9B18-4E00-8FE9-D22C8017AF51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7843E114-9B18-4E00-8FE9-D22C8017AF51}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{7843E114-9B18-4E00-8FE9-D22C8017AF51}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{7843E114-9B18-4E00-8FE9-D22C8017AF51}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{7843E114-9B18-4E00-8FE9-D22C8017AF51}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7843E114-9B18-4E00-8FE9-D22C8017AF51}.Release|Win32.ActiveCfg = Release|Any CPU
-		{7843E114-9B18-4E00-8FE9-D22C8017AF51}.Release|x64.ActiveCfg = Release|Any CPU
-		{7843E114-9B18-4E00-8FE9-D22C8017AF51}.Release|x86.ActiveCfg = Release|Any CPU
 		{A76A7DF1-0425-465A-87C3-38E92E79B733}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{A76A7DF1-0425-465A-87C3-38E92E79B733}.Debug|Win32.ActiveCfg = Debug|Win32
 		{A76A7DF1-0425-465A-87C3-38E92E79B733}.Debug|Win32.Build.0 = Debug|Win32
@@ -78,6 +70,14 @@ Global
 		{A76A7DF1-0425-465A-87C3-38E92E79B733}.Release|x64.Build.0 = Release|x64
 		{A76A7DF1-0425-465A-87C3-38E92E79B733}.Release|x86.ActiveCfg = Release|Win32
 		{A76A7DF1-0425-465A-87C3-38E92E79B733}.Release|x86.Build.0 = Release|Win32
+		{7843E114-9B18-4E00-8FE9-D22C8017AF51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7843E114-9B18-4E00-8FE9-D22C8017AF51}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{7843E114-9B18-4E00-8FE9-D22C8017AF51}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7843E114-9B18-4E00-8FE9-D22C8017AF51}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7843E114-9B18-4E00-8FE9-D22C8017AF51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7843E114-9B18-4E00-8FE9-D22C8017AF51}.Release|Win32.ActiveCfg = Release|Any CPU
+		{7843E114-9B18-4E00-8FE9-D22C8017AF51}.Release|x64.ActiveCfg = Release|Any CPU
+		{7843E114-9B18-4E00-8FE9-D22C8017AF51}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
