@@ -1,16 +1,16 @@
 #include "PyBehaviour.h"
 #include <iostream>
+#include "Gameobject.h"
 
 
 PyBehaviour::PyBehaviour(std::string moduleName ,Gameobject* owner) : BaseComponent(owner)
 {
-	std::cout << "Kick Me! \n";
 	scriptModule = py::module::import(moduleName.c_str());
 }
 
 void PyBehaviour::Start()
 {
-	scriptModule.attr("Start")();
+	scriptModule.attr("Start")(GetGameobject());
 }
 
 void PyBehaviour::Update()
@@ -21,6 +21,8 @@ void PyBehaviour::Update()
 
 void PyBehaviour::Shutdown()
 {
-	scriptModule.attr("Shutdown")();
+	scriptModule.attr("Shutdown")(GetGameobject());
 
 }
+
+

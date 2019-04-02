@@ -16,7 +16,7 @@ class SceneManager;
 constexpr std::size_t  maxComponents = 32;
 
 using ComponentsExistBitset = std::bitset<maxComponents>;
-using ComponentPointerArray = std::array<BaseComponent*, maxComponents>;
+using ComponentPointerArray = std::vector<BaseComponent*>;
 
 
 //Temp
@@ -46,7 +46,7 @@ private:
 
 
 	//Component System
-	std::vector<std::unique_ptr<BaseComponent>> components;
+	//std::vector<std::unique_ptr<BaseComponent>> components;
 
 	ComponentsExistBitset componentExists;
 	ComponentPointerArray componentArray;
@@ -63,6 +63,14 @@ public:
 	/// Game Object Name
 	/// </summary>
 	std::string name = "Gameobject";
+
+	std::string GetName() {
+		return name;
+	}
+
+	void SetName(std::string name) {
+		this->name = name;
+	}
 	
 
 public:
@@ -113,9 +121,9 @@ public:
 	{
 		T* c = (new T(std::forward<TArgs>(mArgs)...));
 
-		std::unique_ptr<BaseComponent> uPtr{ c };
+		//std::unique_ptr<BaseComponent> uPtr{ c };
 
-		components.emplace_back(std::move(uPtr));
+		//components.emplace_back(std::move(uPtr));
 
 		componentArray[GetComponentTypeID<T>()] = c;
 		componentExists[GetComponentTypeID<T>()] = true;

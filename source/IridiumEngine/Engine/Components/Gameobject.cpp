@@ -19,6 +19,8 @@ Gameobject::Gameobject(bool _isRendered /*= true*/)
 {
 	instanceID = IridiumEngine::Instance()->GetSceneManager()->GetNewInstanceID();
 
+	componentArray.resize(maxComponents);
+
 	AddComponent<TransformComponent>(this);
 
 
@@ -42,8 +44,12 @@ void Gameobject::Start()
 	std::cout << "Base start method called on instance: " << GetInstanceID() << std::endl;
 
 
-	for (auto& comp : components)
+	for (auto& comp : componentArray)
 	{
+		if (comp == nullptr)
+		{
+			continue;
+		}
 		comp->Start();
 	}
 
@@ -133,8 +139,13 @@ void Gameobject::SerializeData(std::string _jsonString)
 void Gameobject::Update(float _deltaTime)
 {
 	//Perform own update
-	for (auto& comp : components)
+	for (auto& comp : componentArray)
 	{
+
+		if (comp == nullptr)
+		{
+			continue;
+		}
 		comp->Update();
 	}
 
@@ -177,8 +188,12 @@ void Gameobject::Draw(sf::RenderTarget& _windowRef, sf::RenderStates _states)
  */
 void Gameobject::Shutdown()
 {
-	for (auto& comp : components)
+	for (auto& comp : componentArray)
 	{
+		if (comp == nullptr)
+		{
+			continue;
+		}
 		comp->Shutdown();
 	}
 

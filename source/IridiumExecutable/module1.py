@@ -1,8 +1,13 @@
-def Start():
-    print("Start")
+import IridiumPython
 
-def Update():
+
+def Start(gameObject):
+    print("Start")
+    gameObject.Name = "Python"
+    
+
+def Update(gameObject):
     print("Update")
 
-def Shutdown():
+def Shutdown(gameObject):
     print("Shutdown")

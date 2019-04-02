@@ -12,6 +12,8 @@
     <OutputPath>.</OutputPath>
     <Name>IridiumPython</Name>
     <RootNamespace>IridiumPython</RootNamespace>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <EnableNativeCodeDebugging>True</EnableNativeCodeDebugging>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,16 +24,16 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="IridiumEngine.vcxproj">
-      <Name>IridiumEngine</Name>
-      <Project>{ed0fba8c-6d65-45b8-9c86-3a8cafc46e63}</Project>
-      <Private>True</Private>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="module1.py">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IridiumInterpreter\IridiumInterpreter.vcxproj">
+      <Name>IridiumInterpreter</Name>
+      <Project>{85dff6eb-eb4d-4c11-adcf-2ba711106f4f}</Project>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
