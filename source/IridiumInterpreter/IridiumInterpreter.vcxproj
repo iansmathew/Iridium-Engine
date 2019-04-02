@@ -60,12 +60,13 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(HOMEDRIVE)/Program Files (x86)/Python37-32/include;$(SolutionDir)/../../lib/Pybind11/include;$(SolutionDir)/../../lib/SFML/include;$(SolutionDir)Engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(HOMEDRIVE)/Program Files (x86)/Python37-32/include;$(SolutionDir)/../../lib/Pybind11/include;$(SolutionDir)/../../lib/SFML/include;$(SolutionDir)Engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link />
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)/../../game/$(SolutionName)/$(Configuration);$(HOMEDRIVE)/Program Files (x86)/Python37-32/libs;F:\Game Engine\Iridium Engine\game\IridiumEngine\Debug</AdditionalLibraryDirectories>
       <AdditionalDependencies>IridiumEngine.lib; python37.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)/../../game/$(SolutionName)/$(Configuration);$(HOMEDRIVE)/Program Files (x86)/Python37-32/libs;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -82,21 +83,13 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)/../../game/$(SolutionName)/$(Configuration);$(HOMEDRIVE)/Program Files (x86)/Python37-32/libs;F:\Game Engine\Iridium Engine\game\IridiumEngine\Debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)/../../game/$(SolutionName)/$(Configuration);$(HOMEDRIVE)/Program Files (x86)/Python37-32/libs;</AdditionalLibraryDirectories>
       <AdditionalDependencies>IridiumEngine.lib; python37.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="InterpreterModule.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="PyBehaviour.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\IridiumEngine\IridiumEngine.vcxproj">
-      <Project>{ed0fba8c-6d65-45b8-9c86-3a8cafc46e63}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

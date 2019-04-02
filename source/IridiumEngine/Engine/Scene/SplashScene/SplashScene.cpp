@@ -29,8 +29,6 @@ void SplashScene::Start()
 
 
 
-	//splashImage->AddComponent<PyBehaviour>(splashImage);
-
 	Gameobject* testObj = SceneManager::Instance()->CreateNewGameobject<Gameobject>(this);
 	testObj->AddComponent<RenderComponent>(testObj);
 	testObj->GetComponent<RenderComponent>()->SetTexture("../../assets/engine/images/splashImage.png");

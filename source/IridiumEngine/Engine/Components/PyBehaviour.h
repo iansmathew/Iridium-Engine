@@ -1,16 +1,22 @@
+#include <pybind11/pybind11.h>
+
 #include "BaseComponent.h"
 
-class PyBehaviour :public BaseComponent
-{
-private:
-	
+namespace py = pybind11;
 
+
+class PyBehaviour : public BaseComponent
+{
 public:
 	PyBehaviour(Gameobject* owner);
 
-	virtual void Start() override;
-	virtual void Update() override;
-	virtual void Shutdown() override;
+	void Start() override;
+	void Update() override;
+	void Shutdown() override;
+	~PyBehaviour() =  default;
+
+private:
+
+	py::module scriptModule;
 
 };
-

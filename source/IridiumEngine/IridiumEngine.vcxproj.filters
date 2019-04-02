@@ -138,9 +138,6 @@
     <ClCompile Include="Engine\Components\AudioComponent.cpp">
       <Filter>Source Files\Engine\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Components\MusicComponent.cpp">
-      <Filter>Header Files\Engine\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Scene\TestScene\TestScene.cpp">
       <Filter>Source Files\Engine\Scene\TestScene</Filter>
     </ClCompile>
@@ -154,7 +151,10 @@
       <Filter>Source Files\Engine\Components</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Components\PyBehaviour.cpp">
-      <Filter>Header Files\Engine\Components</Filter>
+      <Filter>Source Files\Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Components\MusicComponent.cpp">
+      <Filter>Source Files\Engine\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
