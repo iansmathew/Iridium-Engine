@@ -10,6 +10,7 @@
 #include "TrialComponent.h"
 #include "TransformComponent.h"
 #include <assert.h>
+#include "MusicComponent.h"
 
 class SceneManager;
 
@@ -133,6 +134,7 @@ public:
 		return c;
 	}
 
+
 	template <class T>
 	T* GetComponent() const
 	{
@@ -142,6 +144,13 @@ public:
 		return dynamic_cast<T*>(ptr);
 
 	}
+
+	MusicComponent* GetMusicComponent() {
+		assert(HasComponent<MusicComponent>() && "Does not have component.");
+		auto ptr(componentArray[GetComponentTypeID<MusicComponent>()]);
+		return dynamic_cast<MusicComponent*>(ptr);
+	}
+
 
 	virtual void SerializeData(std::string _jsonString);
 

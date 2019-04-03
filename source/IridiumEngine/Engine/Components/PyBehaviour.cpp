@@ -1,27 +1,31 @@
 #include "PyBehaviour.h"
 #include <iostream>
 #include "Gameobject.h"
+#include "MusicComponent.h"
+
 
 
 PyBehaviour::PyBehaviour(std::string moduleName ,Gameobject* owner) : BaseComponent(owner)
 {
 	scriptModule = py::module::import(moduleName.c_str());
+	pyObject = scriptModule.attr("PyScriptComponent");
 }
 
 void PyBehaviour::Start()
 {
-	scriptModule.attr("Start")(GetGameobject());
+	pyObject.attr("Start")(GetGameobject());
+	std::cout << GetGameobject()->name;
 }
 
 void PyBehaviour::Update()
 {
-	scriptModule.attr("Update")();
+	pyObject.attr("Update")(GetGameobject());
 
 }
 
 void PyBehaviour::Shutdown()
 {
-	scriptModule.attr("Shutdown")(GetGameobject());
+	pyObject.attr("Shutdown")(GetGameobject());
 
 }
 

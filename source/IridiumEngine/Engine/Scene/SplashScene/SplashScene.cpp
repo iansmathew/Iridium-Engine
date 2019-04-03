@@ -25,7 +25,6 @@ void SplashScene::Start()
 	splashImage->GetComponent<RenderComponent>()->SetTexture("../../assets/test_scene/crashTestSprite.png");
 	splashImage->GetComponent<RenderComponent>()->SetVisibility(true);
 
-	splashImage->AddComponent<PyBehaviour>("module1",splashImage);
 
 
 
@@ -38,8 +37,9 @@ void SplashScene::Start()
 	//Add background music
 	auto audioManagerGO = SceneManager::Instance()->CreateNewGameobject<Gameobject>(false);
 	auto musicComponent = audioManagerGO->AddComponent<MusicComponent>(audioManagerGO);
-	musicComponent->AddMusicClip("bgMusic", "../../assets/splash_scene/splashSceneBgMusic.wav");
-	musicComponent->PlayMusic("bgMusic");
+	audioManagerGO->AddComponent<PyBehaviour>("module1" , audioManagerGO);
+	//musicComponent->AddMusicClip("bgMusic", "../../assets/splash_scene/splashSceneBgMusic.wav");
+	//musicComponent->PlayMusic("bgMusic");
 
 	elapsedTime = 0.f;
 

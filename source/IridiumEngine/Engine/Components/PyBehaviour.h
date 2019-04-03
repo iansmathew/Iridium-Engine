@@ -19,25 +19,6 @@ public:
 private:
 
 	py::module scriptModule;
-
-};
-
-
-class TrialClass
-{
-
-
-using ComponentsExistBitset = std::bitset<maxComponents>;
-using ComponentPointerArray = std::array<BaseComponent*, maxComponents>;
-public:
-	std::string sampleText;
-
-	std::string GetString() {
-		return sampleText;
-	}
-
-	void SetString(std::string string) {
-		sampleText = string;
-	}
+	py::object pyObject;
 
 };

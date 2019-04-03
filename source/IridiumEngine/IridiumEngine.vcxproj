@@ -113,7 +113,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)/../../lib/SFML/include;$(HOMEDRIVE)/Program Files (x86)/Python37-32/include;$(SolutionDir)/../../lib/Pybind11/include;$(SolutionDir)/../../lib/SFML/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PreprocessorDefinitions>
       </PreprocessorDefinitions>
     </ClCompile>
@@ -195,6 +195,7 @@
     <ClCompile Include="Engine\Scene\SplashScene\SplashScene.cpp" />
     <ClCompile Include="Engine\Scene\TestScene\TestScene.cpp" />
     <ClCompile Include="Engine\Window\WindowManager.cpp" />
+    <ClCompile Include="PyComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Audio\AudioManager.h" />
@@ -224,6 +225,7 @@
     <ClInclude Include="ExternalTools\json.hpp" />
     <ClInclude Include="Helper\BaseSingleton.h" />
     <ClInclude Include="Helper\SysCheck.h" />
+    <ClInclude Include="PyComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

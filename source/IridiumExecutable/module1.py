@@ -1,13 +1,12 @@
-import IridiumPython
+from IridiumPython import GameObject
 
+class PyScriptComponent():
+    def Start(gameObject : GameObject):
+        gameObject.Name = "Python"
+        print(gameObject.GetComponentMusic())
 
-def Start(gameObject):
-    print("Start")
-    gameObject.Name = "Python"
-    
+    def Update(gameObject):
+        print("Update")
 
-def Update(gameObject):
-    print("Update")
-
-def Shutdown(gameObject):
-    print("Shutdown")
+    def Shutdown(gameObject):
+        print("Shutdown")
