@@ -36,7 +36,7 @@ void SplashScene::Start()
 
 	//Add background music
 	auto audioManagerGO = SceneManager::Instance()->CreateNewGameobject<Gameobject>(false);
-	auto musicComponent = audioManagerGO->AddComponent<MusicComponent>(audioManagerGO);
+	//auto musicComponent = audioManagerGO->AddComponent<MusicComponent>(audioManagerGO);
 	audioManagerGO->AddComponent<PyBehaviour>("module1" , audioManagerGO);
 	//musicComponent->AddMusicClip("bgMusic", "../../assets/splash_scene/splashSceneBgMusic.wav");
 	//musicComponent->PlayMusic("bgMusic");

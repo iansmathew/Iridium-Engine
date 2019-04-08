@@ -15,17 +15,18 @@ void PyBehaviour::Start()
 {
 	pyObject.attr("Start")(GetGameobject());
 	std::cout << GetGameobject()->name;
+	//GetGameobject()->GetTransform();
 }
 
 void PyBehaviour::Update()
 {
-	pyObject.attr("Update")(GetGameobject());
+	//pyObject.attr("Update")(GetGameobject());
 
 }
 
 void PyBehaviour::Shutdown()
 {
-	pyObject.attr("Shutdown")(GetGameobject());
+	//pyObject.attr("Shutdown")(GetGameobject());
 
 }
 

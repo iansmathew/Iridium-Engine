@@ -101,7 +101,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)/../../game/$(SolutionName)/$(Configuration);$(HOMEDRIVE)/Program Files (x86)/Python37-32/libs;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\Python37-32\libs;$(SolutionDir)/../../game/$(SolutionName)/$(Configuration);$(HOMEDRIVE)/Program Files (x86)/Python37-32/libs</AdditionalLibraryDirectories>
       <AdditionalDependencies>IridiumEngine.lib; python37.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

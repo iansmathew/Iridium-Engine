@@ -11,6 +11,8 @@
 #include "TransformComponent.h"
 #include <assert.h>
 #include "MusicComponent.h"
+#include <iostream>
+
 
 class SceneManager;
 
@@ -132,6 +134,21 @@ public:
 		c->Start();
 
 		return c;
+	}
+
+
+	MusicComponent* AddMusicComponent() {
+
+		std::cout << "Music Component Added" << std::endl;
+
+		MusicComponent* comp = new MusicComponent(this);
+
+		componentArray[GetComponentTypeID<MusicComponent>()] = comp;
+		componentExists[GetComponentTypeID<MusicComponent>()] = true;
+
+		comp->Start();
+
+		return comp;
 	}
 
 

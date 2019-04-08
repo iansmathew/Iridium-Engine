@@ -1,9 +1,13 @@
 from IridiumPython import GameObject
 
 class PyScriptComponent():
-    def Start(gameObject : GameObject):
+    def Start(gameObject):
         gameObject.Name = "Python"
-        print(gameObject.GetComponentMusic())
+        comp = gameObject.AddMusicComponent()
+
+        comp.AddMusicClip("bgMusic", "../../assets/splash_scene/splashSceneBgMusic.wav")
+
+        comp.PlayMusic("bgMusic")
 
     def Update(gameObject):
         print("Update")

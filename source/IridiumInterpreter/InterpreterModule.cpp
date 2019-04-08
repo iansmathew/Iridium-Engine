@@ -29,14 +29,14 @@ PYBIND11_MODULE(IridiumPython, IridiumModule) {
 	gameobject.def("RemoveChild", &Gameobject::RemoveChild);
 
 	//gameobject.def("AddComponentRenderer", &Gameobject::AddComponent<RenderComponent>);
-	//gameobject.def("AddComponentAudio", &Gameobject::AddComponent<AudioComponent>, py::arg("GameObject"));
-	//gameobject.def("AddComponentMusic", &Gameobject::AddComponent<MusicComponent>, py::arg("GameObject"));
+	//gameobject.def("AddComponentAudio", &Gameobject::AddComponent<AudioComponent>, py::arg("owner"));
+	gameobject.def("AddMusicComponent", &Gameobject::AddMusicComponent);
 	//gameobject.def("AddComponentRigidbody", &Gameobject::AddComponent<RigidbodyComponent>, py::arg("GameObject"));
 	//gameobject.def("AddComponentTransform", &Gameobject::AddComponent<TransformComponent>, py::arg("GameObject"));
 	//
 	//gameobject.def("GetComponentRenderer", &Gameobject::GetComponent<RenderComponent>);
 	//gameobject.def("GetComponentAudio", &Gameobject::GetComponent<AudioComponent>);
-	gameobject.def("GetComponentMusic", &Gameobject::GetMusicComponent);
+	gameobject.def("GetMusicComponent", &Gameobject::GetMusicComponent);
 	//gameobject.def("GetComponentRigidbody", &Gameobject::GetComponent<RigidbodyComponent>);
 	//gameobject.def("GetComponentTransform", &Gameobject::GetComponent<TransformComponent>);
 
