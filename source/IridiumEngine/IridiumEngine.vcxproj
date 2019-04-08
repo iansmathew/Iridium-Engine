@@ -114,6 +114,7 @@
     <ClCompile Include="Engine\Scene\SplashScene\SplashScene.cpp" />
     <ClCompile Include="Engine\Scene\TestScene\TestScene.cpp" />
     <ClCompile Include="Engine\Window\WindowManager.cpp" />
+    <ClCompile Include="ExternalTools\tinyxml2.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +142,7 @@
     <ClInclude Include="Engine\Window\WindowManager.h" />
     <ClInclude Include="ExternalTools\FastDelegate.h" />
     <ClInclude Include="ExternalTools\json.hpp" />
+    <ClInclude Include="ExternalTools\tinyxml2.h" />
     <ClInclude Include="Helper\BaseSingleton.h" />
     <ClInclude Include="Helper\SysCheck.h" />
   </ItemGroup>

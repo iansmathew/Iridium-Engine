@@ -8,7 +8,6 @@
 #include <type_traits>
 #include <assert.h>
 //----------------------------------------------------
-#include "../ExternalTools/json.hpp"
 #include "Scene.h"
 
 class SceneManager : public BaseSingleton<SceneManager>

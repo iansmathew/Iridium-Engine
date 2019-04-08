@@ -1,0 +1,17 @@
+<?xml version="1.0" encodi  ng="UTF-8" ?>
+<root>
+  <Gameobject>
+    <name>Crash</name>
+    <isActive>true</isActive>
+    <isRendered>true</isRendered>
+    <parentIndex>0</parentIndex>
+    <scriptComponent>null</scriptComponent>
+  </Gameobject>
+  <Gameobject>
+    <name>CrashChild</name>
+    <isActive>true</isActive>
+    <isRendered>true</isRendered>
+    <parentIndex>1</parentIndex>
+    <scriptComponent>null</scriptComponent>
+  </Gameobject>
+</root>

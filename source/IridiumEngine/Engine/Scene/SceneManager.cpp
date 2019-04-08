@@ -1,4 +1,12 @@
+#ifndef XMLCheckResult
+#define XMLCheckResult(a_eResult) if (a_eResult != XML_SUCCESS) { printf("Error: %i\n", a_eResult);}
+#endif
+
 #include "SceneManager.h"
+#include "../../ExternalTools/tinyxml2.h"
+#include <iostream>
+
+using namespace tinyxml2;
 
 /**
 	Initializing static member
@@ -83,7 +91,26 @@ void SceneManager::LoadScene(Scene* _scene)
  */
 void SceneManager::LoadSceneFromFile(std::string _filePath)
 {
+	//Opem xml file
+	XMLDocument xmlDoc;
+	XMLError eResult = xmlDoc.LoadFile(_filePath.c_str());
+	XMLCheckResult(eResult);
 
+	//Get reference to root node
+	XMLNode* sceneNode = xmlDoc.FirstChildElement("root");
+	assert(sceneNode && "Root node could not be found!");
+
+	auto scene = CreateNewScene<Scene>();
+
+	for (XMLNode* xmlGo = sceneNode->FirstChildElement("Gameobject"); xmlGo != nullptr; xmlGo =  xmlGo->NextSiblingElement())
+	{
+		//auto go = CreateNewGameobject<Gameobject>(true);
+		auto thing = xmlGo->FirstChildElement("name")->GetText();
+		std::cout << thing << std::endl;
+	}
+
+	//Load the created scene
+	LoadScene(scene);
 }
 
 /**

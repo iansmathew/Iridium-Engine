@@ -144,7 +144,7 @@ bool IridiumEngine::Initialize()
 	/*auto splashScene = sceneManager->CreateNewScene<SplashScene>();
 	sceneManager->LoadScene(splashScene);*/
 
-	sceneManager->LoadSceneFromFile("..\savedScene.json");
+	sceneManager->LoadSceneFromFile("../SaveData.xml");
 
 	return true;
 }

@@ -156,6 +156,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ExternalTools\tinyxml2.cpp">
+      <Filter>Header Files\ExternalTools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Engine.h">
@@ -235,6 +238,9 @@
     </ClInclude>
     <ClInclude Include="Engine\Components\TrialComponent.h">
       <Filter>Header Files\Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ExternalTools\tinyxml2.h">
+      <Filter>Header Files\ExternalTools</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
