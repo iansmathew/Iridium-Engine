@@ -2,9 +2,16 @@
 #define XMLCheckResult(a_eResult) if (a_eResult != XML_SUCCESS) { printf("Error: %i\n", a_eResult);}
 #endif
 
-#include "SceneManager.h"
 #include "../../ExternalTools/tinyxml2.h"
+//----------------------------------------------------
 #include <iostream>
+//----------------------------------------------------
+#include "SceneManager.h"
+#include "../Components/RigidbodyComponent.h"
+#include "../Components/RenderComponent.h"
+#include "../Components/AudioComponent.h"
+
+
 
 using namespace tinyxml2;
 
@@ -91,22 +98,114 @@ void SceneManager::LoadScene(Scene* _scene)
  */
 void SceneManager::LoadSceneFromFile(std::string _filePath)
 {
+	//Create scene node
+	auto scene = CreateNewScene<Scene>();
+
 	//Opem xml file
 	XMLDocument xmlDoc;
 	XMLError eResult = xmlDoc.LoadFile(_filePath.c_str());
 	XMLCheckResult(eResult);
 
 	//Get reference to root node
-	XMLNode* sceneNode = xmlDoc.FirstChildElement("root");
+	XMLNode* sceneNode = xmlDoc.FirstChildElement("ArrayOfXMLGameobject");
 	assert(sceneNode && "Root node could not be found!");
 
-	auto scene = CreateNewScene<Scene>();
 
-	for (XMLNode* xmlGo = sceneNode->FirstChildElement("Gameobject"); xmlGo != nullptr; xmlGo =  xmlGo->NextSiblingElement())
+	for (XMLNode* xmlGo = sceneNode->FirstChildElement("XMLGameobject"); xmlGo != nullptr; xmlGo =  xmlGo->NextSiblingElement())
 	{
-		//auto go = CreateNewGameobject<Gameobject>(true);
-		auto thing = xmlGo->FirstChildElement("name")->GetText();
-		std::cout << thing << std::endl;
+		//Create a new gameobject and attach to scene
+		auto newGo = CreateNewGameobject<Gameobject>(scene);
+		scene->AddChild(newGo);
+		
+		//Set values according to XML
+		newGo->name = xmlGo->FirstChildElement("nameDetails")->FirstChildElement("name")->GetText();
+		
+		float posX;
+		float posY;
+		float scaleX;
+		float scaleY;
+
+		//Transform
+		auto transformDetails = xmlGo->FirstChildElement("transformDetails");
+		transformDetails->FirstChildElement("posX")->QueryFloatText(&posX);
+		transformDetails->FirstChildElement("posY")->QueryFloatText(&posY);
+		transformDetails->FirstChildElement("scaleX")->QueryFloatText(&scaleX);
+		transformDetails->FirstChildElement("scaleY")->QueryFloatText(&scaleY);
+
+		newGo->GetComponent<TransformComponent>()->setPosition(posX, posY);
+		newGo->GetComponent<TransformComponent>()->setScale(scaleX, scaleY);
+
+		bool hasRenderer = false;
+		bool hasRigidbody = false;
+		bool hasAudio = false;
+
+		xmlGo->FirstChildElement("hasRenderComponent")->QueryBoolText(&hasRenderer);
+		xmlGo->FirstChildElement("hasRigidbodyComponent")->QueryBoolText(&hasRigidbody);
+		xmlGo->FirstChildElement("hasAudioComponent")->QueryBoolText(&hasAudio);
+
+
+		//Renderer
+		if (hasRenderer)
+		{
+			bool isRendered = false;
+			std::string imagePath = "";
+
+			auto rendererDetails = xmlGo->FirstChildElement("rendererDetails");
+			rendererDetails->FirstChildElement("isRendered")->QueryBoolText(&isRendered);
+			imagePath = rendererDetails->FirstChildElement("imagePath")->GetText();
+
+			//Apply values
+			newGo->AddComponent<RenderComponent>(newGo);
+			newGo->GetComponent<RenderComponent>()->SetVisibility(isRendered);
+			newGo->GetComponent<RenderComponent>()->SetTexture(imagePath);
+		}
+
+		//Rigidbody
+		if (hasRigidbody)
+		{
+			bool isEnabled = true;
+			bool isAffectedByGravity = true;
+			float mass = 1.0f;
+
+			//Query values
+			auto rigidbodyDetails = xmlGo->FirstChildElement("rigidbodyDetails");
+
+			rigidbodyDetails->FirstChildElement("isEnabled")->QueryBoolText(&isEnabled);
+			rigidbodyDetails->FirstChildElement("isAffectedByGravity")->QueryBoolText(&isAffectedByGravity);
+			rigidbodyDetails->FirstChildElement("mass")->QueryFloatText(&mass);
+
+			//Apply values
+			newGo->AddComponent<RigidbodyComponent>(newGo);
+			newGo->GetComponent<RigidbodyComponent>()->mass = mass;
+			newGo->GetComponent<RigidbodyComponent>()->enabled = isEnabled;
+			newGo->GetComponent<RigidbodyComponent>()->enableGravity = isAffectedByGravity;
+		}
+
+		//Audio 
+		if (hasAudio) //TODO:Chagne
+		{
+			auto audioDetails = xmlGo->FirstChildElement("audioDetails");
+			auto clipNameDetails = audioDetails->FirstChildElement("clipNames");
+			auto clipPathDetails = audioDetails->FirstChildElement("clipPaths");
+
+			newGo->AddComponent<AudioComponent>(newGo);
+
+			auto xmlClipPath = clipPathDetails->FirstChildElement("string"); 
+			for (auto xmlClipName = clipNameDetails->FirstChildElement("string"); xmlClipName != nullptr; xmlClipName = xmlClipName->NextSiblingElement())
+			{
+
+				//Get values
+				std::string clipName = xmlClipName->GetText();
+				std::string clipPath = xmlClipPath->GetText();
+
+				//Iterate path var
+				xmlClipPath = xmlClipPath->NextSiblingElement();
+
+				//Apply values
+				newGo->GetComponent<AudioComponent>()->AddSoundClip(clipName, clipPath);
+			}
+		}
+
 	}
 
 	//Load the created scene

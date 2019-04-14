@@ -75,7 +75,7 @@ public:
 	T* CreateNewGameobject(bool _isRendered = true)
 	{
 		//Do not create a gameobject if there is no scene to create it in
-		assert(currentScene);
+		//assert(currentScene);
 
 		////Ensure that only of type Gameobject can be created 
 		//static_assert(std::is_base_of<Gameobject, T>::value, "T should inherit from Gameobject");
@@ -84,8 +84,9 @@ public:
 		T* newGo = new T(_isRendered);
 
 		//set the parent if given, else default to root
-	
-		currentScene->AddChild(newGo);
+		//currentScene->AddChild(newGo);
+		//TODO: Remove scene dependancies on creating go
+
 
 		return newGo;
 	}
