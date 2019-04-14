@@ -17,6 +17,8 @@ void RigidbodyComponent::Shutdown()
 
 RigidbodyComponent::RigidbodyComponent(Gameobject* _owner) : BaseComponent(_owner)
 {
+	std::shared_ptr<EvtData_On_Rigidbody_Created> pEvent(new EvtData_On_Rigidbody_Created(this));
+	EventManager::Instance()->QueueEvent(pEvent);
 }
 
 RigidbodyComponent::~RigidbodyComponent()

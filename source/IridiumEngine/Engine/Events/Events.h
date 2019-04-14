@@ -100,3 +100,34 @@ public:
 	sf::Music* GetMusic() { return musicClip; }
 
 };
+
+class RigidbodyComponent;
+
+class EvtData_On_Rigidbody_Created : public BaseEventData
+{
+public:
+	EvtData_On_Rigidbody_Created(RigidbodyComponent* _rb)
+	{
+		rb = _rb;
+	}
+	
+	RigidbodyComponent* rb;
+
+	static const EventType eventType;
+
+	virtual const EventType& GetEventType(void) const override
+	{
+		return eventType;
+	}
+};
+
+class EvtData_Pre_Scene_Load : public BaseEventData
+{
+public:
+	static const EventType eventType;
+
+	virtual const EventType& GetEventType(void) const override
+	{
+		return eventType;
+	}
+};

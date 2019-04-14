@@ -21,10 +21,10 @@ PhysicsManager::~PhysicsManager()
 void PhysicsManager::Initialize()
 {
 	EventListenerDelegate delegateGOCreateFunc = fastdelegate::MakeDelegate(this, &PhysicsManager::OnNewGameobjectCreated);
-	EventManager::Instance()->AddListener(delegateGOCreateFunc, EvtData_On_GO_Created::eventType);
+	EventManager::Instance()->AddListener(delegateGOCreateFunc, EvtData_On_Rigidbody_Created::eventType);
 
 	EventListenerDelegate delegateSceneChangeFunc = fastdelegate::MakeDelegate(this, &PhysicsManager::RemoveRigidbodies);
-	EventManager::Instance()->AddListener(delegateSceneChangeFunc, EvtData_On_Scene_Change::eventType);
+	EventManager::Instance()->AddListener(delegateSceneChangeFunc, EvtData_Pre_Scene_Load::eventType);
 }
 
 void PhysicsManager::Start()
@@ -179,10 +179,8 @@ void PhysicsManager::RemoveRigidbodies(IEventDataPtr _event)
 
 void PhysicsManager::OnNewGameobjectCreated(IEventDataPtr _event)
 {
-	std::shared_ptr<EvtData_On_GO_Created> pCastEventData = std::static_pointer_cast<EvtData_On_GO_Created>(_event);
-	Gameobject* GO = pCastEventData->GetOwnedGameobject();
+	std::shared_ptr<EvtData_On_Rigidbody_Created> pCastEventData = std::static_pointer_cast<EvtData_On_Rigidbody_Created>(_event);
 
-	
-	//AddRigidbody(GO->GetComponent<RigidbodyComponent>());
+	rigidbodyList.push_back(pCastEventData->rb);
 	
 }

@@ -88,7 +88,7 @@ void SceneManager::LoadScene(Scene* _scene)
 	//Update current scene, event will take care of calling Start
 	currentScene = _scene;
 	
-	//Post scene change event
+	//Post scene change 
 	std::shared_ptr<EvtData_On_Scene_Change> pEvent(new EvtData_On_Scene_Change());
 	EventManager::Instance()->QueueEvent(pEvent);
 }
@@ -98,6 +98,11 @@ void SceneManager::LoadScene(Scene* _scene)
  */
 void SceneManager::LoadSceneFromFile(std::string _filePath)
 {
+	//Notift managers to clear any previous held queues.
+	std::shared_ptr<EvtData_Pre_Scene_Load> pEvent(new EvtData_Pre_Scene_Load());
+	EventManager::Instance()->QueueEvent(pEvent);
+
+
 	//Create scene node
 	auto scene = CreateNewScene<Scene>();
 
