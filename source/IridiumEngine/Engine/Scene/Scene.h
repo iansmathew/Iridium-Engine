@@ -34,4 +34,6 @@ public:
 	void AddChild(Gameobject* _child);
 
 	bool RemoveChild(Gameobject* _child);
+
+	Gameobject* player;
 };

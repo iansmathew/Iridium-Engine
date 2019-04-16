@@ -18,31 +18,24 @@ void SplashScene::Start()
 
 	////Add image
 	Gameobject* splashImage = SceneManager::Instance()->CreateNewGameobject<Gameobject>(true);
-	
+
 	splashImage->AddComponent<RenderComponent>(splashImage);
-	splashImage->GetComponent<RenderComponent>()->SetTexture("../../assets/engine/images/splashImage.png");
-	splashImage->GetComponent<RenderComponent>()->SetVisibility(true);
-	splashImage->GetComponent<TransformComponent>()->setPosition(0, 0);
-	//TODO: Fix PyBehaviour
-	//splashImage->AddComponent<PyBehaviour>(splashImage);
+	splashImage->GetComponent<RenderComponent>()->SetTexture("../../assets/test_scene/crashTestSprite.png");
+	splashImage->GetComponent<RenderComponent>()->SetVisibility(false);
 
+	Gameobject* testObj = SceneManager::Instance()->CreateNewGameobject<Gameobject>(this);
+	testObj->AddComponent<RenderComponent>(testObj);
+	testObj->GetComponent<RenderComponent>()->SetTexture("../../assets/engine/images/splashImage.png");
+	testObj->GetComponent<RenderComponent>()->SetVisibility(true);
+	testObj->GetTransform()->move(500, 200);
 
+	//Add background music
+	auto audioManagerGO = SceneManager::Instance()->CreateNewGameobject<Gameobject>(false);
+	auto musicComponent = audioManagerGO->AddComponent<MusicComponent>(audioManagerGO);
+	musicComponent->AddMusicClip("bgMusic", "../../assets/splash_scene/splashSceneBgMusic.wav");
+	musicComponent->PlayMusic("bgMusic");
 
-	//splashImage->AddComponent<PyBehaviour>(splashImage);
-
-	//Gameobject* testObj = SceneManager::Instance()->CreateNewGameobject<Gameobject>(this);
-	//testObj->AddComponent<RenderComponent>(testObj);
-	//testObj->GetComponent<RenderComponent>()->SetTexture("../../assets/engine/images/splashImage.png");
-	//testObj->GetComponent<RenderComponent>()->SetVisibility(true);
-	//testObj->GetTransform()->move(500, 200);
-
-	////Add background music
-	//auto audioManagerGO = SceneManager::Instance()->CreateNewGameobject<Gameobject>(false);
-	//auto musicComponent = audioManagerGO->AddComponent<MusicComponent>(audioManagerGO);
-	//musicComponent->AddMusicClip("bgMusic", "../../assets/splash_scene/splashSceneBgMusic.wav");
-	//musicComponent->PlayMusic("bgMusic");
-
-	//elapsedTime = 0.f;
+	elapsedTime = 0.f;
 
 	__super::Start();
 }

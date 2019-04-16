@@ -3,6 +3,9 @@
 #include <iomanip>
 #include <iosfwd>
 #include <fstream>
+#include "../Components/Gameobject.h"
+#include "../Components/RigidbodyComponent.h"
+#include "../Components/AudioComponent.h"
 
 using json = nlohmann::json;
 
@@ -31,7 +34,37 @@ void Scene::Start()
  */
 void Scene::Update(float _deltaTime)
 {
-		for (auto& child : gameobjects)
+	if (player)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		{
+			player->GetComponent<RigidbodyComponent>()->AddForce(-150, 0.0f);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+		{
+			player->GetComponent<RigidbodyComponent>()->AddForce(150, 0.0f);
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		{
+			player->GetComponent<RigidbodyComponent>()->AddForce(0.0f, -150);
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		{
+			player->GetComponent<RigidbodyComponent>()->AddForce(0.0f, 150);
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		{
+			auto autdo = player->GetComponent<AudioComponent>();
+			autdo->PlaySound("spaceSound");
+		}
+
+
+	}
+
+	for (auto& child : gameobjects)
 		child->Update(_deltaTime);
 }
 

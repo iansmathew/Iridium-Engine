@@ -3,12 +3,12 @@
   <XMLGameobject>
     <hasRenderComponent>true</hasRenderComponent>
     <hasRigidbodyComponent>true</hasRigidbodyComponent>
-    <hasAudioComponent>false</hasAudioComponent>
+    <hasAudioComponent>true</hasAudioComponent>
     <nameDetails>
-      <name>Gameobject</name>
+      <name>player</name>
     </nameDetails>
     <transformDetails>
-      <posX>200</posX>
+      <posX>400</posX>
       <posY>300</posY>
       <scaleX>1</scaleX>
       <scaleY>1</scaleY>
@@ -16,26 +16,37 @@
     <rigidbodyDetails>
       <mass>1</mass>
       <isEnabled>true</isEnabled>
-      <isAffectedByGravity>true</isAffectedByGravity>
+      <isAffectedByGravity>false</isAffectedByGravity>
     </rigidbodyDetails>
     <rendererDetails>
       <isRendered>true</isRendered>
-      <imagePath>C:\Users\iansm\Downloads\proxy.duckduckgo.com.png</imagePath>
+      <imagePath>D:\iansm\Downloads\browser.png</imagePath>
     </rendererDetails>
-    <audioDetails />
+    <audioDetails>
+      <clipNames>
+        <string>spaceSound</string>
+        <string>NewClip1</string>
+        <string>NewClip2</string>
+      </clipNames>
+      <clipPaths>
+        <string>C:\Users\iansm\Desktop\Iridium_Engine_2.0\assets\engine\sounds\testSound.wav</string>
+        <string>null</string>
+        <string>null</string>
+      </clipPaths>
+    </audioDetails>
   </XMLGameobject>
   <XMLGameobject>
     <hasRenderComponent>true</hasRenderComponent>
     <hasRigidbodyComponent>false</hasRigidbodyComponent>
-    <hasAudioComponent>true</hasAudioComponent>
+    <hasAudioComponent>false</hasAudioComponent>
     <nameDetails>
       <name>Gameobject</name>
     </nameDetails>
     <transformDetails>
-      <posX>500</posX>
+      <posX>600</posX>
       <posY>300</posY>
-      <scaleX>1</scaleX>
-      <scaleY>1</scaleY>
+      <scaleX>2</scaleX>
+      <scaleY>2</scaleY>
     </transformDetails>
     <rigidbodyDetails>
       <mass>0</mass>
@@ -44,19 +55,8 @@
     </rigidbodyDetails>
     <rendererDetails>
       <isRendered>true</isRendered>
-      <imagePath>C:\Users\iansm\Downloads\proxy.duckduckgo.com.png</imagePath>
+      <imagePath>D:\iansm\Downloads\luigi.png</imagePath>
     </rendererDetails>
-    <audioDetails>
-      <clipNames>
-        <string>shortClip</string>
-        <string>NewClip1</string>
-        <string>NewClip2</string>
-      </clipNames>
-      <clipPaths>
-        <string>C:\Users\iansm\Downloads\tasmanian-devil-daniel_simon.wav</string>
-        <string>null</string>
-        <string>null</string>
-      </clipPaths>
-    </audioDetails>
+    <audioDetails />
   </XMLGameobject>
 </ArrayOfXMLGameobject>

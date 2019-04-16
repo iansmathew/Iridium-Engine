@@ -141,10 +141,10 @@ bool IridiumEngine::Initialize()
 	EventListenerDelegate delegateFunc = fastdelegate::MakeDelegate(this, &IridiumEngine::OnSceneChange);
 	EventManager::Instance()->AddListener(delegateFunc, EvtData_On_Scene_Change::eventType);
 
-	//auto splashScene = sceneManager->CreateNewScene<SplashScene>();
-	//sceneManager->LoadScene(splashScene);
+	/*auto splashScene = sceneManager->CreateNewScene<SplashScene>();
+	sceneManager->LoadScene(splashScene);*/
 
-	sceneManager->LoadSceneFromFile("../MySaveFile.xml");
+	sceneManager->LoadSceneFromFile("../sceneC.xml");
 
 	return true;
 }

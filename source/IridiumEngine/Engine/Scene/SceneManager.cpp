@@ -124,6 +124,11 @@ void SceneManager::LoadSceneFromFile(std::string _filePath)
 		
 		//Set values according to XML
 		newGo->name = xmlGo->FirstChildElement("nameDetails")->FirstChildElement("name")->GetText();
+
+		if (newGo->name == "player")
+		{
+			scene->player = newGo;
+		}
 		
 		float posX;
 		float posY;
